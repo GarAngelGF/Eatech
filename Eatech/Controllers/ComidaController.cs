@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
 using NuGet.Protocol.Plugins;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Eatech.Controllers
 {
@@ -40,7 +41,16 @@ namespace Eatech.Controllers
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
         //**************************************************************************************************************************************************************************//
         /*-Apartado para todo sobre el crear comida-*/
-
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind ("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr, Guid IdIngradiente)
+        {
+            if( ModelState.IsValid )
+            {
+                bd_comida.IDComida = Guid.NewGuid();
+                var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.IdIngrediente == IdIngradiente);
+                Guid Sopadepapa;
+               // if (Guid.TryParse(buscador, out Sopadepapa)) { }
+            }
+        }
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/

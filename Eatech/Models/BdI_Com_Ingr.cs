@@ -22,5 +22,8 @@ namespace Eatech.Models
         [ForeignKey("IdIngrediente")]
         public Bd_Ingredientes? Idingrediente { get; set; }
 
+        public ICollection<Bd_Comida> Comida { get; set;}
+        public ICollection<Bd_Ingredientes> Ingredientes {  get; set; } 
+
     }
 }
