@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title> Eatech - @ViewData["Title"]</title>
+	<link rel="icon" href="/Imagenes/LOGO.png"  type="image/x-icon"/>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Eatech.styles.css" asp-append-version="true" />
+</head>
+<body>
+	<header>
+
+
+		@using Microsoft.AspNetCore.Mvc.Rendering
+		@{
+
+			string currentController = ViewContext.RouteData.Values["Controller"].ToString();
+			string currentAction = ViewContext.RouteData.Values["Action"].ToString();
+		}
+
+
+
+
+		@if ((currentController == "Aplicacion" && currentAction == "Login") ||
+				(currentController == "Aplicacion" && currentAction == "Registro"))
+		{
+
+
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+						<!-- --------------------------------------------------------------------------- -->
+						<img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
+						<!-- --------------------------------------------------------------------------- -->
+					</a>
+					<label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+						   data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						   aria-expanded="false" aria-label="Toggle navigation">
+						<input id="check" type="checkbox">
+						<span class="top"></span>
+						<span class="mid"></span>
+						<span class="bot"></span>
+					</label>
+
+					<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+
+								@if (currentController=="Aplicacion" && currentAction=="Login")
+								{
+									<!-- --------------------------------------------------------------------------- -->
+									<a asp-area="" asp-controller="Aplicacion" asp-action="Registro">
+										<!-- --------------------------------------------------------------------------- -->
+										<button class="botonsito_blanco iniciar_blanco">
+											<span class="circle_blanco" aria-hidden="true">
+												<span class="icon_blanco arrow_blanco"></span>
+											</span>
+											<span class="button-text_blanco">REGISTRARME</span>
+										</button>
+
+									</a>
+
+
+
+								}
+								@if (currentController == "Aplicacion" && currentAction == "Registro")
+								{
+									<!-- --------------------------------------------------------------------------- -->
+									<a asp-area="" asp-controller="Aplicacion" asp-action="Login">
+										<!-- --------------------------------------------------------------------------- -->
+										<button class="botonsito_blanco iniciar_blanco">
+											<span class="circle_blanco" aria-hidden="true">
+												<span class="icon_blanco arrow_blanco"></span>
+											</span>
+											<span class="button-text_blanco">INICIAR SESIÓN</span>
+										</button>
+
+									</a>
+								}
+							</li>
+
+							<li class="nav-item">
+								<!-- --------------------------------------------------------------------------- -->
+								<a asp-area="" asp-controller="Home" asp-action="Index">
+									<!-- --------------------------------------------------------------------------- -->
+									<button class="botonsito_blanco iniciar_blanco">
+										<span class="circle_blanco" aria-hidden="true">
+											<span class="icon_blanco arrow_blanco"></span>
+										</span>
+										<span class="button-text_blanco">VOLVER</span>
+									</button>
+
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+
+
+
+		}
+
+		@if ((currentController == "Home" && currentAction == "Index") ||
+				(currentController == "Home" && currentAction == "Privacy") ||
+				(currentController == "Aplicacion" && currentAction == "RecuperarContrasena")||
+				(currentController == "Aplicacion" && currentAction == "Dashboard")||
+				(currentController == "Aplicacion" && currentAction == "AdminDashboard")||
+				(currentController == "Aplicacion" && currentAction == "NuevaContrasena")
+		
+		
+		
+		
+		)
+		{
+
+			<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+				<div class="container-fluid">
+					<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eatech</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+						<ul class="navbar-nav flex-grow-1">
+							
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Login">login</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Registro">Registro</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="RecuperarContrasena">Recuperar Contraseña</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="NuevaContrasena">NuevaContraseña</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Dashboard">dashboard</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="AdminDashboard">AdminDashboard</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Logout">Salir (@User.Identity.Name)</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+
+
+
+
+		}
+
+
+
+
+
+	</header>
+
+	<div class="container1">
+		<main role="main" class="">
+			@RenderBody()
+		</main>
+	</div>
+
+
+
+	@if (currentController == "Home" && currentAction == "Index")
+	{
+		<footer class="border-top footer text-muted">
+			<div class="container">
+				&copy; 2024 - Eatech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			</div>
+		</footer>
+	}
+
+
+
+
+
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="false"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+</html>
