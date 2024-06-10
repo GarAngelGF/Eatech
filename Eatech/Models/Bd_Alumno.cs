@@ -13,6 +13,9 @@ namespace Eatech.Models
         [Key, DisplayName("Matricula Alumno"), MaxLength(11, ErrorMessage = "Cantidad de caracteres maxima (10) Alcanzada")]
         public Guid IdAlumno { get; set; }
 
+        [Required, DisplayName("No.Matricula"),MinLength(10, ErrorMessage ="La matricula debe de ser de 10 caracteres")]
+        public string NoMatricula { get; set; }
+
         [Required, DisplayName("Nombre"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
         public string Nombre { get; set; }
 
@@ -34,9 +37,6 @@ namespace Eatech.Models
         [DisplayName("Preferencias de alimentos"), MaxLength(528, ErrorMessage = "Cantidad de caracteres maxima (528) Alcanzada")]
         public string PreferenciasComida { get; set; }
 
-        //--Cambio: Se quito "Desagrados" ya que se puede simplificar dentro de la variable "Preferencias"
-        ////public string Desagrados { get; set; }
-
         //Datos 
         [Required, DisplayName("Grado escolar")]
         public string GradoEscolar { get; set; }
@@ -46,7 +46,7 @@ namespace Eatech.Models
         [DisplayName("Notas"), MaxLength(528, ErrorMessage = "Cantidad de caracteres maxima (528) Alcanzada")]
         public string Notas { get; set; }
 
-
+        public ICollection<Bd_FotoAlumno> Foto {  get; set; }   
     }
 
 }

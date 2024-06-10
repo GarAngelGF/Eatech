@@ -33,8 +33,6 @@ namespace Eatech.Models
         public ICollection<Bd_Alumno>? alumno {  get; set; }
         public ICollection<Bd_Usuario>? usuario {  get; set; }
 
-
-
     }
 
 

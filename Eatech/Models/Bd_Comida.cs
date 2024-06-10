@@ -18,6 +18,9 @@ namespace Eatech.Models
         [Required, DisplayName("Comida"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
         public string Nombre { get; set; }
 
+        [Required, DisplayName("Estado visibilidad")]
+        public string Visibilidad { get; set; }
+
         [Required, DisplayName("Porciones totales")]
         public int Porciones { get; set; }
 
@@ -26,14 +29,7 @@ namespace Eatech.Models
         [Remote("ValidarPorcionesDisponibles", "Aplicacion", ErrorMessage = "Ya no hay porciones disponibles")]
         public int PorcionesDisponibles { get; set; }
 
-        //Cambio: Se cambio la variable "Comentarios" a la tabla pedidos
-
-
-
-
-
-
-
+        public ICollection<Bd_FotoComidas> FotosComidas { get; set; }
 
     }
 }

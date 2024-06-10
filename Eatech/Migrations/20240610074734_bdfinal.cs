@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class prueba1 : Migration
+    public partial class bdfinal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,6 +14,7 @@ namespace Eatech.Migrations
                 columns: table => new
                 {
                     IdAlumno = table.Column<Guid>(type: "uniqueidentifier", maxLength: 11, nullable: false),
+                    NoMatricula = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     aPaterno = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     aMaterno = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
@@ -34,6 +35,7 @@ namespace Eatech.Migrations
                 {
                     IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Visibilidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Porciones = table.Column<int>(type: "int", nullable: false),
                     PorcionesDisponibles = table.Column<int>(type: "int", nullable: false)
                 },
@@ -47,6 +49,7 @@ namespace Eatech.Migrations
                 columns: table => new
                 {
                     IdEscuela = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaveEscuela = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Codigo = table.Column<Guid>(type: "uniqueidentifier", maxLength: 128, nullable: false)
                 },
@@ -101,6 +104,44 @@ namespace Eatech.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AlumnoFoto",
+                columns: table => new
+                {
+                    IDAlumno = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IDAlumnoo = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlumnoFoto", x => x.IDAlumno);
+                    table.ForeignKey(
+                        name: "FK_AlumnoFoto_Alumnos_IDAlumno",
+                        column: x => x.IDAlumno,
+                        principalTable: "Alumnos",
+                        principalColumn: "IdAlumno",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ComidaFoto",
+                columns: table => new
+                {
+                    FotoComidaID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComidaFoto", x => x.FotoComidaID);
+                    table.ForeignKey(
+                        name: "FK_ComidaFoto_Comidas_IDComida",
+                        column: x => x.IDComida,
+                        principalTable: "Comidas",
+                        principalColumn: "IDComida",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -219,6 +260,11 @@ namespace Eatech.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ComidaFoto_IDComida",
+                table: "ComidaFoto",
+                column: "IDComida");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Intermedia_Alum_Pedi_IdAlumno",
                 table: "Intermedia_Alum_Pedi",
                 column: "IdAlumno");
@@ -271,6 +317,12 @@ namespace Eatech.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AlumnoFoto");
+
+            migrationBuilder.DropTable(
+                name: "ComidaFoto");
+
             migrationBuilder.DropTable(
                 name: "Intermedia_Alum_Pedi");
 

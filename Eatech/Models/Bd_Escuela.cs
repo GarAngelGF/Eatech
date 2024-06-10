@@ -14,6 +14,10 @@ namespace Eatech.Models
         [Key, DisplayName("Id Escuela"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdEscuela { get; set; }
 
+        [Required, MaxLength(10, ErrorMessage ="El codigo de la escuela debe de ser de 10 caracteres")]
+        [Remote ("ValidarCodigo", "Escuela" , ErrorMessage ="La escuela ya fue registrada")]
+        public string ClaveEscuela {  set; get; }
+
         [Required, DisplayName("Escuela"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
         public string Nombre { get; set; }
 

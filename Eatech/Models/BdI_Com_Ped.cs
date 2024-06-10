@@ -22,5 +22,10 @@ namespace Eatech.Models
 
         [ForeignKey("pedido")]
         public Bd_Pedido? Pedido { get; set; }
+
+        /*-coneccion tablas fuertes-*/
+        public ICollection<Bd_Comida>? Comida { get; set; }
+        public ICollection<Bd_Pedido>? Pedidos { get; set; }
+
     }
 }

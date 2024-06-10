@@ -31,7 +31,7 @@ namespace Eatech.Models
         public string NotaPedido { get; set; }
 
 
-        [DisplayName("Estatus del pedido")]
+        [Required,DisplayName("Estatus del pedido")]
         public string Estatus { get; set; }  
     }
 }

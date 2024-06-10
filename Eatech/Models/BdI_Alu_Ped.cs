@@ -21,12 +21,13 @@ namespace Eatech.Models
 
         //Relaciones con las demas tablas
         [Required, DisplayName("Id del alumno")]
-        public Guid IdAlumno { get; set; } 
+        public Guid IdAlumno { get; set; }
 
         [ForeignKey("IdAlumno")]
         public Bd_Alumno? Idalumno { get; set; }
 
-       
 
+        public ICollection<Bd_Pedido>? pedidos { get; set; }
+        public ICollection<Bd_Alumno>? alumnos { get; set; }
     }
 }
