@@ -70,7 +70,7 @@
                   
                     <div class="form-group">
                         <input asp-for="Nombre" type="text" class="input" placeholder="Escribe tu nombre" id="nombre" name="nombre" 
-                        required="Nombre"/>
+                        required=""/>
                         <span asp-validation-for="Nombre" class="text-danger"></span>
                     </div>
                       
@@ -80,7 +80,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aPaterno" type="text" class="input" placeholder=" Apellido paterno" id="apellido_paterno" name="aPaterno" />
+                        <input asp-for="aPaterno" type="text" class="input" placeholder=" Apellido paterno" id="apellido_paterno" name="name"
+                        required=""/>
                         <span asp-validation-for="aPaterno" class="text-danger"></span>
                     </div>
                     
@@ -90,7 +91,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aMaterno" type="text" class="input" placeholder="Apellido materno" id="apellido_materno" name="aMaterno" />
+                        <input asp-for="aMaterno" type="text" class="input" placeholder="Apellido materno" id="apellido_materno" name="name" 
+                        required=""/>
                         <span asp-validation-for="aMaterno" class="text-danger"></span>
                     </div>
                    
@@ -104,7 +106,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Correo" type="email" class="input" placeholder="Escribe tu correo" id="email_padre" name="email" />
+                        <input asp-for="Correo" type="email" class="input" placeholder="Escribe tu correo" id="email_padre" name="email"
+                        required=""/>
                         <span asp-validation-for="Correo" class="text-danger"></span>
                     </div>
                    
@@ -115,7 +118,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Contrasena" type="password" class="input" placeholder="Contraseña" id="password" name="password" />
+                        <input asp-for="Contrasena" type="password" class="input" placeholder="Contraseña" id="password" name="password"
+                        required=""/>
                         <span asp-validation-for="Contrasena" class="text-danger"></span>
                     </div>
                    
@@ -125,7 +129,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input type="password" class="input" placeholder="Confirmar contraseña" id="RepetirContrasena" name="RepetirContrasena" />
+                        <input type="password" class="input" placeholder="Confirmar contraseña" id="RepetirContrasena" name="RepetirContrasena"
+                        required=""/>
                         <span name="spErrorContrasena" class="text-danger"></span>
                     </div>
                    
@@ -144,7 +149,7 @@
 
         
             <div class="form-group">
-                <input  <button class="animated-button" type="submit" id="btnRegistrar" value="Registrar">
+                <button class="animated-button">
 
                     <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
@@ -161,8 +166,7 @@
                     
                     
                     
-                    />
-               
+                  
               @*   <a asp-action="Login"></a> *@
             </div>
           
@@ -187,7 +191,7 @@
 
     @* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- *@
 
-    <div class="container" id="institucional_form" style="display: none;">
+  @*   <div class="container" id="institucional_form" style="display: none;">
         <div class="heading">CREAR CUENTA</div>
         <form class="form" asp-action="Registro">
             <div class="row">
@@ -257,7 +261,7 @@
                 </symbol>
             </svg>
         </div>
-    </div>
+    </div> *@
 
 
 
