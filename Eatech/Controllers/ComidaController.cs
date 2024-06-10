@@ -48,6 +48,7 @@ namespace Eatech.Controllers
             return View();
         }
 
+        /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr, Guid IdIngradiente)
@@ -84,6 +85,7 @@ namespace Eatech.Controllers
             return View(lgc);
         }
 
+        /*-Task para editar los datos de la comida-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditarComida(Guid id, [Bind("Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_Comida)
@@ -103,6 +105,8 @@ namespace Eatech.Controllers
             return View(bd_Comida);
         }
 
+
+        /*-Comprueba si el id de la comida existe o nelsonmandela-*/
         private bool ComidaEx(Guid Id)
         {
             return (_context.Comidas?.Any(lgc => lgc.IDComida == Id)).GetValueOrDefault();
@@ -111,12 +115,46 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para eliminar la comida-*/
+        public async Task <IActionResult> EliminarComida(Guid? Id)
+        {
+            if (Id == null || _context.Comidas == null) return NotFound();
+            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == Id);
+            if (lgc == null) return NotFound();
+            return View(lgc);
+        }
 
+        /*-task para mandar con papa dio los valores de la comida :o -*/
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task <IActionResult> ConfirmarEliminarComida (Guid id)
+        {
+            if (id == null || _context.Alumnos == null) return Problem("Alumno no encontrado");
+            var ltam =await _context.Comidas.FindAsync(id);
+            var lgc = await _context.Intermedia_Comida_Pedi.FindAsync(id);
+            var cc = await _context.Intermedia_Comida_Ingre.FindAsync(id);
+
+            if(lgc != null && ltam != null && cc != null)
+            {
+                _context.Intermedia_Comida_Ingre.Remove(cc);
+                _context.Intermedia_Comida_Pedi.Remove(lgc);
+                _context.Comidas.Remove(ltam);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
 
         //**************************************************************************************************************************************************************************//
         /*-Admin Dashboard-*/
-        //**************************************************************************************************************************************************************************//
-        /*--*/
+        [Authorize (Roles ="Admin")]
+        public async Task<IActionResult> AdminComidaDashboard()
+        {
+            var Contexto = _context.Intermedia_Comida_Ingre.Include(lgc => lgc.Comida).Include(tam => tam.Ingredientes);
+            return View(Contexto);
+        }
+       
 
     }
 }
