@@ -10,12 +10,7 @@ using Eatech.Utilerias;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.Design;
-using NuGet.Protocol.Plugins;
-using System.Security.Cryptography;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Components.Web;
+
 
 namespace Eatech.Controllers
 {
@@ -57,8 +52,14 @@ namespace Eatech.Controllers
             {
                 bd_comida.IDComida = Guid.NewGuid();
                 var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.IdIngrediente == IdIngradiente);
-                Guid Sopadepapa;
-                //bdI_Com_Ingr.IdIngrediente = Guid.Parse(_context.Ingredientes.First(lgc => lgc.IdIngrediente == IdIngradiente));
+                bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
+                bdI_Com_Ingr.IDComida = bd_comida.IDComida;
+
+                _context.Add(bdI_Com_Ingr);
+                _context.Add(bd_comida);
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
 
             return View(bd_comida);
@@ -115,7 +116,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para eliminar la comida-*/
-        public async Task <IActionResult> EliminarComida(Guid? Id)
+        public async Task<IActionResult> EliminarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
             var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == Id);
@@ -127,14 +128,14 @@ namespace Eatech.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task <IActionResult> ConfirmarEliminarComida (Guid id)
+        public async Task<IActionResult> ConfirmarEliminarComida(Guid id)
         {
             if (id == null || _context.Alumnos == null) return Problem("Alumno no encontrado");
-            var ltam =await _context.Comidas.FindAsync(id);
+            var ltam = await _context.Comidas.FindAsync(id);
             var lgc = await _context.Intermedia_Comida_Pedi.FindAsync(id);
             var cc = await _context.Intermedia_Comida_Ingre.FindAsync(id);
 
-            if(lgc != null && ltam != null && cc != null)
+            if (lgc != null && ltam != null && cc != null)
             {
                 _context.Intermedia_Comida_Ingre.Remove(cc);
                 _context.Intermedia_Comida_Pedi.Remove(lgc);
@@ -148,13 +149,13 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Admin Dashboard-*/
-        [Authorize (Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminComidaDashboard()
         {
             var Contexto = _context.Intermedia_Comida_Ingre.Include(lgc => lgc.Comida).Include(tam => tam.Ingredientes);
             return View(Contexto);
         }
-       
+
 
     }
 }
