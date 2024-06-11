@@ -22,7 +22,7 @@ namespace Eatech.Utilerias
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
 
-            NetworkCredential credencial = new NetworkCredential("noreply@eatech.mx", "Test0102@01");
+            NetworkCredential credencial = new NetworkCredential("noreply@eatech.mx", "Sopadepapa22#");
             smtp.Credentials = credencial;
             smtp.Send(mail);
 

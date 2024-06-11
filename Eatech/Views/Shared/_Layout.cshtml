@@ -83,18 +83,68 @@
 							</li>
 
 							<li class="nav-item">
-								<!-- --------------------------------------------------------------------------- -->
-								<a asp-area="" asp-controller="Home" asp-action="Index">
-									<!-- --------------------------------------------------------------------------- -->
-									<button class="botonsito_blanco iniciar_blanco">
-										<span class="circle_blanco" aria-hidden="true">
-											<span class="icon_blanco arrow_blanco"></span>
-										</span>
-										<span class="button-text_blanco">VOLVER</span>
-									</button>
 
-								</a>
+								@if (currentController == "Aplicacion" && currentAction == "Login")
+								{
+									<!-- --------------------------------------------------------------------------- -->
+									<a asp-area="" asp-controller="Home" asp-action="Index">
+										<!-- --------------------------------------------------------------------------- -->
+										<button class="botonsito_blanco iniciar_blanco">
+											<span class="circle_blanco" aria-hidden="true">
+												<span class="icon_blanco arrow_blanco"></span>
+											</span>
+											<span class="button-text_blanco">VOLVER</span>
+										</button>
+
+									</a>
+
+
+								}
+
+								@if (currentController == "Aplicacion" && currentAction == "Registro")
+								{
+
+
+									<!-- --------------------------------------------------------------------------- -->
+									<a asp-area="" asp-controller="Aplicacion" asp-action="Login">
+										<!-- --------------------------------------------------------------------------- -->
+										<button class="botonsito_blanco iniciar_blanco">
+											<span class="circle_blanco" aria-hidden="true">
+												<span class="icon_blanco arrow_blanco"></span>
+											</span>
+											<span class="button-text_blanco">VOLVER</span>
+										</button>
+
+									</a>
+
+
+
+
+
+								}
+								
+
+
+
+
 							</li>
+							
+								
+								
+
+
+								
+
+
+
+
+							
+
+							
+								
+
+
+							
 
 						</ul>
 					</div>

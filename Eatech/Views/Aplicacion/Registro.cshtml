@@ -1,273 +1,272 @@
 ﻿@model Eatech.Models.Bd_Usuario
 
 @{
-	ViewData["Title"] = "Registro";
+    ViewData["Title"] = "Registro";
 }
 
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>REGISTRARME</title>
-	<!-- BOOTSTRAP -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<!-- BOOTSTRAP SCRIPT -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-			crossorigin="anonymous"></script>
-	<!-- CSS (CAMBIA EN VS)-->
-	<!-- --------------------------------------------------------------------------- -->
-	<link rel="stylesheet" href="/css/E-REGISTRO.css">
-	<link rel="stylesheet" href="/css/E-ALL.css">
-	<!-- --------------------------------------------------------------------------- -->
-	<!--FONT AWESOME (ESTILOS DE BOTÓN)-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-	<!-- FUENTE DE EATECH -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
-		  rel="stylesheet">
-	<!-- FUENTE DE TITULOS DE EATECH -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRARME</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-REGISTRO.css">
+    <link rel="stylesheet" href="/css/E-ALL.css">
+    <!-- --------------------------------------------------------------------------- -->
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+          rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
-		  rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
 </head>
 
 <body style="background-image: url(/Imagenes/CUBES.jpg);">
-	<br>
+    <br>
 
-	<div class="container-CH">
-		<input id="checkbox_toggle" type="checkbox" class="check">
-		<div class="checkbox">
-			<label class="slide" for="checkbox_toggle">
-				<label class="toggle" for="checkbox_toggle"></label>
-				<label class="text" for="checkbox_toggle">Padres</label>
-				<label class="text" for="checkbox_toggle">Institución</label>
-			</label>
-		</div>
-	</div>
-	<br>
-	<br>
+    <div class="container-CH">
+        <input id="checkbox_toggle" type="checkbox" class="check">
+        <div class="checkbox">
+            <label class="slide" for="checkbox_toggle">
+                <label class="toggle" for="checkbox_toggle"></label>
+                <label class="text" for="checkbox_toggle">Padres</label>
+                <label class="text" for="checkbox_toggle">Institución</label>
+            </label>
+        </div>
+    </div>
+    <br>
+    <br>
 
-	<div class="container" id="padres_form">
-		<div class="heading">CREAR CUENTA</div>
-		<form asp-action="Registro" method="post" class="form" novalidate>
-			@* <div asp-validation-summary="ModelOnly" class="text-danger"> </div> *@
+    <div class="container" id="padres_form">
+        <div class="heading">CREAR CUENTA</div>
+        <form asp-action="Registro" method="post" class="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
 
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-4">
-
-
-					<!-- --------------------------------------------------------------------------- -->
-
-					<div class="form-group">
-						<input asp-for="Nombre" type="text" class="input" placeholder="Escribe tu nombre" id="nombre"
-							   required="" />
-						@* <span asp-validation-for="Nombre"></span> *@
-					</div>
-
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input asp-for="aPaterno" type="text" class="input" placeholder=" Apellido paterno" id="apellido_paterno"
-							   required/>
-						<span asp-validation-for="aPaterno"></span>
-					</div>
-
-					<!-- --------------------------------------------------------------------------- -->
-
-				</div>
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input asp-for="aMaterno" type="text" class="input" placeholder="Apellido materno" id="apellido_materno"
-							   required />
-						<span asp-validation-for="aMaterno"></span>
-					</div>
-
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-
-			</div>
-
-			<div class="row">
-
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input asp-for="Correo" type="email" class="input" placeholder="Escribe tu correo" id="email_padre"
-							   required />
-						<span asp-validation-for="Correo"></span>
-					</div>
-
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-							   required />
-						<span name="spErrorCorreo" id="spErrorCorreo"></span>
-					</div>
-
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-4">
 
 
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input asp-for="Contrasena" type="password" class="input" placeholder="Contraseña" id="contrasena"
-							   required />
-						<span asp-validation-for="Contrasena"></span>
-					</div>
+                    <!-- --------------------------------------------------------------------------- -->
 
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
+                    <div class="form-group">
+                        <input asp-for="Nombre" class="input" placeholder="Escribe tu nombre" id="nombre" />
+                        @* <span asp-validation-for="Nombre"></span> *@
+                    </div>
 
-				<div class="col-sm-12 col-md-12 col-lg-4">
-					<!-- --------------------------------------------------------------------------- -->
-					<div class="form-group">
-						<input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-							   required />
-						<span name="spErrorContrasena" id="spErrorContrasena"></span>
-					</div>
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
 
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input asp-for="aPaterno" class="input" placeholder=" Apellido paterno" id="apellido_paterno"
+                               />
+                  @*       <span asp-validation-for="aPaterno"></span> *@
+                    </div>
 
+                    <!-- --------------------------------------------------------------------------- -->
 
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input asp-for="aMaterno" class="input" placeholder="Apellido materno" id="apellido_materno"
+                               />
+                     @*    <span asp-validation-for="aMaterno"></span> *@
+                    </div>
 
-			</div>
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
 
-			<br>
+            </div>
 
-			<div class="form-group" id="btnRegistrar">
-				<button class="animated-button">
+            <div class="row">
 
-					<svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-						<path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-						</path>
-					</svg>
-					<span class="text">Registrarme</span>
-					<span class="circle"></span>
-					<svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-						<path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-						</path>
-					</svg>
-				</button>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input asp-for="Correo" class="input" placeholder="Escribe tu correo" id="email_padre"
+                               required />
+                        <span asp-validation-for="Correo"></span>
+                    </div>
 
-			</div>
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
 
-			<!-- ---------------------------->
-		</form>
-		<br>
-		<div class="checkbox-wrapper-4">
-			<input type="checkbox" id="morning" class="inp-cbx" required="" />
-			<label for="morning" class="cbx">
-				<span><svg height="10px" width="12px"></svg></span><span>
-					Aceptas nuestras
-					políticas y condiciones.
-				</span>
-			</label>
-			<svg class="inline-svg">
-				<symbol viewBox="0 0 12 10" id="check-4">
-					<polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-				</symbol>
-			</svg>
-		</div>
-	</div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
+                               required />
+                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                    </div>
 
-	@* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- *@
-
-	<div class="container" id="institucional_form" style="display: none;">
-		<div class="heading">CREAR CUENTA</div>
-		<form class="form" asp-action="Registro">
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<!-- --------------------------------------------------------------------------- -->
-					<input placeholder="Institución" id="nombre_institucion" type="text" class="input"
-						   required="" />
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<!-- --------------------------------------------------------------------------- -->
-					<input placeholder="Correo" id="email" type="email" class="input"
-						   required="" />
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<!-- --------------------------------------------------------------------------- -->
-					<input placeholder="Contraseña" id="password_institucion" type="password"
-						   class="input" required="" />
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<!-- --------------------------------------------------------------------------- -->
-					<input placeholder="Confirmar contraseña" id="password-2_institucion"
-						   type="password" class="input" required="" />
-					<!-- --------------------------------------------------------------------------- -->
-				</div>
-			</div>
-
-			<br>
-			<!-- --------------------------------------------------------------------------- -->
-			@*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
-			<!-- --------------------------------------------------------------------------- -->
-
-			<button class="animated-button">
-				<svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-					<path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-					</path>
-				</svg>
-				<span class="text">Registrarme</span>
-				<span class="circle"></span>
-				<svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-					<path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-					</path>
-				</svg>
-			</button>
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
 
 
-		</form>
-		<br>
-		<div class="checkbox-wrapper-4">
-			<input type="checkbox" id="evening" class="inp-cbx" required />
-			<label for="evening" class="cbx">
-				<span><svg height="10px" width="12px"></svg></span><span>
-					Aceptas nuestras
-					políticas y condiciones.
-				</span>
-			</label>
-			<svg class="inline-svg">
-				<symbol viewBox="0 0 12 10" id="check-4">
-					<polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-				</symbol>
-			</svg>
-		</div>
-	</div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="contrasena"
+                                />
+                       @*  <span asp-validation-for="Contrasena"></span> *@
+                    </div>
+
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
+                               required />
+                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
+                    </div>
+
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
 
 
 
-	<script src="/js/INST_PAD.js"></script>
-	<script src="/js/BOTON.js"></script>
+            </div>
+
+            <br>
+
+            <div class="form-group" id="btnRegistrar">
+                <button class="animated-button">
+
+                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                    <span class="text">Registrarme</span>
+                    <span class="circle"></span>
+                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                    </svg>
+                </button>
+
+            </div>
+
+            <!-- ---------------------------->
+        </form>
+        <br>
+        <div class="checkbox-wrapper-4">
+            <input type="checkbox" id="morning" class="inp-cbx" required="" />
+            <label for="morning" class="cbx">
+                <span><svg height="10px" width="12px"></svg></span><span>
+                    Aceptas nuestras
+                    políticas y condiciones.
+                </span>
+            </label>
+            <svg class="inline-svg">
+                <symbol viewBox="0 0 12 10" id="check-4">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </symbol>
+            </svg>
+        </div>
+    </div>
+
+    @* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- *@
+
+    <div class="container" id="institucional_form" style="display: none;">
+        <div class="heading">CREAR CUENTA</div>
+        <form class="form" asp-action="Registro">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="Institución" id="nombre_institucion" type="text" class="input"
+                           required="" />
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="Correo" id="email" type="email" class="input"
+                           required="" />
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="Contraseña" id="password_institucion" type="password"
+                           class="input" required="" />
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="Confirmar contraseña" id="password-2_institucion"
+                           type="password" class="input" required="" />
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+            </div>
+
+            <br>
+            <!-- --------------------------------------------------------------------------- -->
+            @*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
+            <!-- --------------------------------------------------------------------------- -->
+
+            <button class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+                <span class="text">Registrarme</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+            </button>
+
+
+        </form>
+        <br>
+        <div class="checkbox-wrapper-4">
+            <input type="checkbox" id="evening" class="inp-cbx" required />
+            <label for="evening" class="cbx">
+                <span><svg height="10px" width="12px"></svg></span><span>
+                    Aceptas nuestras
+                    políticas y condiciones.
+                </span>
+            </label>
+            <svg class="inline-svg">
+                <symbol viewBox="0 0 12 10" id="check-4">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </symbol>
+            </svg>
+        </div>
+    </div>
+
+
+
+    <script src="/js/INST_PAD.js"></script>
+    <script src="/js/BOTON.js"></script>
 </body>
 
 
@@ -276,53 +275,57 @@
 </html>
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
-	<script>
-		$(function () {
-			$('#btnRegistrar').attr('disabled', true);
-			$('#RepetirContrasena').keyup(function (evt); { 
-		
-				var pass = $('#Contrasena').val();
-				var repass = $('#RepetirContrasena').val();
-			
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $('#btnRegistrar').attr('disabled', true);
+            $('#RepetirContrasena').keyup(function (evt) {
 
-				if (pass != repass) {
-					$('#spErrorContrasena').html("Las contraseñas no coinciden");
-					$('#btnRegistrar').attr('disabled', true);
-				} else {
-					$('#spErrorContrasena').html("");
-					$('#btnRegistrar').removeAttr('disabled');
-				}
+                var pass = $('#Contrasena').val();
+                var repass = $('#RepetirContrasena').val();
 
-			});
-		});
-	</script>
 
-	<script>
-		$(function (){
-		$('#btnRegistrar').attr('disabled', true);
-		$('#RepetirCorreo').keyup(function (evt) {
-	
-		var pass = $('#Correo').val();
-		var repass = $('#RepetirCorreo').val();
+                if (pass != repass) {
+                    $('#spErrorContrasena').html("Las contraseñas no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                }
+                else {
 
-	
+                }
+                if(pass == repass) {
+                    $('#spErrorContrasena').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
 
-		if (pass != repass) {
-		$('#spErrorCorreo').html("Los correos no coinciden");
-		$('#btnRegistrar').attr('disabled', true);
-		} else {
-		$('#spErrorCorreo').html("");
-		$('#btnRegistrar').removeAttr('disabled');
-		}
-		});
-		});
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#btnRegistrar').attr('disabled', true);
+            $('#RepetirCorreo').keyup(function (evt) {
+
+                var pass = $('#Correo').val();
+                var repass = $('#RepetirCorreo').val();
 
 
 
-	</script>
+                if (pass != repass) {
+                    $('#spErrorCorreo').html("Los correos no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                } else {
+                    $('#spErrorCorreo').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
+            });
+        });
+
+
+
+    </script>
 }
 
 @* <h1>Registro de usuario</h1>

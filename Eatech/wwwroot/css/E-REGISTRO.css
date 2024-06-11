@@ -7,6 +7,7 @@ body {
 
 .container {
     max-width: 500px;
+    max-height: 800px;
     background: #F8F9FD;
     background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
     border-radius: 40px;
@@ -45,19 +46,21 @@ body {
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .container {
         max-width: 700px;
+       
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
     .container {
         max-width: 700px;
+        max-height: 900px;
     }
 }
 
 @media (min-width: 1400px) {
     .container {
         max-width: 900px;
-        max-height: 460px;
+        max-height: 900px;
     }
 
 
