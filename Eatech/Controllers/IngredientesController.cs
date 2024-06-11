@@ -15,8 +15,18 @@ using System.ComponentModel.Design;
 
 namespace Eatech.Controllers
 {
+    [Authorize]
     public class IngredientesController : Controller
     {
+        //**************************************************************************************************************************************************************************//
+        //contextos base de datos
+        private readonly ContextoBD _context;
+        public IngredientesController(ContextoBD context)
+        {
+            _context = context;
+        }
+        //**************************************************************************************************************************************************************************//
+        /*-Index con el menu de la comida disponible-*/
         public IActionResult Index()
         {
             return View();

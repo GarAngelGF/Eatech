@@ -9,7 +9,7 @@ namespace Eatech.Utilerias
         {
             MailMessage mail = new MailMessage();
 
-            mail.From = new MailAddress("noreply@eatech.me");//
+            mail.From = new MailAddress("noreply@eatech.me");
             mail.To.Add(new MailAddress(receptor));
             mail.Subject = asunto;
             mail.Body = mensaje;
