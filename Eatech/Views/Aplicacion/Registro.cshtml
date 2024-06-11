@@ -60,7 +60,8 @@
     <div class="container" id="padres_form">
         <div class="heading">CREAR CUENTA</div>
         <form asp-action="Registro" method="post" class="form">
-            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+            <input type="hidden" name="Rol" value="Usuario">
+            <div asp-validation-summary="ModelOnly"> </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-4">
@@ -79,9 +80,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aPaterno" class="input" placeholder=" Apellido paterno" id="apellido_paterno"
-                               />
-                  @*       <span asp-validation-for="aPaterno"></span> *@
+                        <input asp-for="aPaterno" class="input" placeholder=" Apellido paterno" id="apellido_paterno" />
+                        @*       <span asp-validation-for="aPaterno"></span> *@
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -90,9 +90,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aMaterno" class="input" placeholder="Apellido materno" id="apellido_materno"
-                               />
-                     @*    <span asp-validation-for="aMaterno"></span> *@
+                        <input asp-for="aMaterno" class="input" placeholder="Apellido materno" id="apellido_materno" />
+                        @*    <span asp-validation-for="aMaterno"></span> *@
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -105,9 +104,9 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Correo" class="input" placeholder="Escribe tu correo" id="email_padre"
-                               required />
-                        <span asp-validation-for="Correo"></span>
+                        <input asp-for="Correo" class="input" type="email" placeholder="Escribe tu correo" id="Correo"
+                              />
+                        @* <span asp-validation-for="Correo"></span> *@
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -117,7 +116,7 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-                               required />
+                              required />
                         <span name="spErrorCorreo" id="spErrorCorreo"></span>
                     </div>
 
@@ -128,9 +127,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="contrasena"
-                                />
-                       @*  <span asp-validation-for="Contrasena"></span> *@
+                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="Contrasena" />
+                        @*  <span asp-validation-for="Contrasena"></span> *@
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -140,7 +138,7 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-                               required />
+                          required  />
                         <span name="spErrorContrasena" id="spErrorContrasena"></span>
                     </div>
 
@@ -193,7 +191,8 @@
 
     <div class="container" id="institucional_form" style="display: none;">
         <div class="heading">CREAR CUENTA</div>
-        <form class="form" asp-action="Registro">
+        <form class="form" asp-action="Registro" method="post" class="form">
+            <input type="hidden" name="Rol" value="Admin">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
@@ -204,28 +203,60 @@
 
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Correo" id="email" type="email" class="input"
-                           required="" />
+                    <div class="form-group">
+                        <input asp-for="Correo" class="input" placeholder="Escribe tu Correo" id="email"
+                               required="" />
+                        <span asp-validation-for="Correo"></span>
+                    </div>
+              
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
+              
+
+
             </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Contraseña" id="password_institucion" type="password"
-                           class="input" required="" />
-                    <!-- --------------------------------------------------------------------------- -->
-                </div>
+                    <div class="form-group">
+                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
+                               required />
+                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="form-group">
+                            <input asp-for="Contrasena" class="input" placeholder="Escribe tu Contraseña" id="contrasena_institucion"
+                            />
+
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+
+            </div>
+
+
+
+          
+            <div class="row">
+           
 
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Confirmar contraseña" id="password-2_institucion"
-                           type="password" class="input" required="" />
+                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
+                           required />
+                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
             </div>
 
+
+        
+            <br>
+            <br>
             <br>
             <!-- --------------------------------------------------------------------------- -->
             @*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
@@ -294,7 +325,7 @@
                 else {
 
                 }
-                if(pass == repass) {
+                if (pass == repass) {
                     $('#spErrorContrasena').html("");
                     $('#btnRegistrar').removeAttr('disabled');
                 }
@@ -326,7 +357,34 @@
 
 
     </script>
+
+    <script>
+        document.getElementById("checkbox_toggle").addEventListener("change", function () {
+            var isChecked = this.checked;
+            var padresForm = document.getElementById("padres_form");
+            var institucionalForm = document.getElementById("institucional_form");
+            if (isChecked) {
+                padresForm.style.display = "none";
+                institucionalForm.style.display = "block";
+
+            }
+            else {
+                padresForm.style.display = "block";
+                institucionalForm.style.display = "none";
+
+            }
+
+
+
+
+        });
+    </script>
+
+
 }
+
+
+
 
 @* <h1>Registro de usuario</h1>
 <hr />
