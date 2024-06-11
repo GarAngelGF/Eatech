@@ -3,4 +3,84 @@
 *@
 @{
 }
-<h1>vista para nueva contraseña</h1>
+<h1>Recuperar contraseña</h1>
+<form id="frmRestaurar">
+    <div class="form-group">
+        <label>Correo</label>
+        <input type="email" name="Correo"
+               class="form-control" value="@ViewBag.Correo"
+               readonly />
+    </div>
+    <div class="form-group">
+        <label>Token</label>
+        <input type="text" name="Token" id="txtToken"
+               class="form-control" autofocus />
+    </div>
+
+    <div class="form-group ocultar">
+        <label>Nueva contraseña</label>
+        <input type="password" name="Password"
+               class="form-control" />
+    </div>
+
+    <div class="form-group ocultar">
+        <label>Repetir contraseña</label>
+        <input type="password" name="RepetirPassword"
+               class="form-control" />
+    </div>
+
+    <div class="form-group mt-2">
+        <input type="button" value="Validar token"
+               id="btnValidar" class="btn btn-primary" />
+
+        <input type="button" value="Cambiar contraseña"
+               id="btnCambiar" class="btn btn-warning ocultar" />
+    </div>
+
+</form>
+
+<script>
+    window.onload = function () {
+        jQuery('.ocultar').hide();
+
+        jQuery('#btnCambiar').click(function (evt) {
+            evt.preventDefault();
+            $(this).attr('disabled', true);
+            $.ajax({
+                url: '@Url.Action("CambiarPassword")',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.resultado == true) {
+                        alert(data.mensaje);
+                        window.location.href = '@Url.Action("Login")';
+                    } else {
+                        alert(data.mensaje);
+                        $(this).removeAttr('disabled');
+                    }
+                },
+                data: $('#frmRestaurar').serialize()
+            });
+        });
+
+        jQuery('#btnValidar').click(function (evt) {
+            evt.preventDefault();
+            $.ajax({
+                url: '@Url.Action("ValidarTokenPassword")',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.resultado == true) {
+                        $('#btnValidar').hide();
+                        $('#txtToken').attr('readonly', true);
+                        jQuery('.ocultar').show();
+                    } else {
+                        alert(data.mensaje);
+                    }
+                },
+                data: $('#frmRestaurar').serialize()
+            });
+        });
+
+    }
+</script>
