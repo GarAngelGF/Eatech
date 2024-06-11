@@ -71,7 +71,7 @@
 					<div class="form-group">
 						<input asp-for="Nombre" type="text" class="input" placeholder="Escribe tu nombre" id="nombre"
 							   required="" />
-						<span asp-validation-for="Nombre"></span>
+						@* <span asp-validation-for="Nombre"></span> *@
 					</div>
 
 					<!-- --------------------------------------------------------------------------- -->
@@ -81,7 +81,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input asp-for="aPaterno" type="text" class="input" placeholder=" Apellido paterno" id="apellido_paterno"
-							   required="" />
+							   required/>
 						<span asp-validation-for="aPaterno"></span>
 					</div>
 
@@ -92,7 +92,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input asp-for="aMaterno" type="text" class="input" placeholder="Apellido materno" id="apellido_materno"
-							   required="" />
+							   required />
 						<span asp-validation-for="aMaterno"></span>
 					</div>
 
@@ -107,7 +107,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input asp-for="Correo" type="email" class="input" placeholder="Escribe tu correo" id="email_padre"
-							   required="" />
+							   required />
 						<span asp-validation-for="Correo"></span>
 					</div>
 
@@ -118,7 +118,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-							   required="" />
+							   required />
 						<span name="spErrorCorreo" id="spErrorCorreo"></span>
 					</div>
 
@@ -130,7 +130,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input asp-for="Contrasena" type="password" class="input" placeholder="Contraseña" id="contrasena"
-							   required="" />
+							   required />
 						<span asp-validation-for="Contrasena"></span>
 					</div>
 
@@ -141,7 +141,7 @@
 					<!-- --------------------------------------------------------------------------- -->
 					<div class="form-group">
 						<input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-							   required="" />
+							   required />
 						<span name="spErrorContrasena" id="spErrorContrasena"></span>
 					</div>
 
