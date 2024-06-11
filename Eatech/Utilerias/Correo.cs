@@ -9,7 +9,7 @@ namespace Eatech.Utilerias
         {
             MailMessage mail = new MailMessage();
 
-            mail.From = new MailAddress("noreply@eatech.mx");//
+            mail.From = new MailAddress("noreply@eatech.me");//
             mail.To.Add(new MailAddress(receptor));
             mail.Subject = asunto;
             mail.Body = mensaje;
@@ -17,12 +17,12 @@ namespace Eatech.Utilerias
             mail.Priority = MailPriority.Normal;
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.ionos.mx";
+            smtp.Host = "smtp.ionos.me";
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
 
-            NetworkCredential credencial = new NetworkCredential("noreply@eatech.mx", "Sopadepapa22#");
+            NetworkCredential credencial = new NetworkCredential("noreply@eatech.me", "Sopadepapa22#");
             smtp.Credentials = credencial;
             smtp.Send(mail);
 
