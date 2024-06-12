@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Eatech.Models;
 using Eatech.Utilerias;
 using System.Security.Claims;
@@ -36,6 +30,16 @@ namespace Eatech.Controllers
         }
         //**************************************************************************************************************************************************************************//
         /*-Apartado para crear el pedido + envio de correo por parte del cliente y admin-*/
+        public IActionResult CrearPedido()
+        {
+            return View();
+        }
+
+        /*-Task para crear pedido + enviar el correo de pedido creado-*/
+        public async Task <IActionResult> RegistrarPedido()
+        {
+            return View();
+        }
 
 
         //**************************************************************************************************************************************************************************//

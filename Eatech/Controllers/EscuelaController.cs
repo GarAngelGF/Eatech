@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Eatech.Models;
-using Eatech.Utilerias;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.Design;
-using NuGet.Protocol.Plugins;
-using System.Security.Cryptography;
-using Microsoft.EntityFrameworkCore.Storage;
-using Grpc.Core;
+
 
 namespace Eatech.Controllers
 {
@@ -42,6 +30,7 @@ namespace Eatech.Controllers
         }
         //**************************************************************************************************************************************************************************//
         /*-Apartado para registrar la escuela + generar un guid de invitacion para vincular al usuario con la esta cosa-*/
+        [Authorize(Roles = "Admin")]
         public IActionResult RegistrarEscuela()
         {
             return View();
@@ -77,6 +66,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para eliminar usuarios/Escuela de la bd-*/
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EliminarEscuela(Guid? Id)
         {
             if (Id == null || _context.Escuela == null) return NotFound();
@@ -114,7 +104,8 @@ namespace Eatech.Controllers
         }
 
         /*-Task para modificar los datos en la base de datos, en la tabla de escuela-*/
-        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditarEscuela(Guid iD, [Bind("ClaveEscuela,Nombre")] Bd_Escuela bd_Escuela)
         {
             if (iD != bd_Escuela.IdEscuela) return NotFound();

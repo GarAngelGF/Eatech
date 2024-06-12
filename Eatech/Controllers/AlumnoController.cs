@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Eatech.Models;
-using Eatech.Utilerias;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.Design;
-using NuGet.Protocol.Plugins;
-using System.Security.Cryptography;
 
 namespace Eatech.Controllers
 {
@@ -47,7 +36,9 @@ namespace Eatech.Controllers
         }
 
         /*-Task para registrar al alumno en la base de datos. Tablas alumno e intermedia alum_usu-*/
-        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre,aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
         {
             if (ModelState.IsValid)
             {
