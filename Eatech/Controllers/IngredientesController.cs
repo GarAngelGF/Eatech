@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Eatech.Models;
-using Eatech.Utilerias;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.ComponentModel.Design;
 
 
 namespace Eatech.Controllers
 {
-    [Authorize]
+    [Authorize]// todas las vistas de admin
     public class IngredientesController : Controller
     {
         //**************************************************************************************************************************************************************************//
@@ -26,7 +16,9 @@ namespace Eatech.Controllers
             _context = context;
         }
         //**************************************************************************************************************************************************************************//
-        /*-Index con el menu de la comida disponible-*/
+        /*-Index con los ingredientes disponible (solo admin)-*/
+
+        [Authorize (Roles ="Admin")]
         public IActionResult Index()
         {
             return View();
