@@ -29,6 +29,7 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
+       
         public async Task<IActionResult> Index()
         {
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
@@ -46,7 +47,7 @@ namespace Eatech.Controllers
         }
 
         /*-Task para registrar al alumno en la base de datos. Tablas alumno e intermedia alum_usu-*/
-        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
+        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre,aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
         {
             if (ModelState.IsValid)
             {

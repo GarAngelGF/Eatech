@@ -116,7 +116,7 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-                              required />
+                              required="Correo" />
                         <span name="spErrorCorreo" id="spErrorCorreo"></span>
                     </div>
 
@@ -138,7 +138,7 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-                          required  />
+                          required="contrasena"  />
                         <span name="spErrorContrasena" id="spErrorContrasena"></span>
                     </div>
 
@@ -251,8 +251,7 @@
                 </div>
             </div>
 
-
-        
+            <br>
             <br>
             <br>
             <br>
@@ -260,18 +259,22 @@
             @*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
             <!-- --------------------------------------------------------------------------- -->
 
-            <button class="animated-button">
-                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                    </path>
-                </svg>
-                <span class="text">Registrarme</span>
-                <span class="circle"></span>
-                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                    </path>
-                </svg>
-            </button>
+            <div class="form-group">
+
+                    <button class="animated-button" id="btnRegistrar">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">Registrarme</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button>
+            </div>
+           
 
 
         </form>
@@ -356,27 +359,6 @@
 
     </script>
 
-    <script>
-        document.getElementById("checkbox_toggle").addEventListener("change", function () {
-            var isChecked = this.checked;
-            var padresForm = document.getElementById("padres_form");
-            var institucionalForm = document.getElementById("institucional_form");
-            if (isChecked) {
-                padresForm.style.display = "none";
-                institucionalForm.style.display = "block";
-
-            }
-            else {
-                padresForm.style.display = "block";
-                institucionalForm.style.display = "none";
-
-            }
-
-
-
-
-        });
-    </script>
 
 
 }
