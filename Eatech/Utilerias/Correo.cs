@@ -17,7 +17,7 @@ namespace Eatech.Utilerias
             mail.Priority = MailPriority.Normal;
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.ionos.me";
+            smtp.Host = "smtp.ionos.mx";
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
