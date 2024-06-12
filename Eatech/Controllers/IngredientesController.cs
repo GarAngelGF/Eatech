@@ -23,5 +23,23 @@ namespace Eatech.Controllers
         {
             return View();
         }
+
+        /*-Apartado para la vista y task para agregar un ingrediente-*/
+
+        /*-Apartado para Editar un ingrediente-*/
+
+        /*-Apartado para los detalles de un ingrediente -*/
+
+        /*-Apartado para eliminar un ingrediente -*/
+
+        /*--*/
+
+        /*--*/
+
+        /*--*/
+
+        /*--*/
+
+       
     }
 }

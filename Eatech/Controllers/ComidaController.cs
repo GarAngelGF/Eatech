@@ -30,6 +30,7 @@ namespace Eatech.Controllers
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
         //**************************************************************************************************************************************************************************//
         /*-Apartado para todo sobre el crear comida-*/
+        [Authorize(Roles = "Admin")]
         public IActionResult RegistrarComida()
         {
             return View();
@@ -70,6 +71,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para Editar la comida-*/
+        [Authorize (Roles ="Admin")]
         public async Task<IActionResult> EditarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
@@ -108,6 +110,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para eliminar la comida-*/
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EliminarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
