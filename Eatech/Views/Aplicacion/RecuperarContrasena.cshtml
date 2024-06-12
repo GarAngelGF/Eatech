@@ -6,24 +6,29 @@
 
 <h1 style="text-align:center" >Recuperacion de contraseña</h1>
 <hr />
-<div class="row" style="align-content:center">
-    <div class="col-md-4">
-        <form asp-action="RecuperarContrasena" method="post" id="frmRecuperarPassword">
-            <div class="form-group">
-                <label>Correo</label>
-                <input type="email" name="Correo" required
-                       placeholder="Correo electrónico"
-                       class="form-control" />
-            </div>
-            <div class="form-group mt-2">
-                <input type="submit" value="Enviar token" id="btnRecuperarPassword"
-                       class="btn btn-primary" />
-                <a asp-action="NuevaContrasena" class="btn btn-link">Cancelar</a>
-            </div>
-        </form>
+<div class="container-fluid" style="align-items:center">
 
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="RecuperarContrasena" method="post" id="frmRecuperarPassword">
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="email" name="Correo" required
+                           placeholder="Correo electrónico"
+                           class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <input type="submit" value="Enviar token" id="btnRecuperarPassword"
+                           class="btn btn-primary" />
+                    <a asp-action="NuevaContrasena" class="btn btn-link">Cancelar</a>
+                </div>
+            </form>
+
+        </div>
     </div>
+
 </div>
+
 <script>
 
     window.onload = function () {

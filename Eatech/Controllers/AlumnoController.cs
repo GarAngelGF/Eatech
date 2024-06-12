@@ -18,6 +18,7 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
+       
         public async Task<IActionResult> Index()
         {
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
