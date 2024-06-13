@@ -57,46 +57,46 @@
     <br>
     <br>
 
-    <div class="container" id="padres_form" >
+    <div class="container" id="padres_form">
         <div class="heading">CREAR CUENTA</div>
-        <form asp-action="Registro" class="form">
-            @* <div asp-validation-summary="ModelOnly" class="text-danger"> </div> *@
+        <form asp-action="Registro" method="post" class="form">
+            <input type="hidden" name="Rol" value="Usuario">
+            <div asp-validation-summary="ModelOnly"> </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-4">
 
 
                     <!-- --------------------------------------------------------------------------- -->
-                  
+
                     <div class="form-group">
-                        <input asp-for="Nombre" type="text" class="input" placeholder="Escribe tu nombre" id="nombre" name="nombre" 
-                        required="Nombre"/>
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                        <input asp-for="Nombre" class="input" placeholder="Escribe tu nombre" id="nombre" />
+                        @* <span asp-validation-for="Nombre"></span> *@
                     </div>
-                      
+
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aPaterno" type="text" class="input" placeholder=" Apellido paterno" id="apellido_paterno" name="aPaterno" />
-                        <span asp-validation-for="aPaterno" class="text-danger"></span>
+                        <input asp-for="aPaterno" class="input" placeholder=" Apellido paterno" id="apellido_paterno" />
+                        @*       <span asp-validation-for="aPaterno"></span> *@
                     </div>
-                    
+
                     <!-- --------------------------------------------------------------------------- -->
 
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="aMaterno" type="text" class="input" placeholder="Apellido materno" id="apellido_materno" name="aMaterno" />
-                        <span asp-validation-for="aMaterno" class="text-danger"></span>
+                        <input asp-for="aMaterno" class="input" placeholder="Apellido materno" id="apellido_materno" />
+                        @*    <span asp-validation-for="aMaterno"></span> *@
                     </div>
-                   
+
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
-                
+
             </div>
 
             <div class="row">
@@ -104,10 +104,22 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Correo" type="email" class="input" placeholder="Escribe tu correo" id="email_padre" name="email" />
-                        <span asp-validation-for="Correo" class="text-danger"></span>
+                        <input asp-for="Correo" class="input" type="email" placeholder="Escribe tu correo" id="Correo"
+                              />
+                        @* <span asp-validation-for="Correo"></span> *@
                     </div>
-                   
+
+                    <!-- --------------------------------------------------------------------------- -->
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
+                              required="Correo" />
+                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                    </div>
+
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
@@ -115,36 +127,32 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Contrasena" type="password" class="input" placeholder="Contraseña" id="password" name="password" />
-                        <span asp-validation-for="Contrasena" class="text-danger"></span>
+                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="Contrasena" />
+                        @*  <span asp-validation-for="Contrasena"></span> *@
                     </div>
-                   
+
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input type="password" class="input" placeholder="Confirmar contraseña" id="RepetirContrasena" name="RepetirContrasena" />
-                        <span name="spErrorContrasena" class="text-danger"></span>
+                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
+                          required="contrasena"  />
+                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
                     </div>
-                   
+
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
 
-            
+
             </div>
 
             <br>
 
-
-
-         
-
-        
-            <div class="form-group">
-                <input  <button class="animated-button" type="submit" id="btnRegistrar" value="Registrar">
+            <div class="form-group" id="btnRegistrar">
+                <button class="animated-button">
 
                     <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
@@ -157,16 +165,10 @@
                         </path>
                     </svg>
                 </button>
-                    
-                    
-                    
-                    
-                    />
-               
-              @*   <a asp-action="Login"></a> *@
+
             </div>
-          
-            <!-- --------------------------------------------------------------------------- -->
+
+            <!-- ---------------------------->
         </form>
         <br>
         <div class="checkbox-wrapper-4">
@@ -189,56 +191,90 @@
 
     <div class="container" id="institucional_form" style="display: none;">
         <div class="heading">CREAR CUENTA</div>
-        <form class="form" asp-action="Registro">
+        <form class="form" asp-action="Registro" method="post" class="form">
+            <input type="hidden" name="Rol" value="Admin">
+
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Institución" id="nombre_institucion" name="name" type="text" class="input"
+                    <input placeholder="Institución" id="nombre_institucion" type="text" class="input"
                            required="" />
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Correo" id="email" name="email_institucion" type="email" class="input"
-                           required="" />
+                    <div class="form-group">
+                        <input asp-for="Correo" class="input" placeholder="Escribe tu Correo" id="email"
+                               required="" />
+                        <span asp-validation-for="Correo"></span>
+                    </div>
+              
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
-                    <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Contraseña" id="password_institucion" name="password" type="password"
-                           class="input" required="" />
-                    <!-- --------------------------------------------------------------------------- -->
+                    <!-- -------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
+                               required />
+                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                    </div>
                 </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="form-group">
+                            <input asp-for="Contrasena" class="input" placeholder="Escribe tu Contraseña" id="contrasena_institucion"
+                            />
+
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+
+            
+
+
+
+          
+            <div class="row">
+           
 
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Confirmar contraseña" id="password-2_institucion" name="password"
-                           type="password" class="input" required="" />
+                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
+                           required />
+                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
             </div>
 
             <br>
+            <br>
+            <br>
+            <br>
             <!-- --------------------------------------------------------------------------- -->
-            <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a>
+            @*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
             <!-- --------------------------------------------------------------------------- -->
 
-            <button class="animated-button">
-                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                    </path>
-                </svg>
-                <span class="text">Registrarme</span>
-                <span class="circle"></span>
-                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                    </path>
-                </svg>
-            </button>
+            <div class="form-group">
+
+                    <button class="animated-button" id="btnRegistrar">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">Registrarme</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button>
+            </div>
+           
 
 
         </form>
@@ -269,6 +305,64 @@
 
 
 </html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $('#btnRegistrar').attr('disabled', true);
+            $('#RepetirContrasena').keyup(function (evt) {
+
+                var pass = $('#Contrasena').val();
+                var repass = $('#RepetirContrasena').val();
+
+
+                if (pass != repass) {
+                    $('#spErrorContrasena').html("Las contraseñas no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                }
+                else {
+
+                }
+                if (pass == repass) {
+                    $('#spErrorContrasena').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
+
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#btnRegistrar').attr('disabled', true);
+            $('#RepetirCorreo').keyup(function (evt) {
+
+                var pass = $('#Correo').val();
+                var repass = $('#RepetirCorreo').val();
+
+
+
+                if (pass != repass) {
+                    $('#spErrorCorreo').html("Los correos no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                } else {
+                    $('#spErrorCorreo').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
+            });
+        });
+
+
+
+    </script>
+
+
+
+}
+
 
 
 
@@ -309,7 +403,7 @@
                 <input asp-for="aMaterno" class="form-control" />
                 <span asp-validation-for="aMaterno" class="text-danger"></span>
             </div>
-         
+
 
 
             <div class="form-group mt-3">
@@ -319,28 +413,3 @@
         </form>
     </div>
 </div> *@
-
-
-
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    <script>
-        $(function (){
-            $('#btnRegistrar').attr('disabled', true);
-            $('#RepetirContrasena').keyup(function (evt) {
-                var pass = $('#Contrasena').val();
-                var repass = $('#RepetirContrasena').val();
-                if(pass != repass){
-                    $('#spErrorContrasena').html("Las contraseñas no coinciden");
-                    $('#btnRegistrar').attr('disabled', true);
-                }else{
-                    $('#spErrorContrasena').html("");
-                    $('#btnRegistrar').removeAttr('disabled');
-                }
-            });
-        });
-    </script>
-}

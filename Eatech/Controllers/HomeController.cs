@@ -1,6 +1,7 @@
 ﻿using Eatech.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Eatech.Controllers
 {
@@ -24,6 +25,16 @@ namespace Eatech.Controllers
         }
 
         public IActionResult Prueba()
+        {
+            return View();
+        }
+
+        public IActionResult ProyectoAula()
+        {
+            return View();
+        }
+
+        public IActionResult FotoPruebaCarga()
         {
             return View();
         }

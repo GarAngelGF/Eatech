@@ -45,12 +45,14 @@ body {
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .container {
         max-width: 700px;
+       
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
     .container {
         max-width: 700px;
+       
     }
 }
 
