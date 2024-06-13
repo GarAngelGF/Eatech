@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Eatech.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography;
 
 
 namespace Eatech.Controllers
@@ -42,8 +43,10 @@ namespace Eatech.Controllers
             if (ModelState.IsValid)
             {
                 bd_Escuela.IdEscuela = Guid.NewGuid();
+                bd_Escuela.ClaveEscuela = EscuelaController.GenerarClaveEscuela();
                 _context.Add(bd_Escuela);
-
+                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                Utilerias.Correo.EscuelaCorreo(ltam, "Registro de Escuela", "Su escuela ha sido regisrtrada exitosamente." + " \nla clave de su escuela es: " + bd_Escuela.ClaveEscuela + " \n Eatech");
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -52,6 +55,13 @@ namespace Eatech.Controllers
         }
 
         /*-Task para verificar si la clave de la escuela ya existe-*/
+        [AllowAnonymous]
+        public IActionResult ValidarCodigoEscuela(string ClaveEscuela)
+        {
+            var busqueda = _context.Escuela.FirstOrDefault(Li => Li.ClaveEscuela == ClaveEscuela);
+            if (busqueda == null) return Ok(true);
+            return Ok(false);
+        }
 
 
 
@@ -131,5 +141,25 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-admin vistas plus-*/
+
+        /*-Proceso para crear la clave de vinculacion Escuela-Usuario-*/
+        public static string GenerarClaveEscuela(int longitud = 7)
+        {
+            const string caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var bytes = new byte[longitud];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(bytes);
+            }
+
+            var clave = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                clave[i] = caracteresPermitidos[bytes[i] % caracteresPermitidos.Length];
+            }
+
+            return new string(clave);
+        }
     }
 }

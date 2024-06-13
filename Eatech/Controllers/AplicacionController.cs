@@ -301,7 +301,7 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //Apartado de acciones referentes a las vistas generales//
 
-        //nohaynadaequisde
+        /*-Apartado Para Vincular con la escuela-*/
 
     }
 }

@@ -17,11 +17,8 @@ namespace Eatech.Models
         public Guid IdIngrediente { get; set; }
 
         [Required, DisplayName("Ingrediente"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
+        [Remote("ValidarIngredientes", "Ingredientes", ErrorMessage = "Ingrediente ya registrado")]
         public string Nombre { get; set; }
-
-        //Cambio en codigo, la variable "Cantidad" fue eliminada, por que no se le daria un uso "adecuado" Dentro del Programa 
-        //// [Required, DisplayName(cantidad)]
-        //// public int cantidad { get; set; }
 
         [Required,DisplayName("Tipo de ingrediente")]
         public string Tipo { get; set; }

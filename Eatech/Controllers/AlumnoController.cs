@@ -59,6 +59,15 @@ namespace Eatech.Controllers
             return View(bd_Alumno);
         }
 
+        /*-Validar si la matricula del alumno ya fue registrada-*/
+        [AllowAnonymous]
+        public IActionResult ValidarMatricula(string Matricula)
+        {
+            var busqueda = _context.Alumnos.FirstOrDefault(Li => Li.NoMatricula == Matricula);
+            if (busqueda == null) return Ok(true);
+            return Ok(false);
+        }
+
 
         //**************************************************************************************************************************************************************************//
         //Apartado con todo lo relacionado al alumno dashboard (es la parte del view)
