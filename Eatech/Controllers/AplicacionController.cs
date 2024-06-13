@@ -96,7 +96,26 @@ namespace Eatech.Controllers
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
-            bd_Usuario.CaducidadToken = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                bd_Usuario.IdUsuario = Guid.NewGuid();
+                _context.Add(bd_Usuario);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Login));
+            }
+            return View(bd_Usuario);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        {
+            bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
+            bd_Usuario.Rol = "Admin";
+            bd_Usuario.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -226,7 +245,7 @@ namespace Eatech.Controllers
                         mensaje = "Las contraseñas nuevas no coinciden"
                     });
 
-            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "IdUsuario").Value);
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
             var buscar = _context.Usuarios.FirstOrDefault(ana => ana.IdUsuario == id);
 
             if (buscar == null)
@@ -269,7 +288,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
             return View();

@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+
+
 
 /*-todo esto es para conecctar a la base de datos. Nota: la parte comentada es para probar de manera locar la base de datos-*/
 builder.Services.AddDbContext<ContextoBD>(
