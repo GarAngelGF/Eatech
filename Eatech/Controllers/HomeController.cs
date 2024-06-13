@@ -1,4 +1,5 @@
 ﻿using Eatech.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -15,6 +16,12 @@ namespace Eatech.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult PHONE()
         {
             return View();
         }

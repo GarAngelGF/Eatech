@@ -33,11 +33,7 @@ namespace Eatech.Controllers
             return View();
         }
 
-		[AllowAnonymous]
-		public IActionResult PHONE()
-		{
-			return View();
-		}
+		
 
 
 
