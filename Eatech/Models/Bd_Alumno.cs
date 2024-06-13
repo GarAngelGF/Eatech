@@ -10,7 +10,7 @@ namespace Eatech.Models
 {
     public class Bd_Alumno
     {
-        [Key, DisplayName("Matricula Alumno"), MaxLength(11, ErrorMessage = "Cantidad de caracteres maxima (10) Alcanzada")]
+        [Key, DisplayName("Matricula Alumno")/*, MaxLength(11, ErrorMessage = "Cantidad de caracteres maxima (10) Alcanzada")*/]
         public Guid IdAlumno { get; set; }
 
         [Required, DisplayName("No.Matricula"),MinLength(10, ErrorMessage ="La matricula debe de ser de 10 caracteres")]

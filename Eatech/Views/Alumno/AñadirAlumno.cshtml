@@ -12,9 +12,17 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="RegistrarAlumno">
-           @*  <div asp-validation-summary="Modelonly" class="text-danger"></div> *@
-         
+        <form asp-action="RegistrarAlumno" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+            <div class="form-group">
+                <label asp-for="NoMatricula" class="control-label"></label>
+                <input asp-for="NoMatricula" class="form-control" />
+                <span asp-validation-for="NoMatricula" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -31,20 +39,21 @@
                 <input asp-for="aMaterno" class="form-control" />
                 <span asp-validation-for="aMaterno" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Alergias" class="control-label"></label>
                 <input asp-for="Alergias" class="form-control" />
-                <span asp-validation-for="Alergias" class="text-danger"></span>
+                @* <span asp-validation-for="Alergias" class="text-danger"></span> *@
             </div>
             <div class="form-group">
                 <label asp-for="Enfermedades" class="control-label"></label>
                 <input asp-for="Enfermedades" class="form-control" />
-                <span asp-validation-for="Enfermedades" class="text-danger"></span>
+               @*  <span asp-validation-for="Enfermedades" class="text-danger"></span> *@
             </div>
             <div class="form-group">
                 <label asp-for="PreferenciasComida" class="control-label"></label>
                 <input asp-for="PreferenciasComida" class="form-control" />
-                <span asp-validation-for="PreferenciasComida" class="text-danger"></span>
+               @*  <span asp-validation-for="PreferenciasComida" class="text-danger"></span> *@
             </div>
             <div class="form-group">
                 <label asp-for="GradoEscolar" class="control-label"></label>
@@ -54,13 +63,13 @@
             <div class="form-group">
                 <label asp-for="Notas" class="control-label"></label>
                 <input asp-for="Notas" class="form-control" />
-                <span asp-validation-for="Notas" class="text-danger"></span>
+               @*  <span asp-validation-for="Notas" class="text-danger"></span> *@
             </div>
 
 
             <div class="form-group mt-3">
                 <input type="submit" id="btnregistrar" value="registrar" class="btn btn-primary" />
-                <a asp-controller="Alumno" asp-action="Index" class="btn btn-link">cancelar</a>
+                <a asp-controller="Aplicacion" asp-action="Index" class="btn btn-link">cancelar</a>
             </div>
         </form>
     </div>
