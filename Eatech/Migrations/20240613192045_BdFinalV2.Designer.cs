@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eatech.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20240610074734_bdfinal")]
-    partial class bdfinal
+    [Migration("20240613192045_BdFinalV2")]
+    partial class BdFinalV2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,9 +116,10 @@ namespace Eatech.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<Guid>("Codigo")
+                    b.Property<string>("Codigo")
+                        .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

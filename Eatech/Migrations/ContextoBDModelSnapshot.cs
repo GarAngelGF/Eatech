@@ -114,9 +114,10 @@ namespace Eatech.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<Guid>("Codigo")
+                    b.Property<string>("Codigo")
+                        .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

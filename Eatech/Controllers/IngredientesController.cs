@@ -51,6 +51,14 @@ namespace Eatech.Controllers
             }
             return View(bd_Ingredientes);
         }
+        [Authorize (Roles ="Admin")]
+        public IActionResult ValidarIngredientes(string Nombre)
+        {
+            var busqueda = _context.Ingredientes.FirstOrDefault(Li => Li.Nombre == Nombre);
+            if (busqueda == null) return Ok(true);
+            return Ok(false);
+        }
+
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para Editar un ingrediente-*/
