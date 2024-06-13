@@ -129,7 +129,7 @@ namespace Eatech.Controllers
 
             _context.Update(buscar);
             await _context.SaveChangesAsync();
-       
+
 
             Utilerias.Correo.EnviarCorreo(buscar.Correo, "Restaurar contraseña", "El codigo de restauracion de contraseña es: \n" + buscar.TokenDRestauracion.ToString());
 
@@ -202,6 +202,8 @@ namespace Eatech.Controllers
         }
 
         /*-JsonResult para Actualizar la contraseña-*/
+        [AllowAnonymous]
+        [HttpPost]
         public JsonResult ActualizarContrasena(string ContraActual, string NuevaContra1, string NuevaContra2)
         {
 
