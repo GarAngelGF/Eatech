@@ -291,7 +291,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Usuario")]
         public IActionResult AdminDashboard()
         {
             return View();
