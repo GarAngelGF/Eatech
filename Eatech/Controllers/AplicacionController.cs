@@ -25,10 +25,25 @@ namespace Eatech.Controllers
         {
             _context = context;
         }
-
         //**************************************************************************************************************************************************************************//
-        //Apartado para poner todo lo referente a login y al logout
+
         [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+		[AllowAnonymous]
+		public IActionResult PHONE()
+		{
+			return View();
+		}
+
+
+
+		//**************************************************************************************************************************************************************************//
+		//Apartado para poner todo lo referente a login y al logout
+		[AllowAnonymous]
         public IActionResult Login(string? error)
         {
             ViewBag.error = error;

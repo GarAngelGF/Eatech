@@ -1,9 +1,362 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 
-<h1>index del controller aplicacion</h1>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EATECH-INICIO</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-INDEX.css">
+    <link rel="stylesheet" href="/css/E-ALL.css">
+    <!-- --------------------------------------------------------------------------- -->
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+          rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
 
+</head>
+
+<body>
+    <!-- CONTENEDOR PADRE (PRIMERA PARTE DEL INDEX. TIENE IMAGENES EN LAS MEDIA QUERY DE CSS) -->
+    <div class="fondo">
+
+        <!-- BARRA DE NAVEGCIÓN (LOGO Y DOS BOTONES) -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
+                    <!-- --------------------------------------------------------------------------- -->
+                </a>
+                <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                       aria-expanded="false" aria-label="Toggle navigation">
+                    <input id="check" type="checkbox">
+                    <span class="top"></span>
+                    <span class="mid"></span>
+                    <span class="bot"></span>
+                </label>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <!-- --------------------------------------------------------------------------- -->
+                            <a asp-area="" asp-controller="Aplicacion" asp-action="Login">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <button class="botonsito iniciar">
+                                    <span class="circle" aria-hidden="true">
+                                        <span class="icon arrow"></span>
+                                    </span>
+                                    <span class="button-text">INICIAR SESIÓN</span>
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!--
+                <div class="cookie-card" id="cookie-card" style="display: none;">
+                    <span class="cookie-title">🍪 COOKIES</span>
+                    <p class="cookie-description">We ensure to provide you with the
+                        best experiences while using our website.
+                        <a class="cookies-policy" href="#">Please review our cookies policy</a>.
+                    </p>
+                    <button class="accept-button" id="accept-button">Accept</button>
+                </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      const cookieCard = document.getElementById("cookie-card");
+                      const acceptButton = document.getElementById("accept-button");
+
+                      // Verifica si el usuario ya ha aceptado las cookies
+                      if (!localStorage.getItem("cookiesAccepted")) {
+                        // Muestra el mensaje de cookies
+                        cookieCard.style.display = "block";
+                      }
+
+                      // Maneja el clic en el botón de aceptar
+                      acceptButton.addEventListener("click", function() {
+                        // Guarda en el almacenamiento local que el usuario ha aceptado las cookies
+                        localStorage.setItem("cookiesAccepted", "true");
+                        // Oculta el mensaje de cookies
+                        cookieCard.style.display = "none";
+                      });
+                    });
+                  </script> -->
+
+        <div class="centrar-titulo" id="centrar-titulo">
+            <p class="titulo-principal" id="tituloPrincipal">
+                ENTREGANDO ENERGÍA Y NUTRICIÓN
+                <br>
+                DIRECTAMENTE A LAS AULAS
+            </p>
+
+
+            <p class="titulo-pre">
+                ¿AÚN NO SABES QUIENES SOMOS? ¡CONÓCENOS!
+            </p>
+            <br>
+            <div class="centrar-botones-container">
+                <a href="#index" class="space-link">
+                    <i class="fa-solid fa-circle-chevron-down fa-4x space-icon" style="    color: rgb(17, 63, 92);"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <script src="/js/ANIMACIONES.js"></script>
+
+
+
+
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div id="index">
+        <div class="container-fluid text-center contenedor-imagen">
+            <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                    <div class="tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <img src="/Imagenes/INDEX/ALIMENTO5.jpg" alt="Imagen de la tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="texto">
+                            <p class="parrafo_tarjeta servicio">
+                                NUESTRO SERVICIO
+                            </p>
+                            <p class="parrafo_tarjeta">
+                                En EATECH, nos comprometemos a proporcionar la solución óptima para la organización
+                                eficiente. Nuestra plataforma ofrece herramientas de vanguardia diseñadas para
+                                simplificar la gestión de comidas en escuelas certificadas, asegurando la integridad
+                                y
+                                bienestar de los estudiantes. Eliminamos obstáculos y minimizamos riesgos,
+                                garantizando
+                                un entorno seguro y sin contratiempos. Con EATECH, la administración de alimentos se
+                                convierte en una tarea fluida y sin complicaciones.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-4">
+
+                    <div class="tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <img src="/Imagenes/INDEX/ALIMENTO2.jpg" alt="Imagen de la tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+
+                        <div class="texto">
+                            <p class="parrafo_tarjeta servicio">¿QUIÉNES SOMOS?</p>
+                            <p class="parrafo_tarjeta">
+                                Nuestra plataforma integra un sistema completo de reserva de alimentos,
+                                tanto para padres preocupados como para instituciones educativas.
+                                Aseguramos una experiencia sin problemas, garantizando la disponibilidad y seguridad
+                                alimentaria.
+                                Simplificamos la organización del comedor, ofreciendo tranquilidad a todos
+                                los involucrados.
+                                ¡Descubre cómo optimizamos la gestión para ti! Además, te ofrecemos el mejor sistema
+                                para identificar problemas de salur rápidamente para evitar incidentes.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-lg-4">
+
+                    <div class="tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <img src="/Imagenes/INDEX/ALIMENTO4.jpg" alt="Imagen de la tarjeta">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="texto">
+                            <p class="parrafo_tarjeta servicio">¿CÓMO PUEDO INGRESAR?</p>
+                            <p class="parrafo_tarjeta">
+                                Para unirte al equipo de una institución ya registrada, necesitas ingresar el código
+                                que nosotros proporcionamos a la escuela al colaborar con nosotros. Este código es la
+                                llave que abre las puertas a un mundo de eficiencia
+                                y comodidad en la gestión escolar. Te garantizamos la confidencialidad absoluta de este
+                                código,
+                                ya que su seguridad es nuestra prioridad. Al mantenerlo privado, aseguras que solo
+                                aquellos autorizados
+                                puedan acceder a los beneficios exclusivos de nuestro sistema.
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container-fluid text-center contenedor-centraditp">
+        <div class="row">
+
+            <div class="col-sm-12 col-lg-7 container-imagen2">
+                <br>
+                <h2 class="titulo-h2"> TE DAMOS LA BIENVENIDA A EATECH</h2>
+                <p class="subtitulo1">
+                    ¡Bienvenidos al futuro del comedor estudiantil con EATECH!
+
+                    En un mundo donde la seguridad y el bienestar de nuestros niños son prioridad, garantizar que cada
+                    estudiante reciba alimentos adecuados es esencial. Los niños necesitan un espacio seguro donde sus
+                    restricciones alimenticias sean estrictamente reguladas. No solo estamos hablando de evitar
+                    alérgenos, sino de asegurar que cada estudiante reciba una nutrición balanceada que respete sus
+                    necesidades individuales. Imagina la tranquilidad de los padres y maestros al saber que cada niño
+                    está consumiendo alimentos que son seguros y beneficiosos para su salud. EATECH hace esto posible.
+
+                    EATECH es tu mejor opción para aplicar un sistema de ordenamiento automatizado en el comedor
+                    estudiantil. Nuestra avanzada tecnología permite un manejo eficiente y personalizado de las
+                    necesidades dietéticas de cada niño. A través de nuestra plataforma, se pueden establecer perfiles
+                    individuales con restricciones alimenticias específicas, desde alergias hasta preferencias
+                    culturales. Además, nuestra interfaz intuitiva y fácil de usar asegura que el personal del comedor
+                    pueda gestionar los pedidos de manera rápida y precisa, reduciendo la posibilidad de errores
+                    humanos.
+
+                    Con EATECH, estamos revolucionando la manera en que se gestionan los comedores estudiantiles,
+                    ofreciendo un entorno seguro, eficiente y personalizado para cada niño. ¡Asegúrate de dar el paso
+                    hacia el futuro con nosotros!
+                </p>
+            </div>
+
+            <div class="col-sm-12 col-lg-5">
+                <div class="envoltura-contenedores">
+                    <div class="contenedor2_">
+                        <div class="carrusel">
+
+                            <!-- --------------------------------------------------------------------------- -->
+                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO1.jpg" alt="Imagen 1"></div>
+                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO3.jpg" alt="Imagen 2"></div>
+                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO4.jpg" alt="Imagen 3"></div>
+                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO5.jpg" alt="Imagen 4"></div>
+                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO2.jpg" alt="Imagen 5"></div>
+                            <!-- --------------------------------------------------------------------------- -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+    <div class="container-celular hover-imagen ">
+        <div class="imagen-container">
+            <!-- --------------------------------------------------------------------------- -->
+            <a asp-controller="Aplicacion" asp-action="PHONE">
+                <!-- --------------------------------------------------------------------------- -->
+                <img class="animacion-imagen" src="/Imagenes/INDEX/PHONE.png" alt="Imagen Celular">
+                <!-- --------------------------------------------------------------------------- -->
+            </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <footer class="container-footer">
+        <br>
+        <br>
+        <br>
+        <!-- --------------------------------------------------------------------------- -->
+        <img src="/Imagenes/INDEX/FOOTER-IMG.png" alt="Descripción de la imagen" class="imagen-footer">
+        <!-- --------------------------------------------------------------------------- -->
+        <br>
+        <br>
+        <p class="parrafo-footer">¡GRACIAS POR VISITARNOS!</p>
+        <p class="parrafo-footer2">SI ES EATECH, HAY MENTES NUTRIDAS. ¡SIGUENOS EN NUESTRAS REDES SOCIALES!</p>
+        <br>
+        <br>
+
+        <!-- REDES SOCIALES (CODIGAZO COPIAO) -->
+        <div class="socials-container">
+            <a href="#" class="social twitter">
+                <svg height="1em" viewBox="0 0 512 512">
+                    <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+                    </path>
+                </svg>
+            </a>
+
+            <a href="#" class="social facebook">
+                <svg height="1em" viewBox="0 0 320 512">
+                    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z">
+                    </path>
+                </svg>
+            </a>
+
+            <a href="#" class="social instagram">
+                <svg height="1em" viewBox="0 0 448 512">
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+
+        <br>
+        <br>
+        <br>
+    </footer>
+
+
+</body>
+
+</html>
