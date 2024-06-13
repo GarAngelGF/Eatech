@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 
 namespace Eatech.Controllers
@@ -33,13 +34,13 @@ namespace Eatech.Controllers
             return View();
         }
 
-		
 
 
 
-		//**************************************************************************************************************************************************************************//
-		//Apartado para poner todo lo referente a login y al logout
-		[AllowAnonymous]
+
+        //**************************************************************************************************************************************************************************//
+        //Apartado para poner todo lo referente a login y al logout
+        [AllowAnonymous]
         public IActionResult Login(string? error)
         {
             ViewBag.error = error;
@@ -111,13 +112,11 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
-            bd_Usuario.aPaterno = "No aplica";
-            bd_Usuario.aMaterno = "No aplica";
 
             if (ModelState.IsValid)
             {
@@ -127,7 +126,7 @@ namespace Eatech.Controllers
 
                 return RedirectToAction(nameof(Login));
             }
-            
+
             return View(bd_Usuario);
         }
 
@@ -302,6 +301,14 @@ namespace Eatech.Controllers
         //Apartado de acciones referentes a las vistas generales//
 
         /*-Apartado Para Vincular con la escuela-*/
+        public IActionResult VincularEscuela(string? codigo)
+        {
+            return View();
+        }
+
+        /*-task-*/
+        public async Task<IActionResult> VincularlaEscuela(string codigo)
+        { return View(); }
 
     }
 }
