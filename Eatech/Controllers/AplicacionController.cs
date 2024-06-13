@@ -129,10 +129,11 @@ namespace Eatech.Controllers
 
             _context.Update(buscar);
             await _context.SaveChangesAsync();
+       
 
             Utilerias.Correo.EnviarCorreo(buscar.Correo, "Restaurar contraseña", "El codigo de restauracion de contraseña es: \n" + buscar.TokenDRestauracion.ToString());
 
-            return RedirectToAction("NuevaContraseña", new { Correo = buscar.Correo });
+            return RedirectToAction("NuevaContrasena", new { Correo = buscar.Correo });
         }
 
         /*-Validar token de recuperacion-*/
