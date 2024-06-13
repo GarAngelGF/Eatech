@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class bdfinal : Migration
+    public partial class BdFinalV2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace Eatech.Migrations
                     IdEscuela = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaveEscuela = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Codigo = table.Column<Guid>(type: "uniqueidentifier", maxLength: 128, nullable: false)
+                    Codigo = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {

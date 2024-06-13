@@ -25,10 +25,21 @@ namespace Eatech.Controllers
         {
             _context = context;
         }
-
         //**************************************************************************************************************************************************************************//
-        //Apartado para poner todo lo referente a login y al logout
+
         [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+		
+
+
+
+		//**************************************************************************************************************************************************************************//
+		//Apartado para poner todo lo referente a login y al logout
+		[AllowAnonymous]
         public IActionResult Login(string? error)
         {
             ViewBag.error = error;
@@ -85,7 +96,6 @@ namespace Eatech.Controllers
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
-            bd_Usuario.CaducidadToken = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -95,6 +105,29 @@ namespace Eatech.Controllers
 
                 return RedirectToAction(nameof(Login));
             }
+            return View(bd_Usuario);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        {
+            bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
+            bd_Usuario.Rol = "Admin";
+            bd_Usuario.FechaCreacion = DateTime.Now;
+            bd_Usuario.aPaterno = "No aplica";
+            bd_Usuario.aMaterno = "No aplica";
+
+            if (ModelState.IsValid)
+            {
+                bd_Usuario.IdUsuario = Guid.NewGuid();
+                _context.Add(bd_Usuario);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Login));
+            }
+            
             return View(bd_Usuario);
         }
 
@@ -130,9 +163,10 @@ namespace Eatech.Controllers
             _context.Update(buscar);
             await _context.SaveChangesAsync();
 
+
             Utilerias.Correo.EnviarCorreo(buscar.Correo, "Restaurar contraseña", "El codigo de restauracion de contraseña es: \n" + buscar.TokenDRestauracion.ToString());
 
-            return RedirectToAction("NuevaContraseña", new { Correo = buscar.Correo });
+            return RedirectToAction("NuevaContrasena", new { Correo = buscar.Correo });
         }
 
         /*-Validar token de recuperacion-*/
@@ -201,6 +235,8 @@ namespace Eatech.Controllers
         }
 
         /*-JsonResult para Actualizar la contraseña-*/
+        [AllowAnonymous]
+        [HttpPost]
         public JsonResult ActualizarContrasena(string ContraActual, string NuevaContra1, string NuevaContra2)
         {
 
@@ -212,7 +248,7 @@ namespace Eatech.Controllers
                         mensaje = "Las contraseñas nuevas no coinciden"
                     });
 
-            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "IdUsuario").Value);
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
             var buscar = _context.Usuarios.FirstOrDefault(ana => ana.IdUsuario == id);
 
             if (buscar == null)
@@ -265,7 +301,7 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //Apartado de acciones referentes a las vistas generales//
 
-        //nohaynadaequisde
+        /*-Apartado Para Vincular con la escuela-*/
 
     }
 }

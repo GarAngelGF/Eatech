@@ -16,6 +16,7 @@ namespace Eatech.Models
         public Guid IDComida { get; set; }
 
         [Required, DisplayName("Comida"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
+        [Remote("ValidarComida", "Comida", ErrorMessage = "Nombre de comida ya registrado")]
         public string Nombre { get; set; }
 
         [Required, DisplayName("Estado visibilidad")]
@@ -26,7 +27,7 @@ namespace Eatech.Models
 
         //Accion a porciones disp.= Se validaran con el controlador mediante la linea de codigo "Remote"
         [Required, DisplayName("Porciones restantes")]
-        [Remote("ValidarPorcionesDisponibles", "Aplicacion", ErrorMessage = "Ya no hay porciones disponibles")]
+        [Remote("ValidarPorcionesDisponibles", "Comida", ErrorMessage = "Ya no hay porciones disponibles")]
         public int PorcionesDisponibles { get; set; }
 
         public ICollection<Bd_FotoComidas> FotosComidas { get; set; }

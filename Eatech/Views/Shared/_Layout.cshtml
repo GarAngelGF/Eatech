@@ -25,12 +25,13 @@
 
 		@if ((currentController == "Aplicacion" && currentAction == "Login") ||
 				(currentController == "Aplicacion" && currentAction == "Registro"))
+			
 		{
 
 
 			<nav class="navbar navbar-expand-lg navbar-custom">
 				<div class="container-fluid">
-					<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+					<a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
 						<!-- --------------------------------------------------------------------------- -->
 						<img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
 						<!-- --------------------------------------------------------------------------- -->
@@ -66,7 +67,7 @@
 
 
 								}
-								@if (currentController == "Aplicacion" && currentAction == "Registro")
+								@if ((currentController == "Aplicacion" && currentAction == "Registro"))
 								{
 									<!-- --------------------------------------------------------------------------- -->
 									<a asp-area="" asp-controller="Aplicacion" asp-action="Login">
@@ -87,7 +88,7 @@
 								@if (currentController == "Aplicacion" && currentAction == "Login")
 								{
 									<!-- --------------------------------------------------------------------------- -->
-									<a asp-area="" asp-controller="Home" asp-action="Index">
+									<a asp-area="" asp-controller="Aplicacion" asp-action="Index">
 										<!-- --------------------------------------------------------------------------- -->
 										<button class="botonsito_blanco iniciar_blanco">
 											<span class="circle_blanco" aria-hidden="true">

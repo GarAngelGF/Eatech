@@ -1,7 +1,7 @@
 const toggleCheckbox = document.getElementById('checkbox_toggle');
 toggleCheckbox.addEventListener('change', function() {
-    const institucionalForm = document.getElementById('institucional_form');
-    const padresForm = document.getElementById('padres_form');
+    const institucionalForm = document.getElementById('ajustes_form');
+    const padresForm = document.getElementById('seguimiento_form');
     
     if (this.checked) {
         institucionalForm.style.display = 'block';

@@ -58,6 +58,17 @@ namespace Eatech.Controllers
             return View(bd_comida);
         }
 
+        /*-validar que no se repita el nombre de la comida-*/
+        [AllowAnonymous]
+        public IActionResult ValidarComida(string Nombre)
+        {
+            var busqueda = _context.Comidas.FirstOrDefault(Li => Li.Nombre == Nombre);
+            if (busqueda == null) return Ok(true);
+            return Ok(false);
+        }
+
+
+
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/
         public IActionResult ComidaDashboard(Guid? id)
@@ -151,6 +162,16 @@ namespace Eatech.Controllers
             return View(Contexto);
         }
 
+        //**************************************************************************************************************************************************************************//
+        /*-Remote para validar porciones disponibles-*/
+        [AllowAnonymous]
+        public IActionResult ValidarPorcionesDisponibles(Guid? ID)
+        {
+            var busqueda = _context.Comidas.FirstOrDefault(Li => Li.IDComida == ID);
+            
+            if (busqueda.Porciones > busqueda.PorcionesDisponibles) return Ok(true);
+            return Ok(false);
+        }
 
     }
 }

@@ -48,13 +48,15 @@ namespace Eatech.Controllers
             if (ModelState.IsValid)
             {
                 bd_Pedido.pedido = Guid.NewGuid();
-
+                bd_Pedido.Estatus = "Generado";
                 bdI_Com_Ped.IDComida = IdCom;
                 bdI_Com_Ped.pedido = bd_Pedido.pedido;
 
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
                 bdI_Alu_Ped.IdAlumno = IdAlum;
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
+                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
                 _context.Add(bdI_Com_Ped);
@@ -89,6 +91,9 @@ namespace Eatech.Controllers
             {
                 _context.Update(bd_pedido);
                 await _context.SaveChangesAsync();
+                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                Utilerias.Correo.PedidoCorreo(ltam, "Estatus del pedido", "El estatus de su pedido se ha actualizado." + " \nEl estado de su pedido es: " + bd_pedido.Estatus + " \n Eatech");
+
             }
             catch (DbUpdateConcurrencyException)
             {

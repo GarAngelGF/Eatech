@@ -4,9 +4,8 @@
 @{
 }
 
-
 <h1>Recuperar contraseña</h1>
-<form id="frmRestaurar">
+<form id="frmRestaurar" >
     <div class="form-group">
         <label>Correo</label>
         <input type="email" name="Correo"
@@ -35,6 +34,8 @@
         <input type="button" value="Validar token"
                id="btnValidar" class="btn btn-primary" />
 
+
+
         <input type="button" value="Cambiar contraseña"
                id="btnCambiar" class="btn btn-warning ocultar" />
     </div>
@@ -47,9 +48,10 @@
 
         jQuery('#btnCambiar').click(function (evt) {
             evt.preventDefault();
+
             $(this).attr('disabled', true);
             $.ajax({
-                url: '@Url.Action("ValidarTokenRestauracion")',
+                url: '@Url.Action("ActualizarContrasena")',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
@@ -68,7 +70,7 @@
         jQuery('#btnValidar').click(function (evt) {
             evt.preventDefault();
             $.ajax({
-                url: '@Url.Action("ValidarTokenPassword")',
+                url: '@Url.Action("ValidarTokenRestauracion")',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {

@@ -104,9 +104,9 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Correo" class="input" type="email" placeholder="Escribe tu correo" id="Correo"
-                              />
-                        @* <span asp-validation-for="Correo"></span> *@
+                        <input asp-for="Correo" class="input" type="email" placeholder="Escribe tu correo" id="Correo" required
+                             />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -116,8 +116,8 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-                              required="Correo" />
-                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                              />
+                        <span  id="spErrorCorreo" class="text-danger"></span>
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -127,8 +127,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="Contrasena" />
-                        @*  <span asp-validation-for="Contrasena"></span> *@
+                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="Contrasena" required />
+                        <span asp-validation-for="Contrasena" class="text-danger"></span>
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -138,8 +138,8 @@
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
                         <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-                          required="contrasena"  />
-                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
+                          required />
+                        <span id="spErrorContrasena" class="text-danger"></span>
                     </div>
 
                     <!-- --------------------------------------------------------------------------- -->
@@ -152,7 +152,7 @@
             <br>
 
             <div class="form-group" id="btnRegistrar">
-                <button class="animated-button">
+                <button class="animated-button" disabled>
 
                     <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
@@ -189,25 +189,28 @@
 
     @* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- *@
 
+
     <div class="container" id="institucional_form" style="display: none;">
         <div class="heading">CREAR CUENTA</div>
-        <form class="form" asp-action="Registro" method="post" class="form">
+        <form asp-action="RegistroAdmin" method="post" class="form">
             <input type="hidden" name="Rol" value="Admin">
+            <div asp-validation-summary="ModelOnly"> </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                    <input placeholder="Institución" id="nombre_institucion" type="text" class="input"
-                           required="" />
+                    <div class="form-group">
+                        <input asp-for="Nombre" class="input" placeholder="Escribe el nombre de tu institucion" id="nombre" />
+                        @* <span asp-validation-for="Nombre"></span> *@
+                    </div>
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
 
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input asp-for="Correo" class="input" placeholder="Escribe tu Correo" id="email"
-                               required="" />
-                        <span asp-validation-for="Correo"></span>
+                        <input asp-for="Correo" class="input" type="email" placeholder="Escribe tu correo" id="Correo2" required />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
                     </div>
               
                     <!-- --------------------------------------------------------------------------- -->
@@ -218,37 +221,36 @@
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- -------------------------------------------------------------------------- -->
                     <div class="form-group">
-                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo"
-                               required />
-                        <span name="spErrorCorreo" id="spErrorCorreo"></span>
+                        <input class="input" type="email" placeholder="Confirmar correo" id="RepetirCorreo2" />
+                        <span id="spErrorCorreo2" class="text-danger"></span>
                     </div>
+
+
+
+
                 </div>
                     <div class="col-sm-12 col-md-12 col-lg-6">
                         <!-- --------------------------------------------------------------------------- -->
-                        <div class="form-group">
-                            <input asp-for="Contrasena" class="input" placeholder="Escribe tu Contraseña" id="contrasena_institucion"
-                            />
-
-                        </div>
+                    <div class="form-group">
+                        <input asp-for="Contrasena" class="input" placeholder="Contraseña" id="Contrasena2" required />
+                        <span asp-validation-for="Contrasena" class="text-danger"></span>
+                    </div>
 
                         <!-- --------------------------------------------------------------------------- -->
                     </div>
-
-            
-
-
-
-          
+                    
             <div class="row">
-           
-
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <!-- --------------------------------------------------------------------------- -->
-                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-                           required />
-                        <span name="spErrorContrasena" id="spErrorContrasena"></span>
+                        <div class="form-group">
+                            <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena2"
+                                   required />
+                            <span id="spErrorContrasena2" class="text-danger"></span>
+                        </div>
                     <!-- --------------------------------------------------------------------------- -->
                 </div>
+
+
             </div>
 
             <br>
@@ -256,12 +258,12 @@
             <br>
             <br>
             <!-- --------------------------------------------------------------------------- -->
-            @*        <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a> *@
+                   <a asp-controller="Aplicacion" asp-action="Login" class="link-invisible" id="redirectLink"></a>
             <!-- --------------------------------------------------------------------------- -->
 
-            <div class="form-group">
+            <div class="form-group" id="btnRegistrar2">
 
-                    <button class="animated-button" id="btnRegistrar">
+                    <button class="animated-button" type="submit" disabled>
                         <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
                             </path>
@@ -312,6 +314,148 @@
     }
     <script>
         $(function () {
+            var passwordFocused = false;
+            var confirmPasswordFocused = false;
+
+            function validatePasswords() {
+                var pass = $('#Contrasena').val();
+                var repass = $('#RepetirContrasena').val();
+
+                if (!confirmPasswordFocused) return;
+
+                if (!repass || pass !== repass) {
+                    $('#spErrorContrasena').html("Las contraseñas no coinciden o el campo está vacío");
+                    $('#btnRegistrar button').attr('disabled', true);
+                } else {
+                    $('#spErrorContrasena').html("");
+                    $('#btnRegistrar button').removeAttr('disabled');
+                }
+            }
+
+            $('#Contrasena').on('focus', function () {
+                passwordFocused = true;
+            });
+
+            $('#RepetirContrasena').on('focus', function () {
+                confirmPasswordFocused = true;
+                validatePasswords();
+            });
+
+            $('#Contrasena, #RepetirContrasena').on('keyup', validatePasswords);
+        });
+    </script>
+
+
+    <script>
+        $(function () {
+            var passwordFocused = false;
+            var confirmPasswordFocused = false;
+
+            function validatePasswords() {
+                var pass = $('#Contrasena2').val();
+                var repass = $('#RepetirContrasena2').val();
+
+                if (!confirmPasswordFocused) return;
+
+                if (!repass || pass !== repass) {
+                    $('#spErrorContrasena2').html("Las contraseñas no coinciden o el campo está vacío");
+                    $('#btnRegistrar2 button').attr('disabled', true);
+                } else {
+                    $('#spErrorContrasena2').html("");
+                    $('#btnRegistrar2 button').removeAttr('disabled');
+                }
+            }
+
+            $('#Contrasena2').on('focus', function () {
+                passwordFocused = true;
+            });
+
+            $('#RepetirContrasena2').on('focus', function () {
+                confirmPasswordFocused = true;
+                validatePasswords();
+            });
+
+            $('#Contrasena2, #RepetirContrasena2').on('keyup', validatePasswords);
+        });
+    </script>
+
+    <script>
+        $(function () {
+            var emailFocused = false;
+            var confirmEmailFocused = false;
+
+            function validateEmails() {
+                var email = $('#Correo').val();
+                var reemail = $('#RepetirCorreo').val();
+
+                if (!confirmEmailFocused) return;
+
+                if (!reemail || email !== reemail) {
+                    $('#spErrorCorreo').html("Los correos no coinciden o el campo está vacío");
+                    $('#btnRegistrar button').attr('disabled', true);
+                } else {
+                    $('#spErrorCorreo').html("");
+                    $('#btnRegistrar button').removeAttr('disabled');
+                }
+            }
+
+            $('#Correo').on('focus', function () {
+                emailFocused = true;
+            });
+
+            $('#RepetirCorreo').on('focus', function () {
+                confirmEmailFocused = true;
+                validateEmails();
+            });
+
+            $('#Correo, #RepetirCorreo').on('keyup', validateEmails);
+        });
+    </script>
+
+
+    <script>
+        $(function () {
+            var emailFocused = false;
+            var confirmEmailFocused = false;
+
+            function validateEmails() {
+                var email = $('#Correo2').val();
+                var reemail = $('#RepetirCorreo2').val();
+
+                if (!confirmEmailFocused) return;
+
+                if (!reemail || email !== reemail) {
+                    $('#spErrorCorreo2').html("Los correos no coinciden o el campo está vacío");
+                    $('#btnRegistrar2 button').attr('disabled', true);
+                } else {
+                    $('#spErrorCorreo2').html("");
+                    $('#btnRegistrar2 button').removeAttr('disabled');
+                }
+            }
+
+            $('#Correo2').on('focus', function () {
+                emailFocused = true;
+            });
+
+            $('#RepetirCorreo2').on('focus', function () {
+                confirmEmailFocused = true;
+                validateEmails();
+            });
+
+            $('#Correo2, #RepetirCorreo2').on('keyup', validateEmails);
+        });
+    </script>
+}
+
+
+
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
             $('#btnRegistrar').attr('disabled', true);
             $('#RepetirContrasena').keyup(function (evt) {
 
@@ -357,11 +501,11 @@
 
 
 
-    </script>
+    </script> *@
 
 
 
-}
+
 
 
 
