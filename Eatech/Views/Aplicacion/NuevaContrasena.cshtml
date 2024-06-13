@@ -5,7 +5,7 @@
 }
 
 <h1>Recuperar contraseña</h1>
-<form id="frmRestaurar" form asp-action="ContrasenaNueva" method="post">
+<form id="frmRestaurar" >
     <div class="form-group">
         <label>Correo</label>
         <input type="email" name="Correo"
@@ -48,9 +48,10 @@
 
         jQuery('#btnCambiar').click(function (evt) {
             evt.preventDefault();
+
             $(this).attr('disabled', true);
             $.ajax({
-                url: '@Url.Action("ContrasenaNueva")',
+                url: '@Url.Action("ActualizarContrasena")',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {

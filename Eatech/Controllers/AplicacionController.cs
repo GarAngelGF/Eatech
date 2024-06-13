@@ -25,10 +25,25 @@ namespace Eatech.Controllers
         {
             _context = context;
         }
-
         //**************************************************************************************************************************************************************************//
-        //Apartado para poner todo lo referente a login y al logout
+
         [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+		[AllowAnonymous]
+		public IActionResult PHONE()
+		{
+			return View();
+		}
+
+
+
+		//**************************************************************************************************************************************************************************//
+		//Apartado para poner todo lo referente a login y al logout
+		[AllowAnonymous]
         public IActionResult Login(string? error)
         {
             ViewBag.error = error;
@@ -129,7 +144,7 @@ namespace Eatech.Controllers
 
             _context.Update(buscar);
             await _context.SaveChangesAsync();
-       
+
 
             Utilerias.Correo.EnviarCorreo(buscar.Correo, "Restaurar contraseña", "El codigo de restauracion de contraseña es: \n" + buscar.TokenDRestauracion.ToString());
 
@@ -202,6 +217,8 @@ namespace Eatech.Controllers
         }
 
         /*-JsonResult para Actualizar la contraseña-*/
+        [AllowAnonymous]
+        [HttpPost]
         public JsonResult ActualizarContrasena(string ContraActual, string NuevaContra1, string NuevaContra2)
         {
 
