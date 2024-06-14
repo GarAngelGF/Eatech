@@ -1,7 +1,505 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<html lang="en">
 
-<h1>Vista de AdminDashboard (institucion) </h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIAR</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-INICIO.css">
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CAPTCHA DE GOOGLE -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+
+<body>
+
+
+    <br>
+
+
+    <!-- BARRA DE NAVEGCIÓN (LOGO Y DOS BOTONES) -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+
+            <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <input id="check" type="checkbox">
+                <span class="top"></span>
+                <span class="mid"></span>
+                <span class="bot"></span>
+            </label>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container1')">
+                            Inicio
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container2')">
+                            Menú
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container3')">
+                            Alimentos
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container4')">
+                            Alumnos
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container5')">
+                            Seguimiento
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="button" onclick="toggleContainer('container6')">
+                            Ajustes
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <form asp-controller="Aplicacion" asp-action="Logout">
+                        <button class="button">
+                            Salir (@User.Identity.Name)
+                           
+                        </button>
+                        </form>
+                        
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div id="container1" class="content-container">
+
+        <h2>BIENVENIDO A EATECH</h2>
+        <br>
+        <br>
+        <br>
+
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/Imagenes/" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="texx">
+                            <h5>¡ESTUDIANTES SANOS Y FELICES!</h5>
+                            <p>Trabajemos juntos para cuidar de los pequeños.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../IMAGENES-ALL/COMEDOR2.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="texx">
+                        <h5>CUIDANDO SU SALUD</h5>
+                        <p>Recuerda mantener un menú sano para sus comidas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../IMAGENES-ALL/COMEDOR3.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="texx">
+                        <h5>¡COMIENZA YA!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+
+
+
+    <div id="container2" class="content-container">
+
+        <form class="form" action="">
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h2>MENÚ DISPONIBLE</h2>
+                </div>
+                <br>
+                <br>
+                <br>
+
+            </div>
+
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="contenedor-alimentos-agg">
+                        <h3>AGREGADOS</h3>
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Modificar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Eliminar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="contenedor-alimentos-agg">
+                        <h3>AGREGAR</h3>
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+
+
+                        <div class="row">
+
+                            <div class="col-sm-6 col-md-6 col-lg-12">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Agregar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+
+
+    <div id="container3" class="content-container">
+        <form class="form" action=""></form>
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h2>MIS ALIMENTOS</h2>
+                </div>
+                <br>
+                <br>
+                <br>
+
+            </div>
+
+
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="contenedor-alimentos-agg">
+                        <h3>AGREGADOS</h3>
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Modificar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Eliminar
+                                    <div class="hoverEffect">
+                                        <div>
+
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="contenedor-alimentos-agg">
+                        <h3>AGREGAR</h3>
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Nombre del alimento" id="Nombre" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Porciones disponibles" id="Porciones" type="text" class="input"
+                            required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-12">
+                                <form action="/ruta-de-tu-servidor" method="post" enctype="multipart/form-data">
+                                </form>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <br>
+                                    <h5>Selecciona una imagen del alimento</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <form class="form" action="">
+                                        <input type="file" id="imagen" accept="image/*">
+                                    </form>
+                                </div>
+
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <form class="form" action="">
+                                        <input type="submit" value="Subir" class="buttonZ hoverEffect">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                <br>
+
+                                <button class="buttonZ">
+                                    Agregar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+    </div>
+
+
+    <br>
+    <br>
+
+
+
+    <div id="container4" class="content-container">
+
+        <form class="form" action="">
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h2>ESTUDIANTES REGISTRADOS</h2>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="contenedor-estudiantes">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Estudiantes registrados" id="Alumnos" type="text" class="input"
+                            required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+
+
+    <div id="container5" class="content-container">
+
+        <form class="form" action="">
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h2>ESTATUS Y SEGUIMIENTO</h2>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+            </div>
+
+            <div class="contenedor-seguimiento">
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Alumno" id="Alumnos" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+
+
+    <div id="container6" class="content-container">Contenido de Ajustes</div>
+
+
+    <script src="/js/CONTENEDORES.js"></script>
+
+   
+
+
+</body>
+
+</html>

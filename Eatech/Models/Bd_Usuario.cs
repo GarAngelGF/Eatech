@@ -14,20 +14,31 @@ namespace Eatech.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdUsuario { get; set; }
 
-        [Required, EmailAddress(ErrorMessage = "Correo invalido"), DisplayName("Correo Electronico")]
+        [Required (ErrorMessage ="el correo es obligatorio"), EmailAddress(ErrorMessage = "Correo invalido"), DisplayName("Correo Electronico")]
+        [MaxLength(50, ErrorMessage = "Cantidad de caracteres maxima (50) Alcanzada")]
         [Remote("ValidarCorreoUnico", "Aplicacion", ErrorMessage = "Correo ya registrado, Registrate con otro correo o inicia sesion")]
         public string Correo { get; set; }
 
-        [Required, DisplayName("Contraseña"), DataType(DataType.Password)]
+        [Required (ErrorMessage ="la contraseña es obligatoria"), DisplayName("Contraseña"), DataType(DataType.Password)]
+        [MinLength(10, ErrorMessage = "la contraseña tiene que tener minimo 10 caracteres")]
         public string? Contrasena { get; set; }
 
-        [Required, DisplayName("Nombre"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
+        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [DisplayName("Nombre") ]
+        [MaxLength(50, ErrorMessage = "Cantidad de caracteres maxima (50) Alcanzada")]
+        [MinLength(3, ErrorMessage = "El nombre debe tener mínimo 3 caracteres")]
         public string Nombre { get; set; }
 
-        [DisplayName("Apellido Paterno"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
+        [Required(ErrorMessage = "El Apellido es obligatorio")]
+        [DisplayName("Apellido Paterno"), MaxLength(28, ErrorMessage = "Cantidad de caracteres maxima (28) Alcanzada")]
+        [MinLength(2, ErrorMessage = "El Apellido debe tener mínimo 2 caracteres")]
+        
         public string aPaterno { get; set; }
 
-        [DisplayName("Apellido Materno"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
+        [Required(ErrorMessage = "El apellido es obligatorio")]
+        [DisplayName("Apellido Materno"), MaxLength(28, ErrorMessage = "Cantidad de caracteres maxima (28) Alcanzada")]
+        [MinLength(2, ErrorMessage = "El Apeliido debe tener mínimo 2 caracteres")]
+
         public string aMaterno { get; set; }
 
 

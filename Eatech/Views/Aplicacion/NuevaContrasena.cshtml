@@ -5,7 +5,7 @@
 }
 
 <h1>Recuperar contraseña</h1>
-<form id="frmRestaurar" >
+<form id="frmRestaurar" method="post">
     <div class="form-group">
         <label>Correo</label>
         <input type="email" name="Correo"
@@ -15,13 +15,12 @@
     <div class="form-group">
         <label>Token</label>
         <input type="text" name="Token" id="txtToken"
-               class="form-control" autofocus />
+               class="form-control" autofocus maxlength="36" />
     </div>
 
     <div class="form-group ocultar">
         <label>Nueva contraseña</label>
-        <input type="password" name="Password"
-               class="form-control" />
+        <input class="form-control" type="password" name="contrasena"/>
     </div>
 
     <div class="form-group ocultar">
@@ -29,6 +28,8 @@
         <input type="password" name="RepetirPassword"
                class="form-control" />
     </div>
+
+
 
     <div class="form-group mt-2">
         <input type="button" value="Validar token"
@@ -51,7 +52,7 @@
 
             $(this).attr('disabled', true);
             $.ajax({
-                url: '@Url.Action("ActualizarContrasena")',
+                url: '@Url.Action("ContrasenaNueva")',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
