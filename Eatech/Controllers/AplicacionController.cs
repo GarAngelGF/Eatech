@@ -91,47 +91,66 @@ namespace Eatech.Controllers
         }
 
         /*-Apartado donde se registra el usuario en la base de datos-*/
+        //        [HttpPost]
+        //        [AllowAnonymous]
+        //        [ValidateAntiForgeryToken]
+        //        public async Task<IActionResult> Registro([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        //        {
+
+
+
+        //            bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
+        ////;            bd_Usuario.Rol = "Usuario";
+        //            bd_Usuario.FechaCreacion = DateTime.Now;
+
+        //            if (bd_Usuario.Rol == "Admin")
+        //            {
+        //                bd_Usuario.aMaterno = "No aplica";
+        //                bd_Usuario.aPaterno = "No aplica";
+
+        //                ModelState.Remove("aMaterno");
+        //                ModelState.Remove("aPaterno");
+
+
+        //            }
+
+
+        //            if (ModelState.IsValid)
+        //            {
+
+        //                    bd_Usuario.IdUsuario = Guid.NewGuid();
+        //                    _context.Add(bd_Usuario);
+        //                    await _context.SaveChangesAsync();
+
+        //                    return RedirectToAction(nameof(Login));
+
+        //            }
+        //            return View(bd_Usuario);
+        //        }
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Registro([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
 
-     
+
 
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
-//;            bd_Usuario.Rol = "Usuario";
+            bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
-
-            if (bd_Usuario.Rol == "Admin")
-            {
-                bd_Usuario.aMaterno = "No aplica";
-                bd_Usuario.aPaterno = "No aplica";
-              
-                ModelState.Remove("aMaterno");
-                ModelState.Remove("aPaterno");
-
-
-            }
-
 
             if (ModelState.IsValid)
             {
-               
-                    bd_Usuario.IdUsuario = Guid.NewGuid();
-                    _context.Add(bd_Usuario);
-                    await _context.SaveChangesAsync();
 
-                    return RedirectToAction(nameof(Login));
+                bd_Usuario.IdUsuario = Guid.NewGuid();
+                _context.Add(bd_Usuario);
+                await _context.SaveChangesAsync();
 
+                return RedirectToAction(nameof(Login));
 
-                
-                
-                //bd_Usuario.IdUsuario = Guid.NewGuid();
-                //_context.Add(bd_Usuario);
-                //await _context.SaveChangesAsync();
-
-                //return RedirectToAction(nameof(Login));
             }
             return View(bd_Usuario);
         }
@@ -146,6 +165,8 @@ namespace Eatech.Controllers
             bd_Usuario.FechaCreacion = DateTime.Now;
             bd_Usuario.aPaterno = "No aplica";
             bd_Usuario.aMaterno = "No aplica";
+            ModelState.Remove("aMaterno");
+            ModelState.Remove("aPaterno");
 
             if (ModelState.IsValid)
             {
