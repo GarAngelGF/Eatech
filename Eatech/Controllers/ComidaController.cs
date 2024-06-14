@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Eatech.Models;
 using Microsoft.AspNetCore.Authorization;
+using System;
+using Microsoft.Extensions.Logging;
 
 
 namespace Eatech.Controllers
@@ -13,9 +15,14 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
-        public ComidaController(ContextoBD context)
+        private readonly IWebHostEnvironment _environment;
+
+        public ComidaController(ContextoBD context, IWebHostEnvironment environment)
         {
             _context = context;
+
+            _environment = environment;
+
         }
         //**************************************************************************************************************************************************************************//
         /*-Index con el menu de la comida disponible-*/
@@ -39,7 +46,7 @@ namespace Eatech.Controllers
         /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr, Guid IdIngradiente)
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr, Guid IdIngradiente, IFormFile Imagen)
         {
             if (ModelState.IsValid)
             {
@@ -48,11 +55,34 @@ namespace Eatech.Controllers
                 bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
                 bdI_Com_Ingr.IDComida = bd_comida.IDComida;
 
-                _context.Add(bdI_Com_Ingr);
-                _context.Add(bd_comida);
+                //Apartado para agregar unafoto
 
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (Imagen == null || Imagen.Length == 0)
+                {
+                    return RedirectToAction("Index", new { errorDocumento = true });
+                }
+                var extension = Imagen.FileName.Split('.');
+                var nombre = Guid.NewGuid().ToString() + "." + extension[extension.Length - 1];
+                var path = Path.Combine(_environment.WebRootPath, "galeria", nombre);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await Imagen.CopyToAsync(stream);
+
+                    var galeria = new Bd_FotoComidas();
+                    galeria.IDComida = bd_comida.IDComida;
+                    galeria.Imagen = nombre;
+
+                    _context.Add(galeria);
+                    await _context.SaveChangesAsync();
+
+                }
+                    _context.Add(bdI_Com_Ingr);
+                    _context.Add(bd_comida);
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                
             }
 
             return View(bd_comida);
@@ -82,7 +112,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para Editar la comida-*/
-        [Authorize (Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
@@ -168,7 +198,7 @@ namespace Eatech.Controllers
         public IActionResult ValidarPorcionesDisponibles(Guid? ID)
         {
             var busqueda = _context.Comidas.FirstOrDefault(Li => Li.IDComida == ID);
-            
+
             if (busqueda.Porciones > busqueda.PorcionesDisponibles) return Ok(true);
             return Ok(false);
         }

@@ -101,11 +101,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <form asp-controller="Aplicacion" asp-action="Logout">
                         <button class="button">
                             Salir (@User.Identity.Name)
                            
                         </button>
-                        <a asp-controller="Aplicacion" asp-action="Logout"></a>
+                        </form>
                         
                     </li>
 
@@ -495,6 +496,8 @@
 
 
     <script src="/js/CONTENEDORES.js"></script>
+
+   
 
 
 </body>

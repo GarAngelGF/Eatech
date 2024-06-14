@@ -22,6 +22,9 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
+
+        public string? Rolselect { get; private set; }
+
         public AplicacionController(ContextoBD context)
         {
             _context = context;
@@ -43,6 +46,8 @@ namespace Eatech.Controllers
         [AllowAnonymous]
         public IActionResult Login(string? error)
         {
+
+
             ViewBag.error = error;
             return View();
         }
@@ -75,7 +80,7 @@ namespace Eatech.Controllers
 
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Aplicacion");
         }
 
 
@@ -88,23 +93,30 @@ namespace Eatech.Controllers
             return View();
         }
 
-        /*-Apartado donde se registra el usuario en la base de datos-*/
+        /*-Apartado donde se registra el usuario y admin en la base de datos-*/
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Registro([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
+
+
+
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
             {
+
                 bd_Usuario.IdUsuario = Guid.NewGuid();
                 _context.Add(bd_Usuario);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Login));
+
             }
             return View(bd_Usuario);
         }
@@ -117,6 +129,8 @@ namespace Eatech.Controllers
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
+            bd_Usuario.aPaterno = "No aplica";
+            bd_Usuario.aMaterno = "No aplica";
 
             if (ModelState.IsValid)
             {
@@ -153,6 +167,7 @@ namespace Eatech.Controllers
         [HttpPost]
         public async Task<IActionResult> RecuperarContrasena(string correo)
         {
+            
             var buscar = _context.Usuarios.FirstOrDefault(lili => lili.Correo == correo);
             if (buscar == null) return RedirectToAction("RecuperarContrasena", new { error = true });
 
@@ -205,6 +220,12 @@ namespace Eatech.Controllers
         [AllowAnonymous]
         public IActionResult NuevaContrasena(string correo)
         {
+
+            if (correo == null)
+            {
+            
+                return RedirectToAction("Index", "Aplicacion"); 
+            }
             ViewBag.Correo = correo;
             return View();
         }
@@ -281,7 +302,9 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
-        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente 
+        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
+        [Authorize(Roles = "Usuario")]
+
         public IActionResult Dashboard()
         {
             return View();
@@ -290,7 +313,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
             return View();
