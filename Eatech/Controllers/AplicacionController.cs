@@ -45,7 +45,7 @@ namespace Eatech.Controllers
 		[AllowAnonymous]
         public IActionResult Login(string? error)
         {
-           
+
 
             ViewBag.error = error;
             return View();

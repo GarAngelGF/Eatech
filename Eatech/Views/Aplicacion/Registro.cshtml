@@ -288,9 +288,9 @@
 
 
     <!-- --------------------------------VALIDAR CONTRA USU------------------------------------------- -->
-    <script>
+  @*   <script>
         $(function () {
-            var passwordFocused = false;
+            // var passwordFocused = false;
             var confirmPasswordFocused = false;
 
             function validatePasswords() {
@@ -301,16 +301,16 @@
 
                 if (!repass || pass !== repass) {
                     $('#spErrorContrasena').html("Las contraseñas no coinciden o el campo está vacío");
-                    $('#btnRegistrar button').attr('disabled', true);
+                    $('#btnRegistrar').attr('disabled', true);
                 } else {
                     $('#spErrorContrasena').html("");
-                    $('#btnRegistrar button').removeAttr('disabled');
+                    $('#btnRegistrar').removeAttr('disabled');
                 }
             }
 
-            $('#Contrasena').on('focus', function () {
-                passwordFocused = true;
-            });
+            // $('#Contrasena').on('focus', function () {
+            //     passwordFocused = true;
+            // });
 
             $('#RepetirContrasena').on('focus', function () {
                 confirmPasswordFocused = true;
@@ -319,12 +319,29 @@
 
             $('#Contrasena, #RepetirContrasena').on('keyup', validatePasswords);
         });
+    </script> *@
+
+    <script>
+        $(document).ready(function () {
+            $('#RepetirContrasena').on('keyup', function () {
+                var pass = $('#Contrasena').val();
+                var repass = $(this).val();
+
+                if (pass !== repass) {
+                    $('#spErrorContrasena').html("Las contraseñas no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                } else {
+                    $('#spErrorContrasena').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
+            });
+        });
     </script>
 
     <!-- --------------------------------VALIDAR CONTRA INSTI------------------------------------------- -->
     <script>
         $(function () {
-            var passwordFocused = false;
+            // var passwordFocused = false;
             var confirmPasswordFocused = false;
 
             function validatePasswords() {
@@ -335,16 +352,16 @@
 
                 if (!repass || pass !== repass) {
                     $('#spErrorContrasena2').html("Las contraseñas no coinciden o el campo está vacío");
-                    $('#btnRegistrar2 button').attr('disabled', true);
+                    $('#btnRegistrar2').attr('disabled', true);
                 } else {
                     $('#spErrorContrasena2').html("");
-                    $('#btnRegistrar2 button').removeAttr('disabled');
+                    $('#btnRegistrar2').removeAttr('disabled');
                 }
             }
 
-            $('#Contrasena2').on('focus', function () {
-                passwordFocused = true;
-            });
+            // $('#Contrasena2').on('focus', function () {
+            //     passwordFocused = true;
+            // });
 
             $('#RepetirContrasena2').on('focus', function () {
                 confirmPasswordFocused = true;
@@ -355,9 +372,9 @@
         });
     </script>
     <!-- --------------------------------VALIDAR CORREO USU------------------------------------------ -->
-    <script>
+  @*   <script>
         $(function () {
-            var emailFocused = false;
+            // var emailFocused = false;
             var confirmEmailFocused = false;
 
             function validateEmails() {
@@ -368,16 +385,16 @@
 
                 if (!reemail || email !== reemail) {
                     $('#spErrorCorreo').html("Los correos no coinciden o el campo está vacío");
-                    $('#btnRegistrar button').attr('disabled', true);
+                    $('#btnRegistrar').attr('disabled', true);
                 } else {
                     $('#spErrorCorreo').html("");
-                    $('#btnRegistrar button').removeAttr('disabled');
+                    $('#btnRegistrar').removeAttr('disabled');
                 }
             }
 
-            $('#Correo').on('focus', function () {
-                emailFocused = true;
-            });
+            // $('#Correo').on('focus', function () {
+            //     emailFocused = true;
+            // });
 
             $('#RepetirCorreo').on('focus', function () {
                 confirmEmailFocused = true;
@@ -386,12 +403,29 @@
 
             $('#Correo, #RepetirCorreo').on('keyup', validateEmails);
         });
+    </script> *@
+
+    <script>
+        $(document).ready(function () {
+            $('#RepetirCorreo').on('keyup', function () {
+                var email = $('#Correo').val();
+                var reemail = $(this).val();
+
+                if (email !== reemail) {
+                    $('#spErrorCorreo').html("Los correos no coinciden");
+                    $('#btnRegistrar').attr('disabled', true);
+                } else {
+                    $('#spErrorCorreo').html("");
+                    $('#btnRegistrar').removeAttr('disabled');
+                }
+            });
+        });
     </script>
 
     <!-- --------------------------------VALIDAR CORREO INSTI------------------------------------------ -->
     <script>
         $(function () {
-            var emailFocused = false;
+            // var emailFocused = false;
             var confirmEmailFocused = false;
 
             function validateEmails() {
@@ -402,16 +436,16 @@
 
                 if (!reemail || email !== reemail) {
                     $('#spErrorCorreo2').html("Los correos no coinciden o el campo está vacío");
-                    $('#btnRegistrar2 button').attr('disabled', true);
+                    $('#btnRegistrar2').attr('disabled', true);
                 } else {
                     $('#spErrorCorreo2').html("");
-                    $('#btnRegistrar2 button').removeAttr('disabled');
+                    $('#btnRegistrar2').removeAttr('disabled');
                 }
             }
 
-            $('#Correo2').on('focus', function () {
-                emailFocused = true;
-            });
+            // $('#Correo2').on('focus', function () {
+            //     emailFocused = true;
+            // });
 
             $('#RepetirCorreo2').on('focus', function () {
                 confirmEmailFocused = true;

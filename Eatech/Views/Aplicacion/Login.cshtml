@@ -5,6 +5,7 @@
 }
 @if (ViewBag.error != null)
 {
+
 	<div class="alert alert-danger" role="alert" style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
 		Usuario y/o contraseña incorrecta.
 		Intentalo de Nuevo
@@ -67,13 +68,13 @@
 			<form class="form" asp-action="VerificarUsu" method="post" id="frmLogin">
 				<!-- --------------------------------------------------------------------------- -->
 				<div class="form-group">
-					<input type="email" class="input" required name="correo" placeholder="Escribe tu correo" id="email" name="email" />
-
+					<input type="email" class="input" required name="correo" placeholder="Escribe tu correo" id="email" name="email" maxlength="50"/>
+					
 				</div>
 
 				<!-- --------------------------------------------------------------------------- -->
 				<div class="form-group">
-					<input type="password" class="input" required name="contrasena" placeholder="Contraseña" id="password" name="password" />
+					<input type="password" class="input" required name="contrasena" placeholder="Contraseña" id="password" name="password"                />
 				</div>
 				
 				<!-- --------------------------------------------------------------------------- -->
