@@ -303,7 +303,9 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
-        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente 
+        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
+        [Authorize(Roles = "Usuario")]
+
         public IActionResult Dashboard()
         {
             return View();
