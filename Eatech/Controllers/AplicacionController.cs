@@ -94,7 +94,7 @@ namespace Eatech.Controllers
         }
 
         /*-Apartado donde se registra el usuario y admin en la base de datos-*/
-        
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -167,7 +167,7 @@ namespace Eatech.Controllers
         [HttpPost]
         public async Task<IActionResult> RecuperarContrasena(string correo)
         {
-            
+
             var buscar = _context.Usuarios.FirstOrDefault(lili => lili.Correo == correo);
             if (buscar == null) return RedirectToAction("RecuperarContrasena", new { error = true });
 
@@ -223,8 +223,8 @@ namespace Eatech.Controllers
 
             if (correo == null)
             {
-            
-                return RedirectToAction("Index", "Aplicacion"); 
+
+                return RedirectToAction("Index", "Aplicacion");
             }
             ViewBag.Correo = correo;
             return View();
@@ -324,14 +324,32 @@ namespace Eatech.Controllers
         //Apartado de acciones referentes a las vistas generales//
 
         /*-Apartado Para Vincular con la escuela-*/
-        public IActionResult VincularEscuela(string? codigo)
+        public IActionResult VincularEscuela()
         {
             return View();
         }
 
         /*-task-*/
-        public async Task<IActionResult> VincularlaEscuela(string codigo)
-        { return View(); }
+        public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
+        {
+            var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
+           
+            if (ycqvm == null) return NotFound();
+
+            if (ycqvm.Codigo != null)
+            {
+                bdI_Usu_Esc.IdEscuela = ycqvm.IdEscuela;
+                var ppamhh = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+                bdI_Usu_Esc.IdUsuario = ppamhh;
+
+
+                _context.Add(bdI_Usu_Esc);
+                await _context.SaveChangesAsync();
+                 return RedirectToAction("Index");
+            }
+
+            return View(bdI_Usu_Esc);
+        }
 
     }
 }
