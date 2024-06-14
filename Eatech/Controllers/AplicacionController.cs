@@ -117,6 +117,11 @@ namespace Eatech.Controllers
 
                 return RedirectToAction(nameof(Login));
 
+               
+                    TempData["Message"] = "Registro exitoso";
+                    return RedirectToAction("Index", "Home");
+                
+
             }
             return View(bd_Usuario);
         }
@@ -131,6 +136,8 @@ namespace Eatech.Controllers
             bd_Usuario.FechaCreacion = DateTime.Now;
             bd_Usuario.aPaterno = "No aplica";
             bd_Usuario.aMaterno = "No aplica";
+
+            models
 
             if (ModelState.IsValid)
             {

@@ -26,7 +26,6 @@ namespace Eatech.Migrations
                 {
                     b.Property<Guid>("IdAlumno")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(11)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Alergias")
@@ -227,15 +226,16 @@ namespace Eatech.Migrations
 
                     b.Property<string>("Correo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Rol")
                         .HasColumnType("nvarchar(max)");
@@ -245,13 +245,13 @@ namespace Eatech.Migrations
 
                     b.Property<string>("aMaterno")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasMaxLength(28)
+                        .HasColumnType("nvarchar(28)");
 
                     b.Property<string>("aPaterno")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasMaxLength(28)
+                        .HasColumnType("nvarchar(28)");
 
                     b.HasKey("IdUsuario");
 
