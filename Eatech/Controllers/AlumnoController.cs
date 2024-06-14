@@ -44,7 +44,7 @@ namespace Eatech.Controllers
         /*-Task para registrar al alumno en la base de datos. Tablas alumno e intermedia alum_usu-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum, IFormFile Imagen)
+        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,NoMatricula, Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,GradoEscolar,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum, IFormFile Imagen)
         {
             if (ModelState.IsValid)
             {
