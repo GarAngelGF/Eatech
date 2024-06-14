@@ -137,7 +137,8 @@ namespace Eatech.Controllers
             bd_Usuario.aPaterno = "No aplica";
             bd_Usuario.aMaterno = "No aplica";
 
-            models
+            ModelState.Remove("aPaterno");
+            ModelState.Remove("aMaterno");
 
             if (ModelState.IsValid)
             {
