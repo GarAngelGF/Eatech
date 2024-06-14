@@ -21,6 +21,9 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
+
+        public string? Rolselect { get; private set; }
+
         public AplicacionController(ContextoBD context)
         {
             _context = context;
@@ -93,9 +96,14 @@ namespace Eatech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registro([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
+
+     
+
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
-            bd_Usuario.Rol = "Usuario";
+;            bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
+
+           
 
             if (ModelState.IsValid)
             {
@@ -116,8 +124,8 @@ namespace Eatech.Controllers
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
-            bd_Usuario.aPaterno = "No aplica";
-            bd_Usuario.aMaterno = "No aplica";
+            bd_Usuario.aPaterno = null;
+            bd_Usuario.aMaterno = null;
 
             if (ModelState.IsValid)
             {
@@ -127,7 +135,7 @@ namespace Eatech.Controllers
 
                 return RedirectToAction(nameof(Login));
             }
-            
+
             return View(bd_Usuario);
         }
 
