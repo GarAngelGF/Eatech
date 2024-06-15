@@ -221,24 +221,22 @@
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
                 <h3>Alumnos agregados</h3>
                 
-            @foreach (var alumno in ViewBag.Alumnos)
-            {
-
+            
 
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required readonly value="@alumno.alumno.NoMatricula" />
+                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required readonly  />
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required readonly value="@alumno.alumno.Nombre" />
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required readonly value="@alumno.alumno.Apaterno" />
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required readonly />
                     </div>
 
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required readonly value="@alumno.alumno.Amaterno" />
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required readonly  />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required readonly />
                     </div>
 
                 </div>
@@ -246,19 +244,19 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required readonly value="@alumno.alumno.Alergias" />
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required readonly  />
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required readonly value="@alumno.alumno.Enfermedades" />
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required readonly  />
                     </div>
 
 
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required readonly value="@alumno.alumno.GradoEscolar" />
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required readonly />
                     </div>
 
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required readonly>@alumno.alumno.Notas</textarea>
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required readonly></textarea>
                     </div>
 
                 </div>
@@ -294,7 +292,7 @@
 
                     </div>
                 </div>
-}
+
             </div>
         
         <!-- Contenedor de Agregar Estudiante -->
