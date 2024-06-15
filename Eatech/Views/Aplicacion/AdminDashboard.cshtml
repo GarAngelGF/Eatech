@@ -64,11 +64,6 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
 
-                    <li class="nav-item">
-                        <button class="button" onclick="toggleContainer('container1')">
-                            Inicio
-                        </button>
-                    </li>
 
                     <li class="nav-item">
                         <button class="button" onclick="toggleContainer('container2')">
@@ -78,13 +73,14 @@
 
                     <li class="nav-item">
                         <button class="button" onclick="toggleContainer('container3')">
-                            Alimentos
+                            Alumnos
                         </button>
                     </li>
 
+
                     <li class="nav-item">
                         <button class="button" onclick="toggleContainer('container4')">
-                            Alumnos
+                            Alimentos
                         </button>
                     </li>
 
@@ -96,19 +92,30 @@
 
                     <li class="nav-item">
                         <button class="button" onclick="toggleContainer('container6')">
-                            Ajustes
+                            Mi código
                         </button>
                     </li>
 
+
                     <li class="nav-item">
-                        <form asp-controller="Aplicacion" asp-action="Logout">
-                        <button class="button">
-                            Salir (@User.Identity.Name)
-                           
-                        </button>
-                        </form>
-                        
+                        <!-- --------------------------------------------------------------------------- -->
+                        <a asp-controller="Aplicacion" asp-action="Logout">
+                            <!-- --------------------------------------------------------------------------- -->
+                            <button class="Btn-lo">
+                                <div class="sign-lo">
+                                    <svg viewBox="0 0 512 512">
+                                        <path
+                                            d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="text-lo">SALIR (@User.Identity.Name)</div>
+                            </button>
+                        </a>
                     </li>
+
+
+
 
                 </ul>
             </div>
@@ -117,316 +124,211 @@
 
 
 
-    <div id="container1" class="content-container">
-
-        <h2>BIENVENIDO A EATECH</h2>
-        <br>
-        <br>
-        <br>
-
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/Imagenes/" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <div class="texx">
-                            <h5>¡ESTUDIANTES SANOS Y FELICES!</h5>
-                            <p>Trabajemos juntos para cuidar de los pequeños.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../IMAGENES-ALL/COMEDOR2.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <div class="texx">
-                        <h5>CUIDANDO SU SALUD</h5>
-                        <p>Recuerda mantener un menú sano para sus comidas.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../IMAGENES-ALL/COMEDOR3.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <div class="texx">
-                        <h5>¡COMIENZA YA!</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-    </div>
-
-
-
-
     <div id="container2" class="content-container">
 
         <form class="form" action="">
-            <br>
-            <div class="row">
 
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>MENÚ DISPONIBLE</h2>
+            <br>
+
+
+            <div class="container-CH">
+                <input id="checkbox_toggle" type="checkbox" class="check">
+                <div class="checkbox">
+                    <label class="slide" for="checkbox_toggle">
+                        <label class="toggle" for="checkbox_toggle"></label>
+                        <label class="text" for="checkbox_toggle">Menú</label>
+                        <label class="text" for="checkbox_toggle">Subir</label>
+                    </label>
                 </div>
-                <br>
-                <br>
-                <br>
-
             </div>
-
             <br>
+            <br>
+
+
             <div class="row">
+                <div id="ordenar-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                    <h3>Subir alimentos al menú</h3>
 
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <div class="contenedor-alimentos-agg">
-                        <h3>AGREGADOS</h3>
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Modificar
-                                    <div class="hoverEffect">
-                                        <div></div>
-                                    </div>
-                                </button>
-                            </div>
-
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Eliminar
-                                    <div class="hoverEffect">
-                                        <div></div>
-                                    </div>
-                                </button>
-                            </div>
-
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <input placeholder="Elige el alimento" id="Alimentos" type="text" class="input" required />
                         </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <br>
+                            <button class="buttonZ">
+                                Subir
+                                <div class="hoverEffect">
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                    <h3>Menú disponible</h3>
+                    <div class="row">
+                        <div class="col-sm-7 col-md-7 col-lg-7">
+                            <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input"
+                                required />
+                        </div>
+
+                        <div class="col-sm-5 col-md-5 col-lg-5">
+                            <input placeholder="Stock de porciones" id="Porciones" type="text" class="input" required />
+                        </div>
+
 
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <div class="contenedor-alimentos-agg">
-                        <h3>AGREGAR</h3>
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
 
-
-                        <div class="row">
-
-                            <div class="col-sm-6 col-md-6 col-lg-12">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Agregar
-                                    <div class="hoverEffect">
-                                        <div></div>
-                                    </div>
-                                </button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <br>
-            <br>
         </form>
+        <script src="/js/ORDENAR-P.js"></script>
     </div>
+
+
+
+
+    </div>
+
 
 
     <div id="container3" class="content-container">
-        <form class="form" action=""></form>
+
+
+        <form class="form" action="">
+            <h3>Alumnos agregados</h3>
             <br>
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>MIS ALIMENTOS</h2>
-                </div>
-                <br>
-                <br>
-                <br>
-
-            </div>
-
-
             <br>
-            <div class="row">
+            <br>
+            <!-- Contenedor de Estudiantes -->
+            <div class="sopadepapa">
 
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <div class="contenedor-alimentos-agg">
-                        <h3>AGREGADOS</h3>
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Modificar
-                                    <div class="hoverEffect">
-                                        <div></div>
-                                    </div>
-                                </button>
-                            </div>
-
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Eliminar
-                                    <div class="hoverEffect">
-                                        <div>
-
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-
-                        </div>
-
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required />
                     </div>
-                </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required />
+                    </div>
 
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <div class="contenedor-alimentos-agg">
-                        <h3>AGREGAR</h3>
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Nombre del alimento" id="Nombre" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Porciones disponibles" id="Porciones" type="text" class="input"
-                            required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required />
+                    </div>
 
-
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-12">
-                                <form action="/ruta-de-tu-servidor" method="post" enctype="multipart/form-data">
-                                </form>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <br>
-                                    <h5>Selecciona una imagen del alimento</h5>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-6">
-                                    <form class="form" action="">
-                                        <input type="file" id="imagen" accept="image/*">
-                                    </form>
-                                </div>
-
-                                <div class="col-sm-12 col-md-12 col-lg-6">
-                                    <form class="form" action="">
-                                        <input type="submit" value="Subir" class="buttonZ hoverEffect">
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row">
-
-
-                            <div class="col-sm-12 col-md-12 col-lg-12">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Agregar
-                                    <div class="hoverEffect">
-                                        <div></div>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-
-
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required />
                     </div>
 
                 </div>
 
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required />
+                    </div>
 
 
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                    </div>
+
+                </div>
             </div>
+
+        </form>
+
     </div>
-
-
-    <br>
-    <br>
-
-
 
     <div id="container4" class="content-container">
 
         <form class="form" action="">
             <br>
-            <div class="row">
 
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>ESTUDIANTES REGISTRADOS</h2>
+
+            <!-- Toggle para Estudiantes y Agregar Estudiante -->
+            <div class="container-CH">
+                <input id="checkbox_toggle_students" type="checkbox" class="check">
+                <div class="checkbox">
+                    <label class="slide" for="checkbox_toggle_students">
+                        <label class="toggle" for="checkbox_toggle_students"></label>
+                        <label class="text" for="checkbox_toggle_students">Alimentos</label>
+                        <label class="text" for="checkbox_toggle_students">Agregar </label>
+                    </label>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-
-
             </div>
+            <br>
+            <br>
 
+            <!-- Contenedor de Estudiantes -->
+            <div id="estudiantes-contenedor" class="contenedor-estudiantes">
+                <h3>Alimentos agregados</h3>
 
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="contenedor-estudiantes">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <input placeholder="Alimento" id="Alumnos" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
                         <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Estudiantes registrados" id="Alumnos" type="text" class="input"
+                        <input placeholder="Porciones disponibles" id="Porciones" type="text" class="input"
                             required="" />
                         <!-- --------------------------------------------------------------------------- -->
                     </div>
                 </div>
 
             </div>
+
+            <!-- Contenedor de Agregar Estudiante -->
+            <div id="agregar-estudiante-contenedor" class="contenedor-estudiantes">
+                <h3>Agregar un nuevo alimento</h3>
+                <!-- --------------------------------------------------------------------------- -->
+                <input placeholder="Nombre del alimento" id="Nombre" type="text" class="input" required="" />
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------- -->
+                <input placeholder="Porciones disponibles" id="Porciones" type="text" class="input" required="" />
+                <!-- --------------------------------------------------------------------------- -->
+
+
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                        <br>
+
+                        <button class="buttonZ">
+                            Agregar
+                            <div class="hoverEffect">
+                                <div></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <script src="/js/ALUMNOS.js"></script>
+
         </form>
+
+    </div>
+    
 
     </div>
 
@@ -436,54 +338,118 @@
 
         <form class="form" action="">
             <br>
-            <div class="row">
 
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>ESTATUS Y SEGUIMIENTO</h2>
+
+            <!-- Toggle para Buscar y Todos -->
+            <div class="container-CH">
+                <input id="checkbox_toggle_students2" type="checkbox" class="check">
+                <div class="checkbox">
+                    <label class="slide" for="checkbox_toggle_students2">
+                        <label class="toggle" for="checkbox_toggle_students2"></label>
+                        <label class="text" for="checkbox_toggle_students2">Buscar</label>
+                        <label class="text" for="checkbox_toggle_students2">Todos</label>
+                    </label>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-
-
             </div>
+            <br><br>
 
-            <div class="contenedor-seguimiento">
+            <!-- Contenedor de Búsqueda -->
+            <div id="busqueda" class="contenedor-seguimiento">
+                <h3>Ingresa la matrícula del alumno</h3>
+
+                <input placeholder="Buscar" id="Alumno" type="search" class="input" required>
+                <br><br>
+
+
+
+                <div class="row">
+                    <h5>Información del alumno:</h5>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required />
+                    </div>
+
+                </div>
 
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Alumno" id="Alumnos" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
                     </div>
-
                     <div class="col-sm-12 col-md-12 col-lg-3">
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required />
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Contenedor de Todos -->
+            <div id="todos" class="contenedor-seguimiento">
+                <h3>Seguimiento de todos los estudiantes</h3>
+
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alumno" id="Alumnos" type="text" class="input" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-2">
-                        <!-- --------------------------------------------------------------------------- -->
-                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required="" />
-                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
                     </div>
                 </div>
             </div>
 
+            <script src="/js/SEGUIMIENTO.js"></script>
         </form>
 
 
@@ -492,12 +458,46 @@
 
 
 
-    <div id="container6" class="content-container">Contenido de Ajustes</div>
+    <div id="container6" class="content-container">
 
 
-    <script src="/js/CONTENEDORES.js"></script>
+        <form class="form" action="">
+            <br>
 
-   
+
+
+            <br>
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="contenedor-alimentos-agg2">
+                        <h2>Comparte el código con tu institución</h2>
+
+
+                        <br>
+                        <br>
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input placeholder="Codigo" id="Codigo" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+        </form>
+
+    </div>
+
+
+    <script src="/js/CONTENEDORES-p.js"></script>
+
 
 
 </body>

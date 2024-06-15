@@ -72,11 +72,7 @@
                         </button>
                     </li>
 
-                    <li class="nav-item">
-                        <button class="button" onclick="toggleContainer('container3')">
-                            Favoritos
-                        </button>
-                    </li>
+
 
                     <li class="nav-item">
                         <button class="button" onclick="toggleContainer('container4')">
@@ -90,21 +86,25 @@
                         </button>
                     </li>
 
+         
+    
                     <li class="nav-item">
-                        <button class="button" onclick="toggleContainer('container6')">
-                            CODIGO
-                        </button>
-                    </li>
-
-                    <li class="nav-item">
-                        <form asp-controller="Aplicacion" asp-action="Logout">
-                            <button class="button">
-                                Salir (@User.Identity.Name)
-
+                        <!-- --------------------------------------------------------------------------- -->
+                        <a asp-controller="Aplicacion" asp-action="Logout">
+                            <!-- --------------------------------------------------------------------------- -->
+                            <button class="Btn-lo">
+                                <div class="sign-lo">
+                                    <svg viewBox="0 0 512 512">
+                                        <path
+                                            d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="text-lo">SALIR (@User.Identity.Name) </div>
                             </button>
-                        </form>
-
+                        </a>
                     </li>
+
 
                 </ul>
             </div>
@@ -138,14 +138,12 @@
             <div class="row">
                 <div id="ordenar-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
                     <h3>Realiza tu orden</h3>
+
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
                             <input placeholder="Elige el platillo" id="Alimentos" type="text" class="input" required />
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <input placeholder="Favoritos disponibles" id="Alimentos" type="text" class="input"
-                                required />
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -178,14 +176,11 @@
                 <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
                     <h3>Menú disponible</h3>
                     <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
                             <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input"
                                 required />
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input placeholder="Alimentos agregados" id="Alimentos" type="file" class="input"
-                                required />
-                        </div>
+                      
                     </div>
                 </div>
             </div>
@@ -197,97 +192,8 @@
 
 
 
-    <div id="container3" class="content-container">
-        <form class="form" action="">
-            <br>
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>¡Escoge tus favoritos!</h2>
-                </div>
-                <br>
-                <br>
-                <br>
-
-            </div>
-
-
-            <br>
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="contenedor-alimentos-agg2">
-
-
-                        <div class="row">
-
-
-                            <div class="col-sm-12 col-md-12 col-lg-6">
-
-                                <!-- --------------------------------------------------------------------------- -->
-                                <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input"
-                                    required="" />
-                                <!-- --------------------------------------------------------------------------- -->
-
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-6">
-
-                                <!-- --------------------------------------------------------------------------- -->
-                                <input placeholder="Alimentos agregados" id="Alimentos" type="file" class="input"
-                                    required="" />
-                                <!-- --------------------------------------------------------------------------- -->
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Añadir
-                                    <div class="hoverEffect">
-                                        <div>
-
-                                        </div>
-                                    </div>
-                                </button>
-
-
-                            </div>
-
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Eliminar
-                                    <div class="hoverEffect">
-                                        <div>
-
-                                        </div>
-                                    </div>
-                                </button>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-        </form>
-
 
     </div>
-    
 
 
     <br>
@@ -297,7 +203,7 @@
 
     <div id="container4" class="content-container">
 
-       
+        <form class="form" action="">
             <br>
 
 
@@ -319,12 +225,76 @@
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
                 <h3>Alumnos agregados</h3>
 
+           
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required />
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required />
+                    </div>
+
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                    </div>
+
+                </div>
+
                 <div class="row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input placeholder="Estudiantes agregados" id="Alumnos" type="text" class="input" required />
+
+                        <br>
+
+                        <button class="buttonZ">
+                            Modificar
+                            <div class="hoverEffect">
+                                <div>
+
+                                </div>
+                            </div>
+                        </button>
+
+
                     </div>
+
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input placeholder="Foto estudiante" id="Foto" type="file" class="input" required />
+
+                        <br>
+
+                        <button class="buttonZ">
+                            Eliminar
+                            <div class="hoverEffect">
+                                <div>
+
+                                </div>
+                            </div>
+                        </button>
+
+
                     </div>
                 </div>
 
@@ -334,116 +304,67 @@
             <div id="agregar-estudiante-contenedor" class="contenedor-estudiantes">
                 <h3>Agrega un nuevo estudiante</h3>
 
-
-                <form asp-controller="Alumno" asp-action="RegistrarAlumno" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="NoMatricula" placeholder="Matrícula" id="NoMatricula" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="NoMatricula" class="text-danger"></span>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="Nombre" placeholder="Nombre" id="Nombre" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="Nombre" class="text-danger"></span>
-
-                        </div>
-
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="aPaterno" placeholder="Apellido paterno" id="Apaterno" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="aPaterno" class="text-danger"></span>
-
-                        </div>
-
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required />
                     </div>
 
-                    <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required />
+                    </div>
 
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="aMaterno" placeholder="Apellido materno" id="Amaterno" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="aMaterno" class="text-danger"></span>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required />
+                    </div>
 
-                        </div>
+                </div>
 
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="Alergias" placeholder="Alergias" id="Alergias" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="Alergias" class="text-danger"></span>
+                <div class="row">
 
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <input asp-for="Enfermedades" placeholder="Enfermedades" id="Enfermedades" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="Enfermedades" class="text-danger"></span>
-
-
-                        </div>
-
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required />
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input asp-for="GradoEscolar" placeholder="Grado escolar" id="GradoEscolar" type="text" class="input"
-                                   required />
-                            <span asp-validation-for="GradoEscolar" class="text-danger"></span>
-
-
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-9">
-                            <textarea asp-for="Notas" placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
-                            <span asp-validation-for="Notas" class="text-danger"></span>
-
-
-                        </div>
-                    <div class="col-sm-12 col-md-12 col-lg-9">
-                       
-                        
-                 
-
-
-                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <br>
-                            <button class="buttonZ" type="submit" id="btnRegistrar">
-                                Agregar
-                                <div class="hoverEffect">
-                                    <div>
-                                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <br>
+                        <button class="buttonZ">
+                            Agregar
+                            <div class="hoverEffect">
+                                <div>
+
                                 </div>
-                            </button>
-                        </div>
+                            </div>
+                        </button>
                     </div>
-
-
-
-
-
-
-
-
-
-                </form>
-              
+                </div>
             </div>
 
             <script src="/js/ALUMNOS.js"></script>
 
-
-        
-
+        </form>
     </div>
    
+
     </div>
 
 
@@ -525,117 +446,8 @@
 
 
 
-    <div id="container6" class="content-container">
+    <script src="../JS/CONTENEDORES-p.js"></script>
 
-
-        <form class="form" action="">
-            <br>
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2>Enlaza tu institución</h2>
-                </div>
-                <br>
-                <br>
-                <br>
-
-            </div>
-
-
-            <br>
-            <div class="row">
-
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="contenedor-alimentos-agg2">
-
-
-
-
-
-                                <!-- --------------------------------------------------------------------------- -->
-                                <input placeholder="Nombre de la institución" id="Nombre-institucion" type="text" class="input"
-                                    required="" />
-                                <!-- --------------------------------------------------------------------------- -->
-
-
-                                <!-- --------------------------------------------------------------------------- -->
-                                <input placeholder="Codigo" id="Codigo" type="text" class="input"
-                                    required="" />
-                                <!-- --------------------------------------------------------------------------- -->
-
-
-                        <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Añadir
-                                    <div class="hoverEffect">
-                                        <div>
-
-                                        </div>
-                                    </div>
-                                </button>
-
-
-                            </div>
-
-                            <div class="col-sm-6 col-md-6 col-lg-6">
-
-                                <br>
-
-                                <button class="buttonZ">
-                                    Eliminar
-                                    <div class="hoverEffect">
-                                        <div>
-
-                                        </div>
-                                    </div>
-                                </button>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-        </form>
-
-    </div>
-
-
-    <script src="/js/CONTENEDORES.js"></script>
-
-    @* <footer class="container-footer">
-        <br>
-        <div class="centrar">
-            <!-- --------------------------------------------------------------------------- -->
-            <a href="INDEX.html">
-                <!-- --------------------------------------------------------------------------- -->
-                <button class="Btn-lo">
-                    <div class="sign-lo">
-                        <svg viewBox="0 0 512 512">
-                            <path
-                                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="text-lo">SALIR</div>
-                </button>
-
-
-            </a>
-            <br>
-        </div>
-    </footer> *@
 
 </body>
 

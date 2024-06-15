@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const checkboxToggle = document.getElementById('checkbox_toggle');
-    const ordenarContenedor = document.getElementById('ordenar-contenedor');
-    const menuContenedor = document.getElementById('menu-contenedor');
+    const checkboxToggle = document.getElementById('checkbox_toggle_otro_nombre');
+    const ordenarContenedor = document.getElementById('contenedor-todos');
+    const menuContenedor = document.getElementById('contenedor-busqueda');
 
     menuContenedor.classList.add('active');
 
@@ -15,3 +15,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
