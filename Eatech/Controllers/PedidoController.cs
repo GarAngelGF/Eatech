@@ -68,8 +68,7 @@ namespace Eatech.Controllers
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
-                _context.Add(bdI_Com_Ped);
-                _context.Add(bd_Pedido);
+          
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
