@@ -33,6 +33,9 @@ namespace Eatech.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<Guid?>("BdI_Usu_AlumId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Enfermedades")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -72,6 +75,8 @@ namespace Eatech.Migrations
                         .HasColumnType("nvarchar(128)");
 
                     b.HasKey("IdAlumno");
+
+                    b.HasIndex("BdI_Usu_AlumId");
 
                     b.ToTable("Alumnos");
                 });
@@ -185,6 +190,9 @@ namespace Eatech.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("BdI_Usu_AlumId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CaducidadToken")
                         .HasColumnType("datetime2");
 
@@ -223,11 +231,17 @@ namespace Eatech.Migrations
 
                     b.HasKey("IdUsuario");
 
+                    b.HasIndex("BdI_Usu_AlumId");
+
                     b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Eatech.Models.BdI_Alu_Ped", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdAlumno")
                         .HasColumnType("uniqueidentifier");
 
@@ -246,6 +260,10 @@ namespace Eatech.Migrations
                     b.Property<Guid>("IDComida")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdIngrediente")
                         .HasColumnType("uniqueidentifier");
 
@@ -261,6 +279,10 @@ namespace Eatech.Migrations
                     b.Property<Guid>("IDComida")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("pedido")
                         .HasColumnType("uniqueidentifier");
 
@@ -273,17 +295,30 @@ namespace Eatech.Migrations
 
             modelBuilder.Entity("Eatech.Models.BdI_Usu_Alum", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdAlumno")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
+                    b.HasKey("Id");
+
                     b.HasIndex("IdAlumno");
 
                     b.HasIndex("IdUsuario");
 
                     b.ToTable("Intermedia_Usuario_Alumno");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Alumno", b =>
+                {
+                    b.HasOne("Eatech.Models.BdI_Usu_Alum", null)
+                        .WithMany("alumno")
+                        .HasForeignKey("BdI_Usu_AlumId");
                 });
 
             modelBuilder.Entity("Eatech.Models.Bd_Ex_LicenciaAdmin", b =>
@@ -301,6 +336,13 @@ namespace Eatech.Migrations
                     b.Navigation("ClaveNavigation");
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Usuario", b =>
+                {
+                    b.HasOne("Eatech.Models.BdI_Usu_Alum", null)
+                        .WithMany("usuario")
+                        .HasForeignKey("BdI_Usu_AlumId");
                 });
 
             modelBuilder.Entity("Eatech.Models.BdI_Alu_Ped", b =>
@@ -377,6 +419,13 @@ namespace Eatech.Migrations
                     b.Navigation("IdUsu");
 
                     b.Navigation("Idalumno");
+                });
+
+            modelBuilder.Entity("Eatech.Models.BdI_Usu_Alum", b =>
+                {
+                    b.Navigation("alumno");
+
+                    b.Navigation("usuario");
                 });
 #pragma warning restore 612, 618
         }

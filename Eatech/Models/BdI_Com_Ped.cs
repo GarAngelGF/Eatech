@@ -12,6 +12,10 @@ namespace Eatech.Models
     [Keyless]
     public class BdI_Com_Ped
     {
+        [Key, DisplayName("Id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+
         [Required, DisplayName("Id de la comida")]
         public Guid IDComida { get; set; }
         [ForeignKey("IDComida")]

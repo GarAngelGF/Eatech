@@ -27,7 +27,7 @@ namespace Eatech.Controllers
         {
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
+          var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
             return View(await LContexto.ToListAsync());
         }
 
@@ -56,10 +56,11 @@ namespace Eatech.Controllers
                 {
                     bdI_Usu_Alum.IdUsuario = ltam;
                 }
+                bdI_Usu_Alum.IdAlumno = bd_Alumno.IdAlumno;
 
                 _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AlumnoDashboard));
             }
 
             return View(bd_Alumno);
@@ -82,8 +83,8 @@ namespace Eatech.Controllers
         public IActionResult AlumnoDashboard(Guid? id)
         {
             if (id == null || _context.Alumnos == null) return NotFound();
-            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
-            if (LContexto == null) return NotFound();
+         var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
+         if (LContexto == null) return NotFound();
             return View();
         }
 
@@ -128,7 +129,7 @@ namespace Eatech.Controllers
         public async Task<IActionResult> BajaAlumno(Guid? id)
         {
             if (id == null || _context.Alumnos == null) return NotFound();
-            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
+           var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
             if (LContexto == null) return NotFound();
             return View(LContexto);
         }
@@ -161,7 +162,7 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminDashboardAlumnos()
         {
-            var Contexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario);
+          var Contexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario);
             return View(Contexto);
         }
 
