@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class bdFinalv3 : Migration
+    public partial class bdFinalv4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

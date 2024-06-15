@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eatech.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-<<<<<<<< HEAD:Eatech/Migrations/20240615034801_bdFinalv3.Designer.cs
-    [Migration("20240615034801_bdFinalv3")]
-    partial class bdFinalv3
-========
-    [Migration("20240614232745_prueba1")]
-    partial class prueba1
->>>>>>>> d3620a5947dbcef426f490f6d270a865810563b7:Eatech/Migrations/20240614232745_prueba1.Designer.cs
+    [Migration("20240615044359_bdFinalv4")]
+    partial class bdFinalv4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
