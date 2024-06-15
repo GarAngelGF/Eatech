@@ -1,4 +1,5 @@
-﻿<html lang="en">
+﻿@model Eatech.Models.Bd_Alumno
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -286,7 +287,7 @@
 
 
     </div>
-    </div>
+    
 
 
     <br>
@@ -296,7 +297,7 @@
 
     <div id="container4" class="content-container">
 
-        <form class="form" action="">
+       
             <br>
 
 
@@ -333,72 +334,113 @@
             <div id="agregar-estudiante-contenedor" class="contenedor-estudiantes">
                 <h3>Agrega un nuevo estudiante</h3>
 
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input"
-                            required />
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Nombre" id="Nombre" type="text" class="input"
-                            required />
+
+                <form asp-controller="Alumno" asp-action="RegistrarAlumno" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="NoMatricula" placeholder="Matrícula" id="NoMatricula" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="NoMatricula" class="text-danger"></span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="Nombre" placeholder="Nombre" id="Nombre" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="aPaterno" placeholder="Apellido paterno" id="Apaterno" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="aPaterno" class="text-danger"></span>
+
+                        </div>
+
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input"
-                            required />
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="aMaterno" placeholder="Apellido materno" id="Amaterno" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="aMaterno" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="Alergias" placeholder="Alergias" id="Alergias" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="Alergias" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <input asp-for="Enfermedades" placeholder="Enfermedades" id="Enfermedades" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="Enfermedades" class="text-danger"></span>
+
+
+                        </div>
+
                     </div>
 
-                </div>
 
-                <div class="row">
-                   
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input"
-                            required />
-                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <input asp-for="GradoEscolar" placeholder="Grado escolar" id="GradoEscolar" type="text" class="input"
+                                   required />
+                            <span asp-validation-for="GradoEscolar" class="text-danger"></span>
 
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Alergias" id="Alergias" type="text" class="input"
-                            required />
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input"
-                            required />
-                    </div>
 
-                </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-9">
+                            <textarea asp-for="Notas" placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                            <span asp-validation-for="Notas" class="text-danger"></span>
 
-         
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Grado escolar" id="GradoEscolar" type="email" class="input"
-                            required />
-                    </div>
+
+                        </div>
                     <div class="col-sm-12 col-md-12 col-lg-9">
-                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                        <input asp-for="Foto" placeholder="imagen" type="file" id="Foto" class="input" name="Imagen" required>
+                        
+                 
+
 
                     </div>
-                </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <br>
-                        <button class="buttonZ">
-                            Agregar
-                            <div class="hoverEffect">
-                                <div>
-
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <br>
+                            <button class="buttonZ" type="submit" id="btnRegistrar">
+                                Agregar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
+                            </button>
+                        </div>
                     </div>
-                </div>
+
+
+
+
+
+
+
+
+
+                </form>
+              
             </div>
 
             <script src="/js/ALUMNOS.js"></script>
 
 
-        </form>
+        
 
     </div>
    
@@ -598,6 +640,11 @@
 </body>
 
 </html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 
 
