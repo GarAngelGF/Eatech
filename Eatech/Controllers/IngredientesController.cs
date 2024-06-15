@@ -47,7 +47,7 @@ namespace Eatech.Controllers
                 _context.Add(bd_Ingredientes);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Aplicacion","AdminDashboard");
             }
 
 

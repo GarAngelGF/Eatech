@@ -62,6 +62,7 @@ namespace Eatech.Controllers
                 _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Dashboard","Aplicacion");
+                return RedirectToAction("Dashboard", "Aplicacion");
             }
 
             return View(bd_Alumno);
