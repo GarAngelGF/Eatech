@@ -4,34 +4,157 @@
 @{
 }
 
-<h1 style="text-align:center" >Recuperacion de contraseña</h1>
-<hr />
-<div class="container-fluid" style="align-items:center">
+@{
+    ViewData["Title"] = "Recuperacion de contraseña";
+}
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="RecuperarContrasena" method="post" id="frmRecuperarPassword">
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIAR SESIÓN</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-LOGIN.css">
+    <link rel="stylesheet" href="/css/E-ALL.css">
+
+    <!-- --------------------------------------------------------------------------- -->
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+          rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CAPTCHA DE GOOGLE -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+
+<body style="background-image: url(/Imagenes/CUBES.jpg)">
+
+    <!-- CONTENEDOR PADRE (PRIMERA PARTE DEL INDEX. TIENE IMAGENES EN LAS MEDIA QUERY DE CSS) -->
+    <div class="fondo-login">
+
+        <!-- BARRA DE NAVEGCIÓN (LOGO Y DOS BOTONES) -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
+                    <!-- --------------------------------------------------------------------------- -->
+                    <img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
+                    <!-- --------------------------------------------------------------------------- -->
+                </a>
+                <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                       aria-expanded="false" aria-label="Toggle navigation">
+                    <input id="check" type="checkbox">
+                    <span class="top"></span>
+                    <span class="mid"></span>
+                    <span class="bot"></span>
+                </label>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <!-- --------------------------------------------------------------------------- -->
+                            <a asp-controller="Aplicacion" asp-action="Login">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <button class="botonsito_blanco iniciar_blanco">
+                                    <span class="circle_blanco" aria-hidden="true">
+                                        <span class="icon_blanco arrow_blanco"></span>
+                                    </span>
+                                    <span class="button-text_blanco">VOLVER</span>
+                                </button>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="container">
+            <div class="heading">RECUPERAR CONTRASEÑA</div>
+            <form asp-action="RecuperarContrasena" method="post" id="frmRecuperarPassword" class="form">
                 <div class="form-group">
-                    <label>Correo</label>
-                    <input type="email" name="Correo" required
-                           placeholder="Correo electrónico"
-                           class="form-control" />
+
+                    <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="Correo Electronico" id="Correo" type="email" class="input" name="Correo" required />
+                    <!-- --------------------------------------------------------------------------- -->
+
+
                 </div>
-                <div class="form-group mt-2">
+    
+                <br>
+                <br>
 
-                   @*  <a asp-action="NuevaContrasena" type="submit" id="btnRecuperarPassword" class="btn btn-primary">Enviar Token</a> *@
+                <div class="form-group">
+
+                  
+
+                    <div class="enlace-registro">
+                        <button class="animated-button" type="submit" id="btnRecuperarPassword">
+                            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                            <!-- AGREGA UN LINK CON A SI NO TE DEJA USAR UNA VISTA -->
+                            <span class="text">Enviar Token</span>
+                            <span class="circle"></span>
+                            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <span class="forgot-password"><a asp-controller="Aplicacion" asp-action="Login">Cancelar</a></span>
 
 
 
-                    <input type="submit" value="Enviar token" id="btnRecuperarPassword" class="btn btn-primary" />
-                    <a asp-action="Login"  class="btn btn-link">Cancelar</a>
                 </div>
+
+
             </form>
+            <br>
+
 
         </div>
     </div>
+    </div>
 
-</div>
+
+
+</body>
+
+</html>
+
 
 <script>
 
