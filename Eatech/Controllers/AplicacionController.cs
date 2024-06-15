@@ -125,7 +125,7 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario, string claveLicencia)
         {
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
@@ -139,6 +139,20 @@ namespace Eatech.Controllers
             if (ModelState.IsValid)
             {
                 bd_Usuario.IdUsuario = Guid.NewGuid();
+                if (VerificarClaveLicencia (claveLicencia))
+                {
+                    var licencia = await _context.LicenciaAdmin.FirstOrDefaultAsync(l => l.ClaveLicencia == claveLicencia && l.IdUsuario == null);
+
+                    if (licencia == null)
+                    {
+                        return Ok(false); // Licencia no encontrada o ya vinculada
+                    }
+
+                    licencia.IdUsuario = bd_Usuario.IdUsuario;
+                    await _context.SaveChangesAsync();
+                    return Ok(true);
+                }
+
                 _context.Add(bd_Usuario);
                 await _context.SaveChangesAsync();
 
@@ -325,6 +339,25 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
+
+        /*-Verificacion de las licencias-*/
+        [AllowAnonymous]
+        public bool VerificarClaveLicencia(string claveLicencia) // Método síncrono
+        {
+            return _context.LicenciaUsu.Any(c => c.Clave == claveLicencia);
+        }
+
+     
+
+        //[HttpPost("vincular")]
+        //public async Task<IActionResult> VincularLicencia([FromBody] string claveLicencia, [FromBody] Guid idUsuario)
+        //{
+        //    // ... (Lógica de verificación de la clave)
+
+        //    bool vinculacionExitosa = await _context.VincularClaveLicenciaAsync(claveLicencia, idUsuario);
+        //    return Ok(vinculacionExitosa);
+        //}
+
         //Apartado de acciones referentes a las vistas generales//
 
         /*-Apartado Para Vincular con la escuela-*/
