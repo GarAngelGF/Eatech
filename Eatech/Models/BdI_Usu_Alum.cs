@@ -14,7 +14,7 @@ namespace Eatech.Models
     [Keyless]
     public class BdI_Usu_Alum
     {
-
+        
         [Required, DisplayName("Id del Usuario")]
         public Guid IdUsuario { get; set; }
 
