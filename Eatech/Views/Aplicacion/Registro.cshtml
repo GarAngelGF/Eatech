@@ -116,24 +116,24 @@
                 </div>
 
             </div>
-                <div class="row">
-                    <!-- --------------------------------CONFIRMAR CONTRA------------------------------------------- -->
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-group">
-                            <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
-                                   required />
-                            <span id="spErrorContrasena" class="text-danger"></span>
-                        </div>
+            <div class="row">
+                <!-- --------------------------------CONFIRMAR CONTRA------------------------------------------- -->
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
+                               required />
+                        <span id="spErrorContrasena" class="text-danger"></span>
                     </div>
                 </div>
-               
+            </div>
 
-            
+
+
 
             <br>
             <!-- --------------------------------BOTON ENVIAR USUARIO------------------------------------------- -->
             <div class="form-group">
-                <button class="animated-button" type="submit" id="btnRegistrar" >
+                <button class="animated-button" type="submit" id="btnRegistrar">
 
                     <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
@@ -170,7 +170,7 @@
 
     @* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- *@
 
-  
+
 
     <div class="container" id="institucional_form" style="display: none;">
         <div class="heading">CREAR CUENTA</div>
@@ -215,17 +215,23 @@
                     </div>
                 </div>
 
+                </div>
+                <!-- ESTO VA DEBAJO DEL ROW CON CONFIRMAR CORREO Y CONTRASEÑA -->
                 <div class="row">
-                    <!-- --------------------------------CONFIRMAR PASSWRO------------------------------------------- -->
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-group">
-                            <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena2"
-                                   required />
-                            <span id="spErrorContrasena2" class="text-danger"></span>
-                        </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <!-- ESTO YA LO TIENEN CAMBIADO, EL DE CONFIRMAR CONTRASEÑA PS -->
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input  placeholder="Confirmar contraseña" id="RepetirContrasena2" type="password" class="input"
+                               required />
+                        <span id="spErrorContrasena2" class="text-danger"></span>
+                        <!-- --------------------------------------------------------------------------- -->
                     </div>
-
-
+                    <!-- AGREGA ESTE XDD, AKITA -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <!-- --------------------------------------------------------------------------- -->
+                    <input placeholder="claveLicencia" id="claveLicencia" name="claveLicencia" type="text" class="input" required />
+                        <!-- --------------------------------------------------------------------------- -->
+                    </div>
                 </div>
 
                 <br>
@@ -247,7 +253,7 @@
                             </path>
                         </svg>
                     </button>
-                    <a asp-controller="Escuela" asp-action="Registrar Escuela"></a>
+                    <a asp-controller="Aplicacion" asp-action="AdminDashboard"></a>
                 </div>
 
 
@@ -281,6 +287,22 @@
 
 
 </html>
+<script>
+    $(document).ready(function () {
+        $("#btnRegistrar2").click(function () {
+            var claveLicencia = $("#claveLicencia").val();
+
+            $.ajax({
+                url: '@Url.Action("RegistroAdmin", "Aplicacion")',
+                type: 'POST',
+                data: { claveLicencia: claveLicencia },
+                success: function (result) {
+                    // Manejar la respuesta del controlador
+                }
+            });
+        });
+    });
+</script>
 
 @section Scripts {
     @{
@@ -288,8 +310,9 @@
     }
 
 
+
     <!-- --------------------------------VALIDAR CONTRA USU------------------------------------------- -->
-  @*   <script>
+    @*   <script>
         $(function () {
             // var passwordFocused = false;
             var confirmPasswordFocused = false;
@@ -373,7 +396,7 @@
         });
     </script>
     <!-- --------------------------------VALIDAR CORREO USU------------------------------------------ -->
-  @*   <script>
+    @*   <script>
         $(function () {
             // var emailFocused = false;
             var confirmEmailFocused = false;

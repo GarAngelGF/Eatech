@@ -127,8 +127,9 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario, string claveLicencia)
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario,string claveLicencia )
         {
+           
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
@@ -137,26 +138,32 @@ namespace Eatech.Controllers
 
             ModelState.Remove("aPaterno");
             ModelState.Remove("aMaterno");
-
             if (ModelState.IsValid)
             {
-                bd_Usuario.IdUsuario = Guid.NewGuid();
+                Guid id = Guid.NewGuid();
+                bd_Usuario.IdUsuario = id;
+                _context.Add(bd_Usuario);
+                await _context.SaveChangesAsync();
+
                 if (VerificarClaveLicencia(claveLicencia))
                 {
                     var licencia = await _context.LicenciaAdmin.FirstOrDefaultAsync(l => l.ClaveLicencia == claveLicencia && l.IdUsuario == null);
 
-                    if (licencia == null)
+                    if (licencia != null)
                     {
                         return Ok(false); // Licencia no encontrada o ya vinculada
                     }
+                    Bd_Ex_LicenciaAdmin admin = new Bd_Ex_LicenciaAdmin();
+                    admin.IdLicencia = Guid.NewGuid();
+                    admin.ClaveLicencia = claveLicencia;
+                    admin.IdUsuario = id;
 
-                    licencia.IdUsuario = bd_Usuario.IdUsuario;
+                    _context.Add(admin);
                     await _context.SaveChangesAsync();
-                    return Ok(true);
+                    return RedirectToAction(nameof(Login));
                 }
 
-                _context.Add(bd_Usuario);
-                await _context.SaveChangesAsync();
+          
 
                 return RedirectToAction(nameof(Login));
             }
@@ -164,6 +171,12 @@ namespace Eatech.Controllers
             return View(bd_Usuario);
         }
 
+        /*-Verificacion de las licencias-*/
+        [AllowAnonymous]
+        public bool VerificarClaveLicencia(string claveLicencia) // Método síncrono
+        {
+            return _context.LicenciaUsu.Any(c => c.Clave == claveLicencia);
+        }
         /*-Validar que no se repita el correo-*/
         [AllowAnonymous]
         public IActionResult ValidarCorreoUnico(string correo)
@@ -342,12 +355,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
 
-        /*-Verificacion de las licencias-*/
-        [AllowAnonymous]
-        public bool VerificarClaveLicencia(string claveLicencia) // Método síncrono
-        {
-            return _context.LicenciaUsu.Any(c => c.Clave == claveLicencia);
-        }
+       
 
         [AllowAnonymous]
         public IActionResult GenerarClave()
