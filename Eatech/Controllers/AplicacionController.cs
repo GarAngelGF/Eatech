@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 namespace Eatech.Controllers
@@ -139,7 +141,7 @@ namespace Eatech.Controllers
             if (ModelState.IsValid)
             {
                 bd_Usuario.IdUsuario = Guid.NewGuid();
-                if (VerificarClaveLicencia (claveLicencia))
+                if (VerificarClaveLicencia(claveLicencia))
                 {
                     var licencia = await _context.LicenciaAdmin.FirstOrDefaultAsync(l => l.ClaveLicencia == claveLicencia && l.IdUsuario == null);
 
@@ -347,46 +349,43 @@ namespace Eatech.Controllers
             return _context.LicenciaUsu.Any(c => c.Clave == claveLicencia);
         }
 
-     
+        [AllowAnonymous]
+        public IActionResult GenerarClave()
+        {
+            return View();
+        }
 
-        //[HttpPost("vincular")]
-        //public async Task<IActionResult> VincularLicencia([FromBody] string claveLicencia, [FromBody] Guid idUsuario)
-        //{
-        //    // ... (Lógica de verificación de la clave)
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task< IActionResult> GenerarClave([Bind("Clave")] Bd_Ex_ClaveLicenciaVerifi bd_Ex_ClaveLicenciaVerifi)
+        {
+            string sopadepapa = GenerarClaveLicencia();
+            bd_Ex_ClaveLicenciaVerifi.Clave =sopadepapa;
 
-        //    bool vinculacionExitosa = await _context.VincularClaveLicenciaAsync(claveLicencia, idUsuario);
-        //    return Ok(vinculacionExitosa);
-        //}
+            _context.Add(bd_Ex_ClaveLicenciaVerifi);
+            await _context.SaveChangesAsync();
+            Utilerias.Correo.LicenciasCorreo("angel.garcia2933@gmail.com", "Nueva Licencia Generada", "Se ha generado una nueva licencia: " + sopadepapa);
+            return View(bd_Ex_ClaveLicenciaVerifi);
+        }
 
-        //Apartado de acciones referentes a las vistas generales//
+        public static string GenerarClaveLicencia(int longitud = 10)
+        {
+            const string caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var bytes = new byte[longitud];
 
-        /*-Apartado Para Vincular con la escuela-*/
-        //public IActionResult VincularEscuela()
-        //{
-        //    return View();
-        //}
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(bytes);
+            }
 
-        /*-task-*/
-        //public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
-        //{
-        //    var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
+            var clave = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                clave[i] = caracteresPermitidos[bytes[i] % caracteresPermitidos.Length];
+            }
 
-        //    if (ycqvm == null) return NotFound();
-
-        //    if (ycqvm.Codigo != null)
-        //    {
-        //        bdI_Usu_Esc.IdEscuela = ycqvm.IdEscuela;
-        //        var ppamhh = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
-        //        bdI_Usu_Esc.IdUsuario = ppamhh;
-
-
-        //        _context.Add(bdI_Usu_Esc);
-        //        await _context.SaveChangesAsync();
-        //         return RedirectToAction("Index");
-        //    }
-
-        //    return View(bdI_Usu_Esc);
-        //}
+            return new string(clave);
+        }
 
     }
 }
