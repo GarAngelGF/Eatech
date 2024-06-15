@@ -43,14 +43,23 @@ namespace Eatech.Controllers
         /*-Task para crear pedido + enviar el correo de pedido creado-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarPedido(Guid IdAlum, Guid IdCom, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido, [Bind("pedido,IdAlumno")] BdI_Alu_Ped bdI_Alu_Ped, [Bind("IDComida,pedido")] BdI_Com_Ped bdI_Com_Ped)
+        public async Task<IActionResult> RegistrarPedido(Guid IdAlum, Guid IdCom, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido)
         {
             if (ModelState.IsValid)
             {
+                BdI_Alu_Ped bdI_Alu_Ped = new BdI_Alu_Ped();
                 bd_Pedido.pedido = Guid.NewGuid();
                 bd_Pedido.Estatus = "Generado";
+                _context.Add(bd_Pedido);
+              
+                await _context.SaveChangesAsync();
+
+                BdI_Com_Ped bdI_Com_Ped = new BdI_Com_Ped();
                 bdI_Com_Ped.IDComida = IdCom;
                 bdI_Com_Ped.pedido = bd_Pedido.pedido;
+                _context.Add(bdI_Com_Ped);
+                await _context.SaveChangesAsync();
+
 
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
                 bdI_Alu_Ped.IdAlumno = IdAlum;
@@ -59,8 +68,7 @@ namespace Eatech.Controllers
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
-                _context.Add(bdI_Com_Ped);
-                _context.Add(bd_Pedido);
+          
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 

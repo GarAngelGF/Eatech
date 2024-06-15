@@ -11,6 +11,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 namespace Eatech.Controllers
@@ -21,6 +24,9 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
+
+        public string? Rolselect { get; private set; }
+
         public AplicacionController(ContextoBD context)
         {
             _context = context;
@@ -33,15 +39,17 @@ namespace Eatech.Controllers
             return View();
         }
 
-		
 
 
 
-		//**************************************************************************************************************************************************************************//
-		//Apartado para poner todo lo referente a login y al logout
-		[AllowAnonymous]
+
+        //**************************************************************************************************************************************************************************//
+        //Apartado para poner todo lo referente a login y al logout
+        [AllowAnonymous]
         public IActionResult Login(string? error)
         {
+
+
             ViewBag.error = error;
             return View();
         }
@@ -74,7 +82,7 @@ namespace Eatech.Controllers
 
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Aplicacion");
         }
 
 
@@ -87,23 +95,31 @@ namespace Eatech.Controllers
             return View();
         }
 
-        /*-Apartado donde se registra el usuario en la base de datos-*/
+        /*-Apartado donde se registra el usuario y admin en la base de datos-*/
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Registro([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
+
+
+
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Usuario";
             bd_Usuario.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
             {
+
                 bd_Usuario.IdUsuario = Guid.NewGuid();
                 _context.Add(bd_Usuario);
                 await _context.SaveChangesAsync();
 
+                TempData["Message"] = "Registro exitoso";
                 return RedirectToAction(nameof(Login));
+
             }
             return View(bd_Usuario);
         }
@@ -111,26 +127,56 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario, string claveLicencia)
         {
+
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
             bd_Usuario.aPaterno = "No aplica";
             bd_Usuario.aMaterno = "No aplica";
 
+            ModelState.Remove("aPaterno");
+            ModelState.Remove("aMaterno");
             if (ModelState.IsValid)
             {
-                bd_Usuario.IdUsuario = Guid.NewGuid();
+                Guid id = Guid.NewGuid();
+                bd_Usuario.IdUsuario = id;
                 _context.Add(bd_Usuario);
                 await _context.SaveChangesAsync();
 
+                if (VerificarClaveLicencia(claveLicencia))
+                {
+                    var licencia = await _context.LicenciaAdmin.FirstOrDefaultAsync(l => l.ClaveLicencia == claveLicencia && l.IdUsuario == null);
+
+                    if (licencia != null)
+                    {
+                        return Ok(false); // Licencia no encontrada o ya vinculada
+                    }
+                    Bd_Ex_LicenciaAdmin admin = new Bd_Ex_LicenciaAdmin();
+                    admin.IdLicencia = Guid.NewGuid();
+                    admin.ClaveLicencia = claveLicencia;
+                    admin.IdUsuario = id;
+
+                    _context.Add(admin);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Login));
+                }
+
+
+
                 return RedirectToAction(nameof(Login));
             }
-            
+
             return View(bd_Usuario);
         }
 
+        /*-Verificacion de las licencias-*/
+        [AllowAnonymous]
+        public bool VerificarClaveLicencia(string claveLicencia) // Método síncrono
+        {
+            return _context.LicenciaUsu.Any(c => c.Clave == claveLicencia);
+        }
         /*-Validar que no se repita el correo-*/
         [AllowAnonymous]
         public IActionResult ValidarCorreoUnico(string correo)
@@ -154,6 +200,7 @@ namespace Eatech.Controllers
         [HttpPost]
         public async Task<IActionResult> RecuperarContrasena(string correo)
         {
+
             var buscar = _context.Usuarios.FirstOrDefault(lili => lili.Correo == correo);
             if (buscar == null) return RedirectToAction("RecuperarContrasena", new { error = true });
 
@@ -206,6 +253,12 @@ namespace Eatech.Controllers
         [AllowAnonymous]
         public IActionResult NuevaContrasena(string correo)
         {
+
+            if (correo == null)
+            {
+
+                return RedirectToAction("Index", "Aplicacion");
+            }
             ViewBag.Correo = correo;
             return View();
         }
@@ -282,16 +335,23 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
-        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente 
-        public IActionResult Dashboard()
+        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult Dashboard(/*Guid? id*/)
         {
+            //id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+
+            // var LContexto = _context.Intermedia_Usuario_Alumno.Include(h=> h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
+
+            //ViewBag.Alumnos = LContexto;
             return View();
         }
 
 
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
             return View();
@@ -299,9 +359,46 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
-        //Apartado de acciones referentes a las vistas generales//
 
-        /*-Apartado Para Vincular con la escuela-*/
+
+
+        [AllowAnonymous]
+        public IActionResult GenerarClave()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> GenerarClave([Bind("Clave")] Bd_Ex_ClaveLicenciaVerifi bd_Ex_ClaveLicenciaVerifi)
+        {
+            string sopadepapa = GenerarClaveLicencia();
+            bd_Ex_ClaveLicenciaVerifi.Clave = sopadepapa;
+
+            _context.Add(bd_Ex_ClaveLicenciaVerifi);
+            await _context.SaveChangesAsync();
+            Utilerias.Correo.LicenciasCorreo("angel.garcia2933@gmail.com", "Nueva Licencia Generada", "Se ha generado una nueva licencia: " + sopadepapa);
+            return View(bd_Ex_ClaveLicenciaVerifi);
+        }
+
+        public static string GenerarClaveLicencia(int longitud = 10)
+        {
+            const string caracteresPermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var bytes = new byte[longitud];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(bytes);
+            }
+
+            var clave = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                clave[i] = caracteresPermitidos[bytes[i] % caracteresPermitidos.Length];
+            }
+
+            return new string(clave);
+        }
 
     }
 }

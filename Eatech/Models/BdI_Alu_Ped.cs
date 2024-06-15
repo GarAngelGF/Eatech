@@ -9,9 +9,12 @@ using System.Security.Permissions;
 
 namespace Eatech.Models
 {
-    [Keyless]
     public class BdI_Alu_Ped
     {
+        [Key, DisplayName("Id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+
         [Required, DisplayName("Id del pedido")]
         public Guid pedido { get; set; }
 

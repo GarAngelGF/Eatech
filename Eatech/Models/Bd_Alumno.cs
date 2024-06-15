@@ -47,7 +47,7 @@ namespace Eatech.Models
         [DisplayName("Notas"), MaxLength(528, ErrorMessage = "Cantidad de caracteres maxima (528) Alcanzada")]
         public string Notas { get; set; }
 
-        public ICollection<Bd_FotoAlumno> Foto {  get; set; }   
+  
     }
 
 }

@@ -894,21 +894,6 @@ html {
     display: block;
 }
 
-.contenedor-seguimiento6 {
-    display: none;
-}
-
-.contenedor-seguimiento6.active {
-    display: block;
-}
-
-.contenedor-alimentos-agg5 {
-    display: none;
-}
-
-.contenedor-alimentos-agg5.active {
-    display: block;
-}
 
 /* Mostrar contenedor 3 */
 
@@ -925,40 +910,8 @@ html {
     overflow-y: auto;
 }
 
-
-.contenedor-alimentos-agg3 {
-    display: none;
-}
-
-.contenedor-alimentos-agg3.active {
-    display: block;
-}
-
-
-
-.contenedor-alimentos-agg4 {
-    display: none;
-}
-
-.contenedor-alimentos-agg4.active {
-    display: block;
-}
-
-.sopadepapa  {
-    background: #F8F9FD;
-    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
-    border-radius: 40px;
-    padding: 25px 35px;
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 360px;
-    overflow-y: auto;
-}
-
 img {
     width: 120px;
     height: 120px;
-    object-fit: cover;
+    object-fit: cover; 
 }
