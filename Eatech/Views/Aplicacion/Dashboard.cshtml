@@ -199,7 +199,7 @@
 
     <div id="container4" class="content-container">
 
-        <form class="form" action="">
+       @*  <form class="form" action=""> *@
             <br>
 
 
@@ -305,14 +305,14 @@
 
                         <div class="col-sm-12 col-md-12 col-lg-3">
                             <div class="form-group">
-                                <input asp-for="NoMatricula" placeholder="Matrícula" id="NoMatricula" class="input" required />
+                            <input asp-for="NoMatricula" placeholder="Matrícula" id="NoMatricula" type="text" class="input" required />
                                 <span asp-validation-for="NoMatricula" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-3">
                             <div class="form-group">
 
-                                <input asp-for="Nombre" placeholder="Nombre" id="Nombre" class="input" required />
+                            <input asp-for="Nombre" placeholder="Nombre" id="Nombre" type="text" class="input" required />
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
 
                             </div>
@@ -322,7 +322,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-3">
                             <div class="form-group">
 
-                                <input asp-for="aPaterno" placeholder="Apellido paterno" id="Apaterno"  class="input" required />
+                            <input asp-for="aPaterno" placeholder="Apellido paterno" id="Apaterno" type="text" class="input" required />
                                 <span asp-validation-for="aPaterno" class="text-danger"></span>
 
                             </div>
@@ -331,7 +331,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-3">
                             <div class="form-group">
 
-                                <input asp-for="aMaterno" placeholder="Apellido materno" id="Amaterno"  class="input" required />
+                            <input asp-for="aMaterno" placeholder="Apellido materno" id="Amaterno" type="text" class="input" required />
                                 <span asp-validation-for="aMaterno" class="text-danger"></span>
 
                             </div>
@@ -412,7 +412,7 @@
 
             <script src="/js/ALUMNOS.js"></script>
 
-        </form>
+     @*    </form> *@
     </div>
 
 
