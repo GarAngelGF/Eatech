@@ -56,11 +56,7 @@ namespace Eatech.Controllers
                 {
                     bdI_Usu_Alum.IdUsuario = ltam;
                 }
-                bdI_Usu_Alum.IdUsuario = ltam;
 
-
-             
-               
                 _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
