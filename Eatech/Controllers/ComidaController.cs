@@ -15,14 +15,10 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
-        private readonly IWebHostEnvironment _environment;
 
-        public ComidaController(ContextoBD context, IWebHostEnvironment environment)
+        public ComidaController(ContextoBD context)
         {
             _context = context;
-
-            _environment = environment;
-
         }
         //**************************************************************************************************************************************************************************//
         /*-Index con el menu de la comida disponible-*/
@@ -46,43 +42,22 @@ namespace Eatech.Controllers
         /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr, Guid IdIngradiente, IFormFile Imagen)
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr,string NombreIngrediente)
         {
             if (ModelState.IsValid)
             {
                 bd_comida.IDComida = Guid.NewGuid();
-                var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.IdIngrediente == IdIngradiente);
+                var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.Nombre == NombreIngrediente);
                 bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
                 bdI_Com_Ingr.IDComida = bd_comida.IDComida;
 
-                //Apartado para agregar unafoto
 
-                if (Imagen == null || Imagen.Length == 0)
-                {
-                    return RedirectToAction("Index", new { errorDocumento = true });
-                }
-                var extension = Imagen.FileName.Split('.');
-                var nombre = Guid.NewGuid().ToString() + "." + extension[extension.Length - 1];
-                var path = Path.Combine(_environment.WebRootPath, "galeria", nombre);
 
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await Imagen.CopyToAsync(stream);
+                _context.Add(bd_comida);
+                _context.Add(bdI_Com_Ingr);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
 
-                    var galeria = new Bd_FotoComidas();
-                    galeria.IDComida = bd_comida.IDComida;
-                    galeria.Imagen = nombre;
-
-                    _context.Add(galeria);
-                    await _context.SaveChangesAsync();
-
-                }
-                    _context.Add(bdI_Com_Ingr);
-                    _context.Add(bd_comida);
-
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                
             }
 
             return View(bd_comida);

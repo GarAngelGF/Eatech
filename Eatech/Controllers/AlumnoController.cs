@@ -12,13 +12,11 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         //contextos base de datos
         private readonly ContextoBD _context;
-        private readonly IWebHostEnvironment _environment;
+  
 
-        public AlumnoController(ContextoBD context, IWebHostEnvironment environment)
+        public AlumnoController(ContextoBD context)
         {
             _context = context;
-
-            _environment = environment;
 
         }
 
@@ -44,7 +42,7 @@ namespace Eatech.Controllers
         /*-Task para registrar al alumno en la base de datos. Tablas alumno e intermedia alum_usu-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum, IFormFile Imagen)
+        public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
         {
             if (ModelState.IsValid)
             {
@@ -58,31 +56,9 @@ namespace Eatech.Controllers
                 bdI_Usu_Alum.IdAlumno = bd_Alumno.IdAlumno;
 
 
-                //Apartado para agregar unafoto
-
-                if (Imagen == null || Imagen.Length == 0)
-                {
-                    return RedirectToAction("Index", new { errorDocumento = true });
-                }
-                var extension = Imagen.FileName.Split('.');
-                var nombre = Guid.NewGuid().ToString() + "." + extension[extension.Length - 1];
-                var path = Path.Combine(_environment.WebRootPath, "galeria", nombre);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await Imagen.CopyToAsync(stream);
-
-                    var galeria = new Bd_FotoAlumno();
-                    galeria.IDAlumno = bd_Alumno.IdAlumno;
-                    galeria.Imagen = nombre;
-
-                    _context.Add(galeria);
-                    await _context.SaveChangesAsync();
-                }
-
-
-                _context.Add(bdI_Usu_Alum);
+             
                 _context.Add(bd_Alumno);
+                _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

@@ -30,7 +30,6 @@ namespace Eatech.Models
         [Remote("ValidarPorcionesDisponibles", "Comida", ErrorMessage = "Ya no hay porciones disponibles")]
         public int PorcionesDisponibles { get; set; }
 
-        public ICollection<Bd_FotoComidas> FotosComidas { get; set; }
 
     }
 }
