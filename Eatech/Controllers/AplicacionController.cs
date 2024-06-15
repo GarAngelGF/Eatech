@@ -127,9 +127,9 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario,string claveLicencia )
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario, string claveLicencia)
         {
-           
+
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
@@ -163,7 +163,7 @@ namespace Eatech.Controllers
                     return RedirectToAction(nameof(Login));
                 }
 
-          
+
 
                 return RedirectToAction(nameof(Login));
             }
@@ -338,8 +338,13 @@ namespace Eatech.Controllers
         //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
         [Authorize(Roles = "Usuario")]
 
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(/*Guid? id*/)
         {
+            //id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+
+            // var LContexto = _context.Intermedia_Usuario_Alumno.Include(h=> h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
+
+            //ViewBag.Alumnos = LContexto;
             return View();
         }
 
@@ -355,7 +360,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
 
-       
+
 
         [AllowAnonymous]
         public IActionResult GenerarClave()
@@ -365,10 +370,10 @@ namespace Eatech.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task< IActionResult> GenerarClave([Bind("Clave")] Bd_Ex_ClaveLicenciaVerifi bd_Ex_ClaveLicenciaVerifi)
+        public async Task<IActionResult> GenerarClave([Bind("Clave")] Bd_Ex_ClaveLicenciaVerifi bd_Ex_ClaveLicenciaVerifi)
         {
             string sopadepapa = GenerarClaveLicencia();
-            bd_Ex_ClaveLicenciaVerifi.Clave =sopadepapa;
+            bd_Ex_ClaveLicenciaVerifi.Clave = sopadepapa;
 
             _context.Add(bd_Ex_ClaveLicenciaVerifi);
             await _context.SaveChangesAsync();

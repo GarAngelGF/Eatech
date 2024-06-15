@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Eatech.Models;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Security.Claims;
 
 namespace Eatech.Controllers
 {
@@ -60,7 +61,7 @@ namespace Eatech.Controllers
 
                 _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(AlumnoDashboard));
+                return RedirectToAction("Dashboard","Aplicacion");
             }
 
             return View(bd_Alumno);
@@ -128,7 +129,8 @@ namespace Eatech.Controllers
         //Apartado para dar de baja a un alumno
         public async Task<IActionResult> BajaAlumno(Guid? id)
         {
-            if (id == null || _context.Alumnos == null) return NotFound();
+            id= Guid.Parse( User.FindFirstValue("Id"));
+            if (id == null ) return NotFound();
            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
             if (LContexto == null) return NotFound();
             return View(LContexto);
