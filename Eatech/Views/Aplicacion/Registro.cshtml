@@ -118,7 +118,7 @@
             </div>
                 <div class="row">
                     <!-- --------------------------------CONFIRMAR CONTRA------------------------------------------- -->
-                    <div class="col-sm-12 col-md-12 col-lg-4">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena"
                                    required />
@@ -179,10 +179,10 @@
             <div asp-validation-summary="ModelOnly"> </div>
 
             <div class="row">
-                <!-- --------------------------------NOMBRE INSTITUCION------------------------------------------- -->
+                <!-- --------------------------------NOMBRE INSTITUCION (Ipn por ejemplo)------------------------------------------- -->
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="form-group">
-                        <input asp-for="Nombre" class="input" placeholder="Escribe el nombre de tu institucion" id="nombre" />
+                        <input asp-for="Nombre" class="input" placeholder="Escribe tu nombre de usuario" id="nombre" />
                         <span asp-validation-for="Nombre"></span>
                     </div>
                 </div>
@@ -217,7 +217,7 @@
 
                 <div class="row">
                     <!-- --------------------------------CONFIRMAR PASSWRO------------------------------------------- -->
-                    <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <input class="input" type="password" placeholder="Confirmar contraseña" id="RepetirContrasena2"
                                    required />
@@ -247,6 +247,7 @@
                             </path>
                         </svg>
                     </button>
+                    <a asp-controller="Escuela" asp-action="Registrar Escuela"></a>
                 </div>
 
 

@@ -44,6 +44,10 @@ namespace Eatech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrarAlumno([Bind("IdAlumno,Nombre, aPaterno,aMaterno,Alergias,Enfermedades,PreferenciasComida,Notas")] Bd_Alumno bd_Alumno, [Bind("IdUsuario,IdAlumno")] BdI_Usu_Alum bdI_Usu_Alum)
         {
+
+            //ModelState.Remove("Foto");
+
+            
             if (ModelState.IsValid)
             {
                 bd_Alumno.IdAlumno = Guid.NewGuid();
@@ -85,7 +89,7 @@ namespace Eatech.Controllers
             if (id == null || _context.Alumnos == null) return NotFound();
             var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
             if (LContexto == null) return NotFound();
-            return View(LContexto);
+            return View();
         }
 
 

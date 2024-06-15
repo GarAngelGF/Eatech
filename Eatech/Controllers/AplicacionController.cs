@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 
 namespace Eatech.Controllers
@@ -36,13 +37,13 @@ namespace Eatech.Controllers
             return View();
         }
 
-		
 
 
 
-		//**************************************************************************************************************************************************************************//
-		//Apartado para poner todo lo referente a login y al logout
-		[AllowAnonymous]
+
+        //**************************************************************************************************************************************************************************//
+        //Apartado para poner todo lo referente a login y al logout
+        [AllowAnonymous]
         public IActionResult Login(string? error)
         {
 
@@ -93,7 +94,7 @@ namespace Eatech.Controllers
         }
 
         /*-Apartado donde se registra el usuario y admin en la base de datos-*/
-        
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -116,6 +117,11 @@ namespace Eatech.Controllers
 
                 return RedirectToAction(nameof(Login));
 
+               
+                    TempData["Message"] = "Registro exitoso";
+                    return RedirectToAction("Index", "Home");
+                
+
             }
             return View(bd_Usuario);
         }
@@ -123,15 +129,16 @@ namespace Eatech.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,aPaterno,aMaterno,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
+        public async Task<IActionResult> RegistroAdmin([Bind("IdUsuario,Correo,Contrasena,Nombre,FechaCreacion,TokenDRestauracion,CaducidadToken,intentos,Rol")] Bd_Usuario bd_Usuario)
         {
             bd_Usuario.Contrasena = Encriptar.HashString(bd_Usuario.Contrasena);
             bd_Usuario.Rol = "Admin";
             bd_Usuario.FechaCreacion = DateTime.Now;
             bd_Usuario.aPaterno = "No aplica";
             bd_Usuario.aMaterno = "No aplica";
-            ModelState.Remove("aMaterno");
+
             ModelState.Remove("aPaterno");
+            ModelState.Remove("aMaterno");
 
             if (ModelState.IsValid)
             {
@@ -168,7 +175,7 @@ namespace Eatech.Controllers
         [HttpPost]
         public async Task<IActionResult> RecuperarContrasena(string correo)
         {
-            
+
             var buscar = _context.Usuarios.FirstOrDefault(lili => lili.Correo == correo);
             if (buscar == null) return RedirectToAction("RecuperarContrasena", new { error = true });
 
@@ -224,8 +231,8 @@ namespace Eatech.Controllers
 
             if (correo == null)
             {
-            
-                return RedirectToAction("Index", "Aplicacion"); 
+
+                return RedirectToAction("Index", "Aplicacion");
             }
             ViewBag.Correo = correo;
             return View();
@@ -303,7 +310,9 @@ namespace Eatech.Controllers
 
 
         //**************************************************************************************************************************************************************************//
-        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente 
+        //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
+        [Authorize(Roles = "Usuario")]
+
         public IActionResult Dashboard()
         {
             return View();
@@ -323,6 +332,32 @@ namespace Eatech.Controllers
         //Apartado de acciones referentes a las vistas generales//
 
         /*-Apartado Para Vincular con la escuela-*/
+        public IActionResult VincularEscuela()
+        {
+            return View();
+        }
+
+        /*-task-*/
+        public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
+        {
+            var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
+           
+            if (ycqvm == null) return NotFound();
+
+            if (ycqvm.Codigo != null)
+            {
+                bdI_Usu_Esc.IdEscuela = ycqvm.IdEscuela;
+                var ppamhh = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+                bdI_Usu_Esc.IdUsuario = ppamhh;
+
+
+                _context.Add(bdI_Usu_Esc);
+                await _context.SaveChangesAsync();
+                 return RedirectToAction("Index");
+            }
+
+            return View(bdI_Usu_Esc);
+        }
 
     }
 }
