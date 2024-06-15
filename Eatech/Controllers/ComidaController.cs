@@ -26,8 +26,8 @@ namespace Eatech.Controllers
         {
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
-            return View(await LContexto.ToListAsync());
+           // var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
+            return View(/*await LContexto.ToListAsync()*/);
         }
 
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
