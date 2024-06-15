@@ -332,32 +332,32 @@ namespace Eatech.Controllers
         //Apartado de acciones referentes a las vistas generales//
 
         /*-Apartado Para Vincular con la escuela-*/
-        public IActionResult VincularEscuela()
-        {
-            return View();
-        }
+        //public IActionResult VincularEscuela()
+        //{
+        //    return View();
+        //}
 
         /*-task-*/
-        public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
-        {
-            var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
+        //public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
+        //{
+        //    var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
            
-            if (ycqvm == null) return NotFound();
+        //    if (ycqvm == null) return NotFound();
 
-            if (ycqvm.Codigo != null)
-            {
-                bdI_Usu_Esc.IdEscuela = ycqvm.IdEscuela;
-                var ppamhh = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
-                bdI_Usu_Esc.IdUsuario = ppamhh;
+        //    if (ycqvm.Codigo != null)
+        //    {
+        //        bdI_Usu_Esc.IdEscuela = ycqvm.IdEscuela;
+        //        var ppamhh = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+        //        bdI_Usu_Esc.IdUsuario = ppamhh;
 
 
-                _context.Add(bdI_Usu_Esc);
-                await _context.SaveChangesAsync();
-                 return RedirectToAction("Index");
-            }
+        //        _context.Add(bdI_Usu_Esc);
+        //        await _context.SaveChangesAsync();
+        //         return RedirectToAction("Index");
+        //    }
 
-            return View(bdI_Usu_Esc);
-        }
+        //    return View(bdI_Usu_Esc);
+        //}
 
     }
 }
