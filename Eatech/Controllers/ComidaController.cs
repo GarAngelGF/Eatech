@@ -42,18 +42,22 @@ namespace Eatech.Controllers
         /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, [Bind("IDComida,IdIngrediente")] BdI_Com_Ingr bdI_Com_Ingr,string NombreIngrediente)
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, string NombreIngrediente)
         {
             if (ModelState.IsValid)
             {
+                BdI_Com_Ingr bdI_Com_Ingr = new BdI_Com_Ingr();
                 bd_comida.IDComida = Guid.NewGuid();
+                _context.Add(bd_comida);
+                await _context.SaveChangesAsync();
+
                 var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.Nombre == NombreIngrediente);
                 bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
                 bdI_Com_Ingr.IDComida = bd_comida.IDComida;
 
 
 
-                _context.Add(bd_comida);
+               
                 _context.Add(bdI_Com_Ingr);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
