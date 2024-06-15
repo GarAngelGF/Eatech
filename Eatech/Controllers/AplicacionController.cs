@@ -115,12 +115,8 @@ namespace Eatech.Controllers
                 _context.Add(bd_Usuario);
                 await _context.SaveChangesAsync();
 
+                TempData["Message"] = "Registro exitoso";
                 return RedirectToAction(nameof(Login));
-
-               
-                    TempData["Message"] = "Registro exitoso";
-                    return RedirectToAction("Index", "Home");
-                
 
             }
             return View(bd_Usuario);
@@ -341,7 +337,7 @@ namespace Eatech.Controllers
         //public async Task<IActionResult> VincularlaEscuela(string? codigo, [Bind ("IdUsuario,IdEscuela")] BdI_Usu_Esc bdI_Usu_Esc)
         //{
         //    var ycqvm = _context.Escuela.FirstOrDefault(ltam => ltam.Codigo == codigo);
-           
+
         //    if (ycqvm == null) return NotFound();
 
         //    if (ycqvm.Codigo != null)

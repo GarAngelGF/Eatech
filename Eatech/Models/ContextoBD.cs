@@ -14,6 +14,7 @@ namespace Eatech.Models
         public DbSet<Bd_Pedido> Pedidos { get; set; }
         public DbSet<Bd_Alumno> Alumnos { get; set; }
         public DbSet<Bd_Ex_LicenciaAdmin> LicenciaAdmin{ get; set; }
+        public DbSet<Bd_Ex_ClaveLicenciaVerifi> LicenciaUsu{ get; set; }
         public DbSet<BdI_Alu_Ped> Intermedia_Alum_Pedi { get; set; }
         public DbSet<BdI_Com_Ingr> Intermedia_Comida_Ingre { get; set; }
         public DbSet<BdI_Com_Ped> Intermedia_Comida_Pedi { get; set; }

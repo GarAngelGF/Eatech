@@ -10,11 +10,17 @@ namespace Eatech.Models
 {
     public class Bd_Ex_LicenciaAdmin
     {
-        [Key, DisplayName("Id Licencia")/*, MaxLength(11, ErrorMessage = "Cantidad de caracteres maxima (10) Alcanzada")*/]
+        [Key, DisplayName("Id Licencia")]
         public Guid IdLicencia { get; set; }
 
-        [Required, DisplayName ("Clave Licencia") , MinLength(10, ErrorMessage= "La licencia es de 10 digitos")]
-        public string Clave { get; set; }
+        [DisplayName ("Clave del programa")]
+        public string ClaveLicencia { get; set; }
+        [DisplayName("Usuario")]
+        public Guid? IdUsuario { get; set; }
 
+        [ForeignKey("ClaveLicencia")]
+        public Bd_Ex_ClaveLicenciaVerifi ClaveNavigation { get; set; }
+        [ForeignKey("IdUsuario")]
+        public Bd_Usuario Usuario { get; set; }
     }
 }

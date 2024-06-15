@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class bdFinalv4 : Migration
+    public partial class bdFinalv5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,20 +45,6 @@ namespace Eatech.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Escuela",
-                columns: table => new
-                {
-                    IdEscuela = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClaveEscuela = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Codigo = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Escuela", x => x.IdEscuela);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ingredientes",
                 columns: table => new
                 {
@@ -69,6 +55,17 @@ namespace Eatech.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ingredientes", x => x.IdIngrediente);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LicenciaUsu",
+                columns: table => new
+                {
+                    Clave = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LicenciaUsu", x => x.Clave);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,26 +196,27 @@ namespace Eatech.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Intermedia_Usuario_Escuela",
+                name: "LicenciaAdmin",
                 columns: table => new
                 {
-                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdEscuela = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdLicencia = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaveLicencia = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_LicenciaAdmin", x => x.IdLicencia);
                     table.ForeignKey(
-                        name: "FK_Intermedia_Usuario_Escuela_Escuela_IdEscuela",
-                        column: x => x.IdEscuela,
-                        principalTable: "Escuela",
-                        principalColumn: "IdEscuela",
+                        name: "FK_LicenciaAdmin_LicenciaUsu_ClaveLicencia",
+                        column: x => x.ClaveLicencia,
+                        principalTable: "LicenciaUsu",
+                        principalColumn: "Clave",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Intermedia_Usuario_Escuela_Usuarios_IdUsuario",
+                        name: "FK_LicenciaAdmin_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuarios",
-                        principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdUsuario");
                 });
 
             migrationBuilder.CreateIndex(
@@ -262,13 +260,13 @@ namespace Eatech.Migrations
                 column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Intermedia_Usuario_Escuela_IdEscuela",
-                table: "Intermedia_Usuario_Escuela",
-                column: "IdEscuela");
+                name: "IX_LicenciaAdmin_ClaveLicencia",
+                table: "LicenciaAdmin",
+                column: "ClaveLicencia");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Intermedia_Usuario_Escuela_IdUsuario",
-                table: "Intermedia_Usuario_Escuela",
+                name: "IX_LicenciaAdmin_IdUsuario",
+                table: "LicenciaAdmin",
                 column: "IdUsuario");
         }
 
@@ -287,7 +285,7 @@ namespace Eatech.Migrations
                 name: "Intermedia_Usuario_Alumno");
 
             migrationBuilder.DropTable(
-                name: "Intermedia_Usuario_Escuela");
+                name: "LicenciaAdmin");
 
             migrationBuilder.DropTable(
                 name: "Ingredientes");
@@ -302,7 +300,7 @@ namespace Eatech.Migrations
                 name: "Alumnos");
 
             migrationBuilder.DropTable(
-                name: "Escuela");
+                name: "LicenciaUsu");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

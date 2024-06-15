@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eatech.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20240615044359_bdFinalv4")]
-    partial class bdFinalv4
+    [Migration("20240615070818_bdFinalv5")]
+    partial class bdFinalv5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,30 +104,36 @@ namespace Eatech.Migrations
                     b.ToTable("Comidas");
                 });
 
-            modelBuilder.Entity("Eatech.Models.Bd_Escuela", b =>
+            modelBuilder.Entity("Eatech.Models.Bd_Ex_ClaveLicenciaVerifi", b =>
                 {
-                    b.Property<Guid>("IdEscuela")
+                    b.Property<string>("Clave")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Clave");
+
+                    b.ToTable("LicenciaUsu");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Ex_LicenciaAdmin", b =>
+                {
+                    b.Property<Guid>("IdLicencia")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ClaveEscuela")
+                    b.Property<string>("ClaveLicencia")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                    b.Property<Guid?>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                    b.HasKey("IdLicencia");
 
-                    b.HasKey("IdEscuela");
+                    b.HasIndex("ClaveLicencia");
 
-                    b.ToTable("Escuela");
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("LicenciaAdmin");
                 });
 
             modelBuilder.Entity("Eatech.Models.Bd_Ingredientes", b =>
@@ -282,19 +288,21 @@ namespace Eatech.Migrations
                     b.ToTable("Intermedia_Usuario_Alumno");
                 });
 
-            modelBuilder.Entity("Eatech.Models.BdI_Usu_Esc", b =>
+            modelBuilder.Entity("Eatech.Models.Bd_Ex_LicenciaAdmin", b =>
                 {
-                    b.Property<Guid>("IdEscuela")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Eatech.Models.Bd_Ex_ClaveLicenciaVerifi", "ClaveNavigation")
+                        .WithMany()
+                        .HasForeignKey("ClaveLicencia")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<Guid>("IdUsuario")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Eatech.Models.Bd_Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario");
 
-                    b.HasIndex("IdEscuela");
+                    b.Navigation("ClaveNavigation");
 
-                    b.HasIndex("IdUsuario");
-
-                    b.ToTable("Intermedia_Usuario_Escuela");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Eatech.Models.BdI_Alu_Ped", b =>
@@ -371,25 +379,6 @@ namespace Eatech.Migrations
                     b.Navigation("IdUsu");
 
                     b.Navigation("Idalumno");
-                });
-
-            modelBuilder.Entity("Eatech.Models.BdI_Usu_Esc", b =>
-                {
-                    b.HasOne("Eatech.Models.Bd_Escuela", "Idescuela")
-                        .WithMany()
-                        .HasForeignKey("IdEscuela")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Eatech.Models.Bd_Usuario", "Idusuario")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Idescuela");
-
-                    b.Navigation("Idusuario");
                 });
 #pragma warning restore 612, 618
         }
