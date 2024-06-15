@@ -5,38 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class bdfinalv10 : Migration
+    public partial class BdFinalV11 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Comidas",
-                columns: table => new
-                {
-                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Visibilidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Porciones = table.Column<int>(type: "int", nullable: false),
-                    PorcionesDisponibles = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comidas", x => x.IDComida);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ingredientes",
-                columns: table => new
-                {
-                    IdIngrediente = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ingredientes", x => x.IdIngrediente);
-                });
-
             migrationBuilder.CreateTable(
                 name: "LicenciaUsu",
                 columns: table => new
@@ -46,69 +18,6 @@ namespace Eatech.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LicenciaUsu", x => x.Clave);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Pedidos",
-                columns: table => new
-                {
-                    pedido = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FechaCPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaEntrega = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NotaPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Estatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pedidos", x => x.pedido);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Intermedia_Comida_Ingre",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdIngrediente = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Intermedia_Comida_Ingre_Comidas_IDComida",
-                        column: x => x.IDComida,
-                        principalTable: "Comidas",
-                        principalColumn: "IDComida",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Intermedia_Comida_Ingre_Ingredientes_IdIngrediente",
-                        column: x => x.IdIngrediente,
-                        principalTable: "Ingredientes",
-                        principalColumn: "IdIngrediente",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Intermedia_Comida_Pedi",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    pedido = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Intermedia_Comida_Pedi_Comidas_IDComida",
-                        column: x => x.IDComida,
-                        principalTable: "Comidas",
-                        principalColumn: "IDComida",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Intermedia_Comida_Pedi_Pedidos_pedido",
-                        column: x => x.pedido,
-                        principalTable: "Pedidos",
-                        principalColumn: "pedido",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,11 +34,68 @@ namespace Eatech.Migrations
                     PreferenciasComida = table.Column<string>(type: "nvarchar(528)", maxLength: 528, nullable: false),
                     GradoEscolar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Notas = table.Column<string>(type: "nvarchar(528)", maxLength: 528, nullable: false),
+                    BdI_Alu_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     BdI_Usu_AlumId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Alumnos", x => x.IdAlumno);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comidas",
+                columns: table => new
+                {
+                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Visibilidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Porciones = table.Column<int>(type: "int", nullable: false),
+                    PorcionesDisponibles = table.Column<int>(type: "int", nullable: false),
+                    BdI_Com_IngrId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BdI_Com_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comidas", x => x.IDComida);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredientes",
+                columns: table => new
+                {
+                    IdIngrediente = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BdI_Com_IngrId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredientes", x => x.IdIngrediente);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Intermedia_Comida_Ingre",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdIngrediente = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Intermedia_Comida_Ingre", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Intermedia_Comida_Ingre_Comidas_IDComida",
+                        column: x => x.IDComida,
+                        principalTable: "Comidas",
+                        principalColumn: "IDComida",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Intermedia_Comida_Ingre_Ingredientes_IdIngrediente",
+                        column: x => x.IdIngrediente,
+                        principalTable: "Ingredientes",
+                        principalColumn: "IdIngrediente",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -142,18 +108,59 @@ namespace Eatech.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Intermedia_Alum_Pedi", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Intermedia_Alum_Pedi_Alumnos_IdAlumno",
                         column: x => x.IdAlumno,
                         principalTable: "Alumnos",
                         principalColumn: "IdAlumno",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Intermedia_Comida_Pedi",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    pedido = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Intermedia_Comida_Pedi", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Intermedia_Alum_Pedi_Pedidos_pedido",
-                        column: x => x.pedido,
-                        principalTable: "Pedidos",
-                        principalColumn: "pedido",
+                        name: "FK_Intermedia_Comida_Pedi_Comidas_IDComida",
+                        column: x => x.IDComida,
+                        principalTable: "Comidas",
+                        principalColumn: "IDComida",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pedidos",
+                columns: table => new
+                {
+                    pedido = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FechaCPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaEntrega = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NotaPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BdI_Alu_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BdI_Com_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedidos", x => x.pedido);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Intermedia_Alum_Pedi_BdI_Alu_PedId",
+                        column: x => x.BdI_Alu_PedId,
+                        principalTable: "Intermedia_Alum_Pedi",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Intermedia_Comida_Pedi_BdI_Com_PedId",
+                        column: x => x.BdI_Com_PedId,
+                        principalTable: "Intermedia_Comida_Pedi",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -226,9 +233,29 @@ namespace Eatech.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Alumnos_BdI_Alu_PedId",
+                table: "Alumnos",
+                column: "BdI_Alu_PedId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Alumnos_BdI_Usu_AlumId",
                 table: "Alumnos",
                 column: "BdI_Usu_AlumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comidas_BdI_Com_IngrId",
+                table: "Comidas",
+                column: "BdI_Com_IngrId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comidas_BdI_Com_PedId",
+                table: "Comidas",
+                column: "BdI_Com_PedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ingredientes_BdI_Com_IngrId",
+                table: "Ingredientes",
+                column: "BdI_Com_IngrId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Intermedia_Alum_Pedi_IdAlumno",
@@ -281,9 +308,26 @@ namespace Eatech.Migrations
                 column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_BdI_Alu_PedId",
+                table: "Pedidos",
+                column: "BdI_Alu_PedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_BdI_Com_PedId",
+                table: "Pedidos",
+                column: "BdI_Com_PedId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_BdI_Usu_AlumId",
                 table: "Usuarios",
                 column: "BdI_Usu_AlumId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Alumnos_Intermedia_Alum_Pedi_BdI_Alu_PedId",
+                table: "Alumnos",
+                column: "BdI_Alu_PedId",
+                principalTable: "Intermedia_Alum_Pedi",
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Alumnos_Intermedia_Usuario_Alumno_BdI_Usu_AlumId",
@@ -291,6 +335,43 @@ namespace Eatech.Migrations
                 column: "BdI_Usu_AlumId",
                 principalTable: "Intermedia_Usuario_Alumno",
                 principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comidas_Intermedia_Comida_Ingre_BdI_Com_IngrId",
+                table: "Comidas",
+                column: "BdI_Com_IngrId",
+                principalTable: "Intermedia_Comida_Ingre",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comidas_Intermedia_Comida_Pedi_BdI_Com_PedId",
+                table: "Comidas",
+                column: "BdI_Com_PedId",
+                principalTable: "Intermedia_Comida_Pedi",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Ingredientes_Intermedia_Comida_Ingre_BdI_Com_IngrId",
+                table: "Ingredientes",
+                column: "BdI_Com_IngrId",
+                principalTable: "Intermedia_Comida_Ingre",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Intermedia_Alum_Pedi_Pedidos_pedido",
+                table: "Intermedia_Alum_Pedi",
+                column: "pedido",
+                principalTable: "Pedidos",
+                principalColumn: "pedido",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Intermedia_Comida_Pedi_Pedidos_pedido",
+                table: "Intermedia_Comida_Pedi",
+                column: "pedido",
+                principalTable: "Pedidos",
+                principalColumn: "pedido",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Intermedia_Usuario_Alumno_Usuarios_IdUsuario",
@@ -304,6 +385,14 @@ namespace Eatech.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_Alumnos_Intermedia_Alum_Pedi_BdI_Alu_PedId",
+                table: "Alumnos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Pedidos_Intermedia_Alum_Pedi_BdI_Alu_PedId",
+                table: "Pedidos");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Alumnos_Intermedia_Usuario_Alumno_BdI_Usu_AlumId",
                 table: "Alumnos");
 
@@ -311,29 +400,30 @@ namespace Eatech.Migrations
                 name: "FK_Usuarios_Intermedia_Usuario_Alumno_BdI_Usu_AlumId",
                 table: "Usuarios");
 
-            migrationBuilder.DropTable(
-                name: "Intermedia_Alum_Pedi");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comidas_Intermedia_Comida_Ingre_BdI_Com_IngrId",
+                table: "Comidas");
 
-            migrationBuilder.DropTable(
-                name: "Intermedia_Comida_Ingre");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Ingredientes_Intermedia_Comida_Ingre_BdI_Com_IngrId",
+                table: "Ingredientes");
 
-            migrationBuilder.DropTable(
-                name: "Intermedia_Comida_Pedi");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comidas_Intermedia_Comida_Pedi_BdI_Com_PedId",
+                table: "Comidas");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Pedidos_Intermedia_Comida_Pedi_BdI_Com_PedId",
+                table: "Pedidos");
 
             migrationBuilder.DropTable(
                 name: "LicenciaAdmin");
 
             migrationBuilder.DropTable(
-                name: "Ingredientes");
-
-            migrationBuilder.DropTable(
-                name: "Comidas");
-
-            migrationBuilder.DropTable(
-                name: "Pedidos");
-
-            migrationBuilder.DropTable(
                 name: "LicenciaUsu");
+
+            migrationBuilder.DropTable(
+                name: "Intermedia_Alum_Pedi");
 
             migrationBuilder.DropTable(
                 name: "Intermedia_Usuario_Alumno");
@@ -343,6 +433,21 @@ namespace Eatech.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
+
+            migrationBuilder.DropTable(
+                name: "Intermedia_Comida_Ingre");
+
+            migrationBuilder.DropTable(
+                name: "Ingredientes");
+
+            migrationBuilder.DropTable(
+                name: "Intermedia_Comida_Pedi");
+
+            migrationBuilder.DropTable(
+                name: "Comidas");
+
+            migrationBuilder.DropTable(
+                name: "Pedidos");
         }
     }
 }

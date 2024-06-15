@@ -33,6 +33,9 @@ namespace Eatech.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<Guid?>("BdI_Alu_PedId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("BdI_Usu_AlumId")
                         .HasColumnType("uniqueidentifier");
 
@@ -76,6 +79,8 @@ namespace Eatech.Migrations
 
                     b.HasKey("IdAlumno");
 
+                    b.HasIndex("BdI_Alu_PedId");
+
                     b.HasIndex("BdI_Usu_AlumId");
 
                     b.ToTable("Alumnos");
@@ -85,6 +90,12 @@ namespace Eatech.Migrations
                 {
                     b.Property<Guid>("IDComida")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BdI_Com_IngrId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BdI_Com_PedId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
@@ -103,6 +114,10 @@ namespace Eatech.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IDComida");
+
+                    b.HasIndex("BdI_Com_IngrId");
+
+                    b.HasIndex("BdI_Com_PedId");
 
                     b.ToTable("Comidas");
                 });
@@ -145,6 +160,9 @@ namespace Eatech.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("BdI_Com_IngrId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -156,6 +174,8 @@ namespace Eatech.Migrations
 
                     b.HasKey("IdIngrediente");
 
+                    b.HasIndex("BdI_Com_IngrId");
+
                     b.ToTable("Ingredientes");
                 });
 
@@ -163,6 +183,12 @@ namespace Eatech.Migrations
                 {
                     b.Property<Guid>("pedido")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BdI_Alu_PedId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BdI_Com_PedId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Estatus")
@@ -180,6 +206,10 @@ namespace Eatech.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("pedido");
+
+                    b.HasIndex("BdI_Alu_PedId");
+
+                    b.HasIndex("BdI_Com_PedId");
 
                     b.ToTable("Pedidos");
                 });
@@ -248,6 +278,8 @@ namespace Eatech.Migrations
                     b.Property<Guid>("pedido")
                         .HasColumnType("uniqueidentifier");
 
+                    b.HasKey("Id");
+
                     b.HasIndex("IdAlumno");
 
                     b.HasIndex("pedido");
@@ -257,15 +289,17 @@ namespace Eatech.Migrations
 
             modelBuilder.Entity("Eatech.Models.BdI_Com_Ingr", b =>
                 {
-                    b.Property<Guid>("IDComida")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IDComida")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdIngrediente")
                         .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IDComida");
 
@@ -276,15 +310,17 @@ namespace Eatech.Migrations
 
             modelBuilder.Entity("Eatech.Models.BdI_Com_Ped", b =>
                 {
-                    b.Property<Guid>("IDComida")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IDComida")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("pedido")
                         .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IDComida");
 
@@ -316,9 +352,24 @@ namespace Eatech.Migrations
 
             modelBuilder.Entity("Eatech.Models.Bd_Alumno", b =>
                 {
+                    b.HasOne("Eatech.Models.BdI_Alu_Ped", null)
+                        .WithMany("alumnos")
+                        .HasForeignKey("BdI_Alu_PedId");
+
                     b.HasOne("Eatech.Models.BdI_Usu_Alum", null)
                         .WithMany("alumno")
                         .HasForeignKey("BdI_Usu_AlumId");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Comida", b =>
+                {
+                    b.HasOne("Eatech.Models.BdI_Com_Ingr", null)
+                        .WithMany("Comida")
+                        .HasForeignKey("BdI_Com_IngrId");
+
+                    b.HasOne("Eatech.Models.BdI_Com_Ped", null)
+                        .WithMany("Comida")
+                        .HasForeignKey("BdI_Com_PedId");
                 });
 
             modelBuilder.Entity("Eatech.Models.Bd_Ex_LicenciaAdmin", b =>
@@ -336,6 +387,24 @@ namespace Eatech.Migrations
                     b.Navigation("ClaveNavigation");
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Ingredientes", b =>
+                {
+                    b.HasOne("Eatech.Models.BdI_Com_Ingr", null)
+                        .WithMany("Ingredientes")
+                        .HasForeignKey("BdI_Com_IngrId");
+                });
+
+            modelBuilder.Entity("Eatech.Models.Bd_Pedido", b =>
+                {
+                    b.HasOne("Eatech.Models.BdI_Alu_Ped", null)
+                        .WithMany("pedidos")
+                        .HasForeignKey("BdI_Alu_PedId");
+
+                    b.HasOne("Eatech.Models.BdI_Com_Ped", null)
+                        .WithMany("Pedidos")
+                        .HasForeignKey("BdI_Com_PedId");
                 });
 
             modelBuilder.Entity("Eatech.Models.Bd_Usuario", b =>
@@ -419,6 +488,27 @@ namespace Eatech.Migrations
                     b.Navigation("IdUsu");
 
                     b.Navigation("Idalumno");
+                });
+
+            modelBuilder.Entity("Eatech.Models.BdI_Alu_Ped", b =>
+                {
+                    b.Navigation("alumnos");
+
+                    b.Navigation("pedidos");
+                });
+
+            modelBuilder.Entity("Eatech.Models.BdI_Com_Ingr", b =>
+                {
+                    b.Navigation("Comida");
+
+                    b.Navigation("Ingredientes");
+                });
+
+            modelBuilder.Entity("Eatech.Models.BdI_Com_Ped", b =>
+                {
+                    b.Navigation("Comida");
+
+                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("Eatech.Models.BdI_Usu_Alum", b =>

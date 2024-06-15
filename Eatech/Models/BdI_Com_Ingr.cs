@@ -9,7 +9,6 @@ using System.Security.Permissions;
 
 namespace Eatech.Models
 {
-    [Keyless]
     public class BdI_Com_Ingr
     {
         [Key, DisplayName("Id")]
