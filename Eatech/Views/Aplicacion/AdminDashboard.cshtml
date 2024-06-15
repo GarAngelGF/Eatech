@@ -1,4 +1,6 @@
-﻿<html lang="en">
+﻿@model Eatech.Models.Bd_Ingredientes
+
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -42,7 +44,7 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
-<body>
+<body style="background-image: url(/Imagenes/CUBES.jpg)">
 
 
     <br>
@@ -195,7 +197,7 @@
 
 
 
-    </div>
+   
 
 
 
@@ -207,6 +209,7 @@
             <br>
             <br>
             <br>
+          @*   aqui angel muestra los alumnos que se han registrado *@
             <!-- Contenedor de Estudiantes -->
             <div class="sopadepapa">
 
@@ -291,34 +294,60 @@
 
             </div>
 
-            <!-- Contenedor de Agregar Estudiante -->
+            <!-- Contenedor de Agregar Alimento -->
             <div id="agregar-estudiante-contenedor" class="contenedor-estudiantes">
                 <h3>Agregar un nuevo alimento</h3>
-                <!-- --------------------------------------------------------------------------- -->
-                <input placeholder="Nombre del alimento" id="Nombre" type="text" class="input" required="" />
-                <!-- --------------------------------------------------------------------------- -->
-                <!-- --------------------------------------------------------------------------- -->
-                <input placeholder="Porciones disponibles" id="Porciones" type="text" class="input" required="" />
-                <!-- --------------------------------------------------------------------------- -->
+                <form asp-controller="Ingredientes" asp-action="RegistrarIngrediente">
 
+                    <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                    <div class="row">
+                    <div class="form-group">
 
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input asp-for="Nombre" placeholder="Nombre del alimento" id="Nombre" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
 
-
-                <div class="row">
-
-
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-
-                        <br>
-
-                        <button class="buttonZ">
-                            Agregar
-                            <div class="hoverEffect">
-                                <div></div>
-                            </div>
-                        </button>
                     </div>
-                </div>
+        
+                    <div class="form-group">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <input asp-for="Tipo" placeholder="Porciones disponibles" id="Porciones" type="text" class="input" required="" />
+                        <!-- --------------------------------------------------------------------------- -->
+                        <span asp-validation-for="Tipo" class="text-danger"></span>
+
+
+
+
+
+                    </div>
+                  
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+
+
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                <br>
+
+                                <button class="buttonZ" type="submit">
+                                    Agregar
+                                    <div class="hoverEffect">
+                                        <div></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                 
+               </form>
+                
 
 
             </div>
