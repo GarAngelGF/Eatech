@@ -212,7 +212,7 @@ input[type="checkbox"]:checked~.mid {
 
 
 body {
-    background-image: url(/Imagenes/CUBES.jpg);
+    background-image: url(../IMAGENES-ALL/CUBES.jpg);
 
 }
 
@@ -908,4 +908,10 @@ html {
     align-items: center;
     height: 360px;
     overflow-y: auto;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; 
 }

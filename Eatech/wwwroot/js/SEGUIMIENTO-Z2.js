@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const checkboxToggle = document.getElementById('checkbox_toggle');
-    const ordenarContenedor = document.getElementById('ordenar-contenedor');
-    const menuContenedor = document.getElementById('menu-contenedor');
+    const checkboxToggle = document.getElementById('checkbox_toggle_students22');
+    const ordenarContenedor = document.getElementById('busqueda');
+    const menuContenedor = document.getElementById('todos');
 
     menuContenedor.classList.add('active');
 
