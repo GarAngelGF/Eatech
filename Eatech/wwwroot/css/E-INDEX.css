@@ -222,13 +222,13 @@
 /* Estilos query para el segundo fondo  */
 
 .contenedor-imagen {
-    background-image: url('/Imagenes/BACKGROUND_PC_INDEX-2.png');
+    background-image: url(/Imagenes/BACKGROUND_PC_INDEX-2.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .container-imagen2 {
-    background-image: url();
+    background-image: url(/Imagenes/BACKGROUND_PC.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
