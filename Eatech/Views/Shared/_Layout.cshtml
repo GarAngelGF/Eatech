@@ -107,8 +107,8 @@
 
                             <li class="nav-item">
 
-                                @if ((currentController == "Aplicacion" && currentAction == "Login")||
-                               (currentController == "Aplicacion" && currentAction == "Politicas"))
+                                @if (currentController == "Aplicacion" && currentAction == "Login")
+                               
 
                                 {
                                     <!-- --------------------------------------------------------------------------- -->
@@ -123,6 +123,27 @@
 
                                     </a>
 
+
+                                }
+
+
+                                @if ((currentController == "Aplicacion" && currentAction == "Politicas")||
+                               (currentController == "Aplicacion" && currentAction == "Enlace_Padres"))
+
+                                {
+
+
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Registro">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">VOLVER</span>
+                                        </button>
+
+                                    </a>
 
                                 }
 

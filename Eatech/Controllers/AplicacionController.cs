@@ -46,7 +46,7 @@ namespace Eatech.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Usuario")]
+      
         public IActionResult Enlace_Padres()
         {
             return View();
@@ -130,7 +130,7 @@ namespace Eatech.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["Message"] = "Registro exitoso";
-                return RedirectToAction(nameof(Login));
+                return RedirectToAction("Enlace_Padres","Aplicacion");
 
             }
             return View(bd_Usuario);
