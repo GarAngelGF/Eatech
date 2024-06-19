@@ -84,7 +84,7 @@ namespace Eatech.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
 
-            if (busqueda.Rol == "Usuario") return RedirectToAction("Dashboard");
+            if (busqueda.Rol == "Usuario") return RedirectToAction("MenuUsuario");
 
             return RedirectToAction("AdminDashboard");
         }
@@ -357,6 +357,51 @@ namespace Eatech.Controllers
             // var LContexto = _context.Intermedia_Usuario_Alumno.Include(h=> h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
 
             //ViewBag.Alumnos = LContexto;
+            return View();
+        }
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult MenuUsuario()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult OrdenarUsuario()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult AlumnosUsuario()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult AgAlumnosUsuario()
+        {
+            return View();
+        }
+
+
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult BuscarAlumnosUsuario()
+        {
+            return View();
+        }
+
+
+        [Authorize(Roles = "Usuario")]
+
+        public IActionResult SeguimientoAlumnosUsuario()
+        {
             return View();
         }
 

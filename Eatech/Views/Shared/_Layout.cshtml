@@ -177,8 +177,131 @@
             </nav>
 
         }
-@* 
-        @if (currentController == "Aplicacion" && currentAction == "Index")
+
+
+        @if ((currentController == "Aplicacion" && currentAction == "MenuUsuario")||
+        (currentController == "Aplicacion" && currentAction == "OrdenarUsuario")||
+        (currentController == "Aplicacion" && currentAction == "AlumnosUsuario")||
+        (currentController == "Aplicacion" && currentAction == "AgAlumnosUsuario")||
+        (currentController == "Aplicacion" && currentAction == "BuscarAlumnosUsuario")||
+        (currentController == "Aplicacion" && currentAction == "SeguimientoAlumnosUsuario"))
+        {
+
+            <nav class="navbar navbar-expand-lg navbar-custom">
+                <div class="container-fluid">
+
+                    <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                           aria-label="Toggle navigation">
+                        <input id="check" type="checkbox">
+                        <span class="top"></span>
+                        <span class="mid"></span>
+                        <span class="bot"></span>
+                    </label>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="MenuUsuario">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        MENÚ
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="OrdenarUsuario" >
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        ORDENAR
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="AlumnosUsuario">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        ALUMNOS
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="AgAlumnosUsuario">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        AGREGAR ALUMNOS
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="BuscarAlumnosUsuario">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        BUSCAR
+                                    </button>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="SeguimientoAlumnosUsuario">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="button">
+                                        SEGUIMIENTO
+                                    </button>
+                                </a>
+                            </li>
+
+
+
+
+
+                            <li class="nav-item">
+                                <!-- --------------------------------------------------------------------------- -->
+                                <a asp-controller="Aplicacion" asp-action="Logout">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <button class="Btn-lo">
+                                        <div class="sign-lo">
+                                            <svg viewBox="0 0 512 512">
+                                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="text-lo">SALIR (@User.Identity.Name)</div>
+                                    </button>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+
+        }
+
+
+
+
+        @* 
+
+      @if (currentController == "Aplicacion" && currentAction == "Index")
         {
 
            
