@@ -24,8 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\Imagenes\INDEX\" />
-    <Folder Include="wwwroot\Imagenes\NewFolder\" />
   </ItemGroup>
 
 </Project>
