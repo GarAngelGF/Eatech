@@ -14,6 +14,7 @@ using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Permissions;
 
 
 namespace Eatech.Controllers
@@ -39,6 +40,17 @@ namespace Eatech.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult Politicas()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Usuario")]
+        public IActionResult Enlace_Padres()
+        {
+            return View();
+        }
 
 
 

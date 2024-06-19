@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Eatech.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="/css/detalle.css">
 </head>
 <body>
     <header>
@@ -24,7 +26,8 @@
 
 
         @if ((currentController == "Aplicacion" && currentAction == "Login") ||
-        (currentController == "Aplicacion" && currentAction == "Registro"))
+        (currentController == "Aplicacion" && currentAction == "Registro") ||
+        (currentController == "Aplicacion" && currentAction == "Politicas"))
 
         {
 
@@ -33,7 +36,7 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
                         <!-- --------------------------------------------------------------------------- -->
-                        <img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
+                        <img src="/IMAGENES-ALL/LOGO.png" alt="Logo" class="logo">
                         <!-- --------------------------------------------------------------------------- -->
                     </a>
                     <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -64,11 +67,15 @@
 
                                     </a>
 
+
+
+
                                 }
-                                @if ((currentController == "Aplicacion" && currentAction == "Registro"))
+                                @if ((currentController == "Aplicacion" && currentAction == "Registro") 
+                               )
                                 {
                                     <!-- --------------------------------------------------------------------------- -->
-                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Login">
+                                    <a asp-controller="Aplicacion" asp-action="Login">
                                         <!-- --------------------------------------------------------------------------- -->
                                         <button class="botonsito_blanco iniciar_blanco">
                                             <span class="circle_blanco" aria-hidden="true">
@@ -78,12 +85,31 @@
                                         </button>
 
                                     </a>
+
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Politicas">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">Politicas</span>
+                                        </button>
+
+                                    </a>
+                                </li>
+
                                 }
                             </li>
 
                             <li class="nav-item">
 
-                                @if (currentController == "Aplicacion" && currentAction == "Login")
+                                @if ((currentController == "Aplicacion" && currentAction == "Login")||
+                               (currentController == "Aplicacion" && currentAction == "Politicas"))
+
                                 {
                                     <!-- --------------------------------------------------------------------------- -->
                                     <a asp-area="" asp-controller="Aplicacion" asp-action="Index">
@@ -101,6 +127,7 @@
                                 }
 
                                 @if (currentController == "Aplicacion" && currentAction == "Registro")
+                               
                                 {
 
 
@@ -118,12 +145,69 @@
 
                                 }
                             </li>
-                       </ul>
+                           
+
+                            
+                           
+                            
+                        </ul>
                     </div>
                 </div>
             </nav>
 
         }
+@* 
+        @if (currentController == "Aplicacion" && currentAction == "Index")
+        {
+
+           
+
+                <nav class="navbar navbar-expand-lg navbar-custom1">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
+                            <!-- --------------------------------------------------------------------------- -->
+                            <img src="/IMAGENES-ALL/LOGO.png" alt="Logo" class="logo">
+                            <!-- --------------------------------------------------------------------------- -->
+                        </a>
+                        <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                               aria-expanded="false" aria-label="Toggle navigation">
+                            <input id="check" type="checkbox">
+                            <span class="top"></span>
+                            <span class="mid"></span>
+                            <span class="bot"></span>
+                        </label>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                            <!--PARTE DONDE SE DIVIDEN LAS NAVBAR--->
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+
+                                <li class="nav-item">
+
+
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Login">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">INICIAR SESIÓN</span>
+                                        </button>
+
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                
+            
+            
+
+        } *@
 
     </header>
 
@@ -142,3 +226,6 @@
 </body>
 
 </html>
+
+
+

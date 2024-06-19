@@ -1,22 +1,24 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
 
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EATECH-INICIO</title>
+    
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- BOOTSTRAP SCRIPT -->
+    <!-- BOOTSTRAP SCRIPT --> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
     <!-- CSS (CAMBIA EN VS)-->
     <!-- --------------------------------------------------------------------------- -->
-    <link rel="stylesheet" href="../css/E-INDEX.css">
-    <link rel="stylesheet" href="../css/E-ALL.css">
+    <link rel="stylesheet" href="/css/E-INDEX.css">
+    <link rel="stylesheet" href="/css/E-ALL.css">
     <!-- --------------------------------------------------------------------------- -->
     <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -38,7 +40,7 @@
 
 </head>
 
-<body>
+<body >
     <!-- CONTENEDOR PADRE (PRIMERA PARTE DEL INDEX. TIENE IMAGENES EN LAS MEDIA QUERY DE CSS) -->
     <div class="fondo">
 
@@ -47,7 +49,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
                     <!-- --------------------------------------------------------------------------- -->
-                    <img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
+                    <img src="/IMAGENES-ALL/LOGO.png" alt="Logo" class="logo">
                     <!-- --------------------------------------------------------------------------- -->
                 </a>
                 <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -164,7 +166,7 @@
                 <div class="col-sm-12 col-lg-4">
                     <div class="tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
-                        <img src="/Imagenes/INDEX/ALIMENTO5.jpg" alt="Imagen de la tarjeta">
+                        <img src="/Imagenes/IMAGENES-INDEX/ALIMENTO5.jpg" alt="Imagen de la tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
                         <div class="texto">
                             <p class="parrafo_tarjeta servicio">
@@ -188,7 +190,7 @@
 
                     <div class="tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
-                        <img src="/Imagenes/INDEX/ALIMENTO2.jpg" alt="Imagen de la tarjeta">
+                        <img src="/Imagenes/IMAGENES-INDEX/ALIMENTO2.jpg" alt="Imagen de la tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
 
                         <div class="texto">
@@ -211,7 +213,7 @@
 
                     <div class="tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
-                        <img src="/Imagenes/INDEX/ALIMENTO4.jpg" alt="Imagen de la tarjeta">
+                        <img src="/Imagenes/IMAGENES-INDEX/ALIMENTO4.jpg" alt="Imagen de la tarjeta">
                         <!-- --------------------------------------------------------------------------- -->
                         <div class="texto">
                             <p class="parrafo_tarjeta servicio">¿CÓMO PUEDO INGRESAR?</p>
@@ -275,11 +277,11 @@
                         <div class="carrusel">
 
                             <!-- --------------------------------------------------------------------------- -->
-                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO1.jpg" alt="Imagen 1"></div>
-                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO3.jpg" alt="Imagen 2"></div>
-                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO4.jpg" alt="Imagen 3"></div>
-                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO5.jpg" alt="Imagen 4"></div>
-                            <div class="imagen"><img src="/Imagenes/INDEX/ALIMENTO2.jpg" alt="Imagen 5"></div>
+                            <div class="imagen"><img src="/imagenes/IMAGENES-INDEX/ALIMENTO1.jpg" alt="Imagen 1"></div>
+                            <div class="imagen"><img src="/imagenes/IMAGENES-INDEX/ALIMENTO3.jpg" alt="Imagen 2"></div>
+                            <div class="imagen"><img src="/imagenes/IMAGENES-INDEX/ALIMENTO4.jpg" alt="Imagen 3"></div>
+                            <div class="imagen"><img src="/imagenes/IMAGENES-INDEX/ALIMENTO5.jpg" alt="Imagen 4"></div>
+                            <div class="imagen"><img src="/imagenes/IMAGENES-INDEX/ALIMENTO2.jpg" alt="Imagen 5"></div>
                             <!-- --------------------------------------------------------------------------- -->
 
                         </div>
@@ -305,7 +307,7 @@
             <!-- --------------------------------------------------------------------------- -->
             <a asp-controller="Home" asp-action="PHONE">
                 <!-- --------------------------------------------------------------------------- -->
-                <img class="animacion-imagen" src="/Imagenes/INDEX/PHONE.png" alt="Imagen Celular">
+                <img class="animacion-imagen" src="/Imagenes/IMAGENES-INDEX/PHONE.png" alt="Imagen Celular">
                 <!-- --------------------------------------------------------------------------- -->
             </a>
         </div>
@@ -318,7 +320,7 @@
         <br>
         <br>
         <!-- --------------------------------------------------------------------------- -->
-        <img src="/Imagenes/INDEX/FOOTER-IMG.png" alt="Descripción de la imagen" class="imagen-footer">
+        <img src="/Imagenes/IMAGENES-INDEX/FOOTER-IMG.png" alt="Descripción de la imagen" class="imagen-footer">
         <!-- --------------------------------------------------------------------------- -->
         <br>
         <br>
