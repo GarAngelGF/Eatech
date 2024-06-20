@@ -82,14 +82,15 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/
 
-        [Authorize(Roles = "Usuario, Admin")]
+        [Authorize(Roles = "Usuario,Admin")]
         
-        public IActionResult ComidaDashboard(Guid? id)
+        public IActionResult ComidaDashboard(/*Guid? id*/)
         {
-            if (id == null || _context.Alumnos == null) return NotFound();
-            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
+            //if (id == null || _context.Alumnos == null) return NotFound();
+            //var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
+            //if (lgc == null) return NotFound();
+            //return View(lgc);
+            return View();
         }
 
 
