@@ -84,7 +84,7 @@ namespace Eatech.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
 
-            if (busqueda.Rol == "Usuario") return RedirectToAction("ComidaDashboard","Comida");
+            if (busqueda.Rol == "Usuario") return RedirectToAction("ComidaDashboard", "Comida");
 
             return RedirectToAction("AdminDashboard");
         }
