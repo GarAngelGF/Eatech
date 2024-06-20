@@ -148,12 +148,14 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para ver el pedido de manera individual-*/
-        public IActionResult PedidoDashboard(Guid? id)
+        [Authorize(Roles="Usuario")]
+        public IActionResult PedidoDashboard(/*Guid? id*/)
         {
-            if (id == null || _context.Pedidos == null) return NotFound();
-            var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
+        //    if (id == null || _context.Pedidos == null) return NotFound();
+        //    var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
+        //    if (lgc == null) return NotFound();
+        //    return View(lgc);
+            return View();
         }
 
         //**************************************************************************************************************************************************************************//

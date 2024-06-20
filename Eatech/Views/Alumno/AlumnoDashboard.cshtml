@@ -1,1 +1,146 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Alumnos Padre";
+}
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIAR</title>
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-INICIO-P.css">
+    <!-- --------------------------------------------------------------------------- -->
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+          rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CAPTCHA DE GOOGLE -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+
+<body>
+
+    <div id="container2" class="content-container">
+
+        <form class="form" action="">
+
+            <br>
+            <br>
+            <br>
+
+            <!-- Contenedor de Estudiantes -->
+            <div id="estudiantes-contenedor" class="contenedor-estudiantes">
+                <h3>Alumnos agregados</h3>
+
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Matrícula" id="NoMatricula" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido paterno" id="Apaterno" type="email" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Apellido materno" id="Amaterno" type="tel" class="input" required />
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required />
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required />
+                    </div>
+
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+
+                        <br>
+
+                        <button class="buttonZ">
+                            Modificar
+                            <div class="hoverEffect">
+                                <div>
+                                </div>
+                            </div>
+                        </button>
+
+
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+
+                        <br>
+
+                        <button class="buttonZ">
+                            Eliminar
+                            <div class="hoverEffect">
+                                <div>
+                                </div>
+                            </div>
+                        </button>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

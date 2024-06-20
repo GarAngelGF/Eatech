@@ -35,6 +35,8 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Seccion referente a añadir a un alumno por parte del usuario mediante una vista-*/
+
+        [Authorize (Roles="Usuario")]
         public IActionResult AñadirAlumno()
         {
             return View();
@@ -82,11 +84,13 @@ namespace Eatech.Controllers
         //Apartado con todo lo relacionado al alumno dashboard (es la parte del view)
 
         //Nota: implementar cambios a la bd pa mañana
-        public IActionResult AlumnoDashboard(Guid? id)
+
+        [Authorize(Roles="Usuario")]
+        public IActionResult AlumnoDashboard(/*Guid? id*/)
         {
-            if (id == null || _context.Alumnos == null) return NotFound();
-         var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
-         if (LContexto == null) return NotFound();
+         //   if (id == null || _context.Alumnos == null) return NotFound();
+         //var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
+         //if (LContexto == null) return NotFound();
             return View();
         }
 
@@ -169,5 +173,12 @@ namespace Eatech.Controllers
             return View(Contexto);
         }
 
+
+        [Authorize(Roles = "Usuario")]
+        public IActionResult AlumnoBuscar()
+        {
+          
+            return View();
+        }
     }
 }

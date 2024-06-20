@@ -180,11 +180,11 @@
 
 
         @if ((currentController == "Comida" && currentAction == "ComidaDashboard")||
-        (currentController == "Aplicacion" && currentAction == "OrdenarUsuario")||
-        (currentController == "Aplicacion" && currentAction == "AlumnosUsuario")||
-        (currentController == "Aplicacion" && currentAction == "AgAlumnosUsuario")||
-        (currentController == "Aplicacion" && currentAction == "BuscarAlumnosUsuario")||
-        (currentController == "Aplicacion" && currentAction == "SeguimientoAlumnosUsuario"))
+        (currentController == "Comida" && currentAction == "PedirComida")||
+        (currentController == "Alumno" && currentAction == "AlumnoDashboard")||
+        (currentController == "Alumno" && currentAction == "AñadirAlumno")||
+        (currentController == "Alumno" && currentAction == "AlumnoBuscar")||
+        (currentController == "Pedido" && currentAction == "PedidoDashboard"))
         {
 
             <nav class="navbar navbar-expand-lg navbar-custom">
@@ -215,7 +215,7 @@
 
                             <li class="nav-item">
                                 <!-- --------------------------------------------------------------------------- -->
-                                <a asp-controller="Aplicacion" asp-action="OrdenarUsuario" >
+                                <a asp-controller="Comida" asp-action="PedirComida">
                                     <!-- --------------------------------------------------------------------------- -->
                                     <button class="button">
                                         ORDENAR
@@ -225,7 +225,7 @@
 
                             <li class="nav-item">
                                 <!-- --------------------------------------------------------------------------- -->
-                                <a asp-controller="Aplicacion" asp-action="AlumnosUsuario">
+                                <a asp-controller="Alumno" asp-action="AlumnoDashboard">
                                     <!-- --------------------------------------------------------------------------- -->
                                     <button class="button">
                                         ALUMNOS
@@ -235,7 +235,7 @@
 
                             <li class="nav-item">
                                 <!-- --------------------------------------------------------------------------- -->
-                                <a asp-controller="Aplicacion" asp-action="AgAlumnosUsuario">
+                                <a asp-controller="Alumno" asp-action="AñadirAlumno">
                                     <!-- --------------------------------------------------------------------------- -->
                                     <button class="button">
                                         AGREGAR ALUMNOS
@@ -245,7 +245,7 @@
 
                             <li class="nav-item">
                                 <!-- --------------------------------------------------------------------------- -->
-                                <a asp-controller="Aplicacion" asp-action="BuscarAlumnosUsuario">
+                                <a asp-controller="Alumno" asp-action="AlumnoBuscar">
                                     <!-- --------------------------------------------------------------------------- -->
                                     <button class="button">
                                         BUSCAR
@@ -256,7 +256,7 @@
 
                             <li class="nav-item">
                                 <!-- --------------------------------------------------------------------------- -->
-                                <a asp-controller="Aplicacion" asp-action="SeguimientoAlumnosUsuario">
+                                <a asp-controller="Pedido" asp-action="PedidoDashboard">
                                     <!-- --------------------------------------------------------------------------- -->
                                     <button class="button">
                                         SEGUIMIENTO
