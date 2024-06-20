@@ -4,6 +4,7 @@ using Eatech.Models;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 
 namespace Eatech.Controllers
@@ -80,6 +81,9 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/
+
+        [Authorize(Roles = "Usuario, Admin")]
+        
         public IActionResult ComidaDashboard(Guid? id)
         {
             if (id == null || _context.Alumnos == null) return NotFound();
@@ -181,6 +185,13 @@ namespace Eatech.Controllers
             if (busqueda.Porciones > busqueda.PorcionesDisponibles) return Ok(true);
             return Ok(false);
         }
+
+
+
+
+        /**************************************************************************************************************************************************************************/
+
+       
 
     }
 }
