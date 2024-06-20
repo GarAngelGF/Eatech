@@ -86,7 +86,7 @@ namespace Eatech.Controllers
 
             if (busqueda.Rol == "Usuario") return RedirectToAction("ComidaDashboard", "Comida");
 
-            return RedirectToAction("AdminDashboard");
+            return RedirectToAction("AdminComidaDashboard", "Comida");
         }
 
         /*-Logout-*/
@@ -360,52 +360,6 @@ namespace Eatech.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult MenuUsuario()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult OrdenarUsuario()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult AlumnosUsuario()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult AgAlumnosUsuario()
-        {
-            return View();
-        }
-
-
-
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult BuscarAlumnosUsuario()
-        {
-            return View();
-        }
-
-
-        [Authorize(Roles = "Usuario")]
-
-        public IActionResult SeguimientoAlumnosUsuario()
-        {
-            return View();
-        }
-
-
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
         [Authorize(Roles = "Admin")]
@@ -455,6 +409,14 @@ namespace Eatech.Controllers
             }
 
             return new string(clave);
+        }
+
+        [Authorize(Roles = "Admin")]
+
+        public IActionResult MiCodigo()
+        {
+            
+            return View();
         }
 
     }

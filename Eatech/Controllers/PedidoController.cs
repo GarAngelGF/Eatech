@@ -148,7 +148,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para ver el pedido de manera individual-*/
-        [Authorize(Roles="Usuario")]
+        [Authorize(Roles="Usuario, Admin")]
         public IActionResult PedidoDashboard(/*Guid? id*/)
         {
         //    if (id == null || _context.Pedidos == null) return NotFound();

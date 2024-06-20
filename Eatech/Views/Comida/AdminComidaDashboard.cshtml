@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = " Seguimiento Alimentacion Alumnos ";
+    ViewData["Title"] = "Comida Admin";
 }
 
 <html lang="en">
@@ -49,40 +49,65 @@
     <div id="container2" class="content-container">
 
         <form class="form" action="">
-
             <br>
             <br>
             <br>
 
-            <!-- Contenedor de Estudiantes -->
-            <div id="estudiantes-contenedor" class="contenedor-estudiantes">
-                <h3>Seguimiento de todos los estudiantes</h3>
 
-                <br>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alumno" id="Alumnos" type="text" class="input" required>
+
+            <div class="row">
+
+
+                <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                    <h3>Los padres tendrán acceso a ordenar estos alimentos</h3>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input"
+                               required />
+
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+
+                            <br>
+
+                            <button class="buttonZ">
+                                Modificar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
+                                </div>
+                            </button>
+
+
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+
+                            <br>
+
+                            <button class="buttonZ">
+                                Eliminar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
+                                </div>
+                            </button>
+
+
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
-                    </div>
+
                 </div>
+
+
             </div>
-
-
 
 
         </form>
     </div>
+
+    <script src="/js/CONTENEDORES-p.js"></script>
 
 
 

@@ -180,5 +180,15 @@ namespace Eatech.Controllers
           
             return View();
         }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminAlumnoBuscar()
+        {
+
+            return View();
+        }
+
+
     }
 }

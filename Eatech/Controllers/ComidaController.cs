@@ -23,6 +23,8 @@ namespace Eatech.Controllers
         }
         //**************************************************************************************************************************************************************************//
         /*-Index con el menu de la comida disponible-*/
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
