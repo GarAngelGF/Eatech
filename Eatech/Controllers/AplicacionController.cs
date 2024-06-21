@@ -350,13 +350,13 @@ namespace Eatech.Controllers
         //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
         [Authorize(Roles = "Usuario")]
 
-        public IActionResult Dashboard(/*Guid? id*/)
+        public IActionResult Dashboard()
         {
-            //id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-            // var LContexto = _context.Intermedia_Usuario_Alumno.Include(h=> h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
+            var LContexto = _context.Intermedia_Usuario_Alumno.Include(h => h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
 
-            //ViewBag.Alumnos = LContexto;
+            ViewBag.Alumnos = LContexto;
             return View();
         }
 

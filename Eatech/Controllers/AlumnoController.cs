@@ -86,11 +86,12 @@ namespace Eatech.Controllers
         //Nota: implementar cambios a la bd pa mañana
 
         [Authorize(Roles="Usuario")]
-        public IActionResult AlumnoDashboard(/*Guid? id*/)
+        public IActionResult AlumnoDashboard()
         {
-         //   if (id == null || _context.Alumnos == null) return NotFound();
-         //var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
-         //if (LContexto == null) return NotFound();
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            if (id == null || _context.Alumnos == null) return NotFound();
+            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
+            if (LContexto == null) return NotFound();
             return View();
         }
 
