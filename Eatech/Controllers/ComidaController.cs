@@ -30,7 +30,7 @@ namespace Eatech.Controllers
             var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
            // var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
-            return View(/*await LContexto.ToListAsync()*/);
+            return View();
         }
 
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
@@ -86,12 +86,13 @@ namespace Eatech.Controllers
 
         [Authorize(Roles = "Usuario,Admin")]
         
-        public IActionResult ComidaDashboard(/*Guid? id*/)
+        public IActionResult ComidaDashboard()
         {
-            //if (id == null || _context.Alumnos == null) return NotFound();
-            //var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
-            //if (lgc == null) return NotFound();
-            //return View(lgc);
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            if (id == null || _context.Alumnos == null) return NotFound();
+            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
+            if (lgc == null) return NotFound();
+
             return View();
         }
 
