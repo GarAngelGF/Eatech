@@ -17,7 +17,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ContextoBD>(
     lili =>
     //lili.UseSqlServer("Server=tcp:eatech.database.windows.net,1433;Initial Catalog=eatech;Persist Security Info=False;User ID=EatechCC;Password=Sopadepapa6IV8$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
-    lili.UseSqlServer("Data Source=.;Initial Catalog=Eatech;Integrated Security=True")
+    lili.UseSqlServer("Data Source=YAYO\\SQLEXPRESS;Initial Catalog=Eatech;Integrated Security=True;Encrypt=False;Trust Server Certificate=False")
     );
 
 //cookies para el login 
