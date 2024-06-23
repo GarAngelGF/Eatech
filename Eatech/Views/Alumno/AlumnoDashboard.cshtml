@@ -1,6 +1,6 @@
-﻿@model Eatech.Models.BdI_Usu_Alum
+﻿@model List<Eatech.Models.Bd_Alumno>
 @{
-    ViewData["Title"] = "Alumnos Padre";
+    ViewData["Title"] = "AlumnoDashboard";
 }
 
 
@@ -61,7 +61,7 @@
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
                 <h3>Alumnos agregados</h3>
 
-            @foreach (var alumno in ViewBag.sopadepapa)
+            @foreach (var alumno in Model)
                 {
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-3">
