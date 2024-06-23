@@ -8,7 +8,6 @@ using System.ComponentModel.Design;
 using NuGet.Protocol.Plugins;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
-using SixLabors.ImageSharp.PixelFormats;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using NuGet.Versioning;
 
