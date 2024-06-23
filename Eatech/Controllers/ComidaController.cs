@@ -80,8 +80,7 @@ namespace Eatech.Controllers
         {
             var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
             if (id == null || _context.Alumnos == null) return NotFound();
-            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
-            if (lgc == null) return NotFound();
+            
 
             return View();
         }
@@ -132,9 +131,8 @@ namespace Eatech.Controllers
         public async Task<IActionResult> EliminarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
-            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == Id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
+          
+            return View();
         }
 
         /*-task para mandar con papa dio los valores de la comida :o -*/
@@ -146,11 +144,10 @@ namespace Eatech.Controllers
             if (id == null || _context.Alumnos == null) return Problem("Alumno no encontrado");
             var ltam = await _context.Comidas.FindAsync(id);
             var lgc = await _context.Intermedia_Comida_Pedi.FindAsync(id);
-            var cc = await _context.Intermedia_Comida_Ingre.FindAsync(id);
-
-            if (lgc != null && ltam != null && cc != null)
+            
+            if (lgc != null && ltam != null )
             {
-                _context.Intermedia_Comida_Ingre.Remove(cc);
+              
                 _context.Intermedia_Comida_Pedi.Remove(lgc);
                 _context.Comidas.Remove(ltam);
             }
@@ -165,8 +162,7 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminComidaDashboard()
         {
-            var Contexto = _context.Intermedia_Comida_Ingre.Include(lgc => lgc.Comida).Include(tam => tam.Ingredientes);
-            return View(Contexto);
+            return View();
         }
 
         //**************************************************************************************************************************************************************************//
