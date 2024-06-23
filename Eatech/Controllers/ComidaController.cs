@@ -49,7 +49,7 @@ namespace Eatech.Controllers
         {
             if (ModelState.IsValid)
             {
-                BdI_Com_Ingr bdI_Com_Ingr = new BdI_Com_Ingr();
+             
                 bd_comida.IDComida = Guid.NewGuid();
                 _context.Add(bd_comida);
                 await _context.SaveChangesAsync();

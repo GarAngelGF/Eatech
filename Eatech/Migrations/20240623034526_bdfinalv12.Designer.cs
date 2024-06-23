@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eatech.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20240623011453_hola")]
-    partial class hola
+    [Migration("20240623034526_bdfinalv12")]
+    partial class bdfinalv12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,11 +60,6 @@ namespace Eatech.Migrations
                         .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Notas")
-                        .IsRequired()
-                        .HasMaxLength(528)
-                        .HasColumnType("nvarchar(528)");
-
-                    b.Property<string>("PreferenciasComida")
                         .IsRequired()
                         .HasMaxLength(528)
                         .HasColumnType("nvarchar(528)");

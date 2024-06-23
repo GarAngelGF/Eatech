@@ -34,9 +34,9 @@ namespace Eatech.Models
         [DisplayName("Enfermedades"), MaxLength(128, ErrorMessage = "Cantidad de caracteres maxima (128) Alcanzada")]
         public string Enfermedades { get; set; }
 
-        //Preferencias alimentarias de los alumnos, tampoco van con "Required", ya que estos campos son opcionales
-        [DisplayName("Preferencias de alimentos"), MaxLength(528, ErrorMessage = "Cantidad de caracteres maxima (528) Alcanzada")]
-        public string PreferenciasComida { get; set; }
+        ////Preferencias alimentarias de los alumnos, tampoco van con "Required", ya que estos campos son opcionales
+        //[DisplayName("Preferencias de alimentos"), MaxLength(528, ErrorMessage = "Cantidad de caracteres maxima (528) Alcanzada")]
+        //public string PreferenciasComida { get; set; }
 
         //Datos 
         [Required, DisplayName("Grado escolar")]

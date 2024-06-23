@@ -62,11 +62,6 @@ namespace Eatech.Migrations
                         .HasMaxLength(528)
                         .HasColumnType("nvarchar(528)");
 
-                    b.Property<string>("PreferenciasComida")
-                        .IsRequired()
-                        .HasMaxLength(528)
-                        .HasColumnType("nvarchar(528)");
-
                     b.Property<string>("aMaterno")
                         .IsRequired()
                         .HasMaxLength(128)

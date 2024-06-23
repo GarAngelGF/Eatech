@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eatech.Migrations
 {
-    public partial class hola : Migration
+    public partial class bdfinalv12 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,6 @@ namespace Eatech.Migrations
                     aMaterno = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Alergias = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Enfermedades = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    PreferenciasComida = table.Column<string>(type: "nvarchar(528)", maxLength: 528, nullable: false),
                     GradoEscolar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Notas = table.Column<string>(type: "nvarchar(528)", maxLength: 528, nullable: false),
                     BdI_Alu_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
