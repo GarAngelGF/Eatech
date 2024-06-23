@@ -85,14 +85,37 @@ namespace Eatech.Controllers
 
         //Nota: implementar cambios a la bd pa mañana
 
-        [Authorize(Roles="Usuario")]
-        public IActionResult AlumnoDashboard()
+        //[Authorize(Roles="Usuario")]
+        //public IActionResult AlumnoDashboard()
+        //{
+        //    var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+        //    if (id == null || _context.Alumnos == null) return NotFound();
+        //    var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
+        //    if (LContexto == null) return NotFound();
+        //    return View();
+        //}
+
+        [Authorize(Roles = "Usuario")]
+        public async Task< IActionResult> AlumnoDashboard()
         {
-            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
-            if (id == null || _context.Alumnos == null) return NotFound();
-            var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == id);
-            if (LContexto == null) return NotFound();
-            return View();
+            var idClaim = User.Claims.FirstOrDefault(lili => lili.Type == "Id");
+            if (idClaim == null) return NotFound("Usuario no encontrado.");
+
+            Guid id;
+            if (!Guid.TryParse(idClaim.Value, out id)) return NotFound("Id de usuario no válido.");
+
+            //if (_context.Alumnos == null) return NotFound("Contexto de alumnos no encontrado.");
+
+            var LContexto = _context.Intermedia_Usuario_Alumno
+                                    .Include(li => li.alumno)
+                                    .Include(gzl => gzl.usuario)
+                                    .Where(cerv => cerv.IdUsuario == id);
+
+            if (LContexto == null) return NotFound("Relaciones de usuario-alumno no encontradas.");
+
+            var alumnos = LContexto.Select(lc => lc.alumno);
+            //ViewBag.sopadepapa = alumnos;
+            return View( await LContexto.ToListAsync());
         }
 
 
