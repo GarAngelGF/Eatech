@@ -114,7 +114,7 @@ namespace Eatech.Controllers
             if (LContexto == null) return NotFound("Relaciones de usuario-alumno no encontradas.");
 
             var alumnos = LContexto.Select(lc => lc.alumno);
-            //ViewBag.sopadepapa = alumnos;
+            ViewBag.sopadepapa = alumnos;
             return View( await LContexto.ToListAsync());
         }
 
