@@ -53,16 +53,6 @@ namespace Eatech.Controllers
                 bd_comida.IDComida = Guid.NewGuid();
                 _context.Add(bd_comida);
                 await _context.SaveChangesAsync();
-
-                var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.Nombre == NombreIngrediente);
-                bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
-                bdI_Com_Ingr.IDComida = bd_comida.IDComida;
-
-
-
-               
-                _context.Add(bdI_Com_Ingr);
-                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
             }
