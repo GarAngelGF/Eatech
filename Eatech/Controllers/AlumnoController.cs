@@ -64,9 +64,7 @@ namespace Eatech.Controllers
                 bdI_Usu_Alum.Id = bd_Alumno.IdAlumno;
                 _context.Add(bdI_Usu_Alum);
                 await _context.SaveChangesAsync();
-                TempData["RegistroExitoso"] = "El alumno ha sido registrado exitosamente.";
                 return RedirectToAction("AñadirAlumno", "Alumno");
-                
 
             }
 
