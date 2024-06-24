@@ -33,6 +33,7 @@ namespace Eatech.Controllers
         }
         //**************************************************************************************************************************************************************************//
         /*-Apartado para crear el pedido + envio de correo por parte del cliente y admin-*/
+        [Authorize(Roles = "Usuario")]
         public IActionResult CrearPedido()
         {
             return View();

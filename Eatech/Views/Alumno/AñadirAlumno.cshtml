@@ -1,8 +1,15 @@
 ﻿@model Eatech.Models.Bd_Alumno
 
+@if (TempData["RegistroExitoso"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["RegistroExitoso"]');
+    </script>
+}
 @{
     ViewData["Title"] = "Agregar Alumnos Padre";
 }
+
 
 <html lang="en">
 
@@ -177,3 +184,8 @@
 </body>
 
 </html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
