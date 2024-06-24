@@ -47,15 +47,15 @@ namespace Eatech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida)
         {
-
-            
-            bd_comida.Visibilidad = "Visible";
+            bd_comida.Visibilidad = "visible";
+            bd_comida.PorcionesDisponibles = bd_comida.Porciones;
+           
 
             if (ModelState.IsValid)
             {
              
                 bd_comida.IDComida = Guid.NewGuid();
-                bd_comida.PorcionesDisponibles = bd_comida.Porciones;
+                
                 _context.Add(bd_comida);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("RegistrarComida", "Comida");
