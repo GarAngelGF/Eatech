@@ -35,7 +35,12 @@ namespace Eatech.Controllers
         /*-Apartado para crear el pedido + envio de correo por parte del cliente y admin-*/
         public IActionResult CrearPedido()
         {
+            ViewBag.comidavb = _context.Comidas.ToList();
+
+            ViewBag.alumno = _context.Alumnos.ToList();
             return View();
+
+
         }
         /*-Apartado para buscar alumnos antes del registro xd-*/
 
@@ -70,7 +75,7 @@ namespace Eatech.Controllers
 
                 var buscaralumno = _context.Alumnos.FirstOrDefault(a => _context.Intermedia_Usuario_Alumno.Any(ii => ii.IdUsuario == id && ii.IdAlumno == a.IdAlumno) && a.Nombre == nombrealum);
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
-                bdI_Alu_Ped.IdAlumno =buscaralumno.IdAlumno;
+                bdI_Alu_Ped.IdAlumno = buscaralumno.IdAlumno;
 
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
                 var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
