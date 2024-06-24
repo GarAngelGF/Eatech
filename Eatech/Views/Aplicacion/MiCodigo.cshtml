@@ -1,8 +1,9 @@
-﻿@model List<Eatech.Models.Bd_Alumno>
-
-@{
-    ViewData["Title"] = "AdminDashboardAlumnos";
+﻿@{
+    ViewData["Title"] = "Mi Codigo";
 }
+
+
+
 <html lang="en">
 
 <head>
@@ -23,6 +24,7 @@
     <!-- CSS (CAMBIA EN VS)-->
     <!-- --------------------------------------------------------------------------- -->
     <link rel="stylesheet" href="/css/E-INICIO-P.css">
+    <link rel="stylesheet" href="/css/E-INICIO.css">
     <!-- --------------------------------------------------------------------------- -->
     <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -49,78 +51,36 @@
 
     <div id="container2" class="content-container">
 
-        
+        <form class="form" action="">
             <br>
             <br>
             <br>
 
 
-            <!-- Contenedor de Estudiantes -->
-            <div id="estudiantes-contenedor" class="contenedor-estudiantes">
-                <h3>Alumnos agregados</h3>
-                <form class="form" action="">
-            @foreach (var alumno in Model)
-            {
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value=" @alumno.NoMatricula" type="text" class="input" disabled />
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.Nombre" type="text" class="input" disabled />
-                    </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.aPaterno" type="email" class="input" disabled />
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.aMaterno" type="tel" class="input" disabled />
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.Alergias" type="text" class="input" disabled />
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.Enfermedades" type="text" class="input" disabled />
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.GradoEscolar" type="text" class="input" disabled />
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <textarea class="input" disabled>@alumno.Notas</textarea>
-                    </div>
-
-                </div>
-
+            <div class="row">
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="contenedor-alimentos-agg2">
+                            <h2>Comparte el código con tu institución</h2>
 
-                        <br>
 
-                        <button class="buttonZ">
-                            Eliminar
-                            <div class="hoverEffect">
-                                <div>
-                                </div>
-                            </div>
-                        </button>
+                            <br>
+                            <br>
+                            <!-- --------------------------------------------------------------------------- -->
+                            <input placeholder="Codigo" id="Codigo" type="text" class="input" required="" />
+                            <!-- --------------------------------------------------------------------------- -->
 
+
+
+                        </div>
 
                     </div>
                 </div>
-            }
-            </form>
-        </div>
 
-       
+
+        </form>
     </div>
 
 

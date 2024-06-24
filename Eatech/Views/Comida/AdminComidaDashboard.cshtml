@@ -1,9 +1,7 @@
-﻿@model List<Eatech.Models.Bd_Alumno>
+﻿@model List< Eatech.Models.Bd_Comida>
 @{
-    ViewData["Title"] = "AlumnoDashboard";
+    ViewData["Title"] = "Comida Escuela";
 }
-
-
 
 <html lang="en">
 
@@ -51,54 +49,24 @@
 
     <div id="container2" class="content-container">
 
-       
 
-            <br>
-            <br>
-            <br>
+        <br>
+        <br>
+        <br>
 
-            <!-- Contenedor de Estudiantes -->
-            <div id="estudiantes-contenedor" class="contenedor-estudiantes">
-                <h3>Alumnos agregados</h3>
+
+
+        <div class="row">
+
+
+            <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                <h3>Menu que se le enseña a los padres de familia</h3>
                 <form class="form" action="">
-                @foreach (var alumno in Model)
+                @foreach (var comida in Model)
                 {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value=" @alumno.NoMatricula" type="text" class="input" disabled />
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.Nombre" type="text" class="input" disabled />
-                        </div>
 
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.aPaterno" type="email" class="input" disabled />
-                        </div>
-
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.aMaterno" type="tel" class="input" disabled />
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.Alergias" type="text" class="input" disabled />
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.Enfermedades" type="text" class="input" disabled />
-                        </div>
-
-
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.GradoEscolar" type="text" class="input" disabled />
-                        </div>
-
-                        <div class="col-sm-12 col-md-12 col-lg-3">
-                            <textarea class="input" disabled>@alumno.Notas</textarea>
-                        </div>
-
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input value="@comida.Nombre" type="text" class="input" disabled />
                     </div>
 
                     <div class="row">
@@ -132,23 +100,18 @@
 
                         </div>
                     </div>
-
-
                 }
-
-
-
-
-
-
-
-
-
                 </form>
-         
             </div>
-        
+
+
+        </div>
+
+
+
     </div>
+
+    <script src="/js/CONTENEDORES-p.js"></script>
 
 
 

@@ -19,8 +19,8 @@ namespace Eatech.Models
         [Remote("ValidarComida", "Comida", ErrorMessage = "Nombre de comida ya registrado")]
         public string Nombre { get; set; }
 
-        [Required, DisplayName("Estado visibilidad")]
-        public string Visibilidad { get; set; }
+        [DisplayName("Estado visibilidad")]
+        public string? Visibilidad { get; set; }
 
         [Required, DisplayName("Porciones totales")]
         public int Porciones { get; set; }

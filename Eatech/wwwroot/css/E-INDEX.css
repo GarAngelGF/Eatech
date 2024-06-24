@@ -12,37 +12,37 @@
 
 @media (max-width: 575.98px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
 @media (min-width: 1400px) {
     .fondo {
-        background-image: url('/Imagenes/BACKKPC.png');
+        background-image: url('/IMAGENES-ALL/BACKKPC.png');
     }
 }
 
@@ -222,13 +222,13 @@
 /* Estilos query para el segundo fondo  */
 
 .contenedor-imagen {
-    background-image: url('/Imagenes/BACKGROUND_PC_INDEX-2.png');
+    background-image: url(/IMAGENES-ALL/BACKGROUND_PC_INDEX-2.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .container-imagen2 {
-    background-image: url();
+    background-image: url(/IMAGENES-ALL/BACKGROUND_PC-PC.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -446,37 +446,37 @@
 
 @media (max-width: 575.98px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPHONE.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPHONE.png');
     }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPHONE.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPHONE.png');
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPHONE.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPHONE.png');
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPC.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPC.png');
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPC.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPC.png');
     }
 }
 
 @media (min-width: 1400px) {
     .container-footer {
-        background-image: url('/Imagenes/FOOTERPC.png');
+        background-image: url('/IMAGENES-ALL/FOOTERPC.png');
     }
 }
 
@@ -636,7 +636,7 @@
     background-color: rgb(31 41 55);
     color: #fff;
     border: rgb(31 41 55);
-    ;
+    
   }
   
   .accept-button:active {

@@ -1,0 +1,177 @@
+﻿@model Eatech.Models.Bd_Pedido
+@{
+    ViewData["Title"] = "Ordenar Padres";
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- CSS (CAMBIA EN VS)-->
+    <!-- --------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="/css/E-INICIO-P.css">
+    <!-- --------------------------------------------------------------------------- -->
+    <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- FUENTE DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
+          rel="stylesheet">
+    <!-- FUENTE DE TITULOS DE EATECH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CAPTCHA DE GOOGLE -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+
+<body>
+
+
+    <div id="container2" class="content-container">
+
+
+
+
+        <br>
+        <br>
+        <br>
+
+
+        <div class="row">
+            <div id="ordenar-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                <h3>Realiza tu orden</h3>
+                <form asp-action="RegistrarPedido" method="post" class="form">
+                    <div asp-validation-summary="ModelOnly"> </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <select id="nombrealum" type="text" class="input" required>
+
+                                <option value="">Selecciona un alumno</option>
+
+                                @foreach (var item in ViewBag.alumno)
+                                {
+
+                                    <option value="@item.Nombre">@item.Nombre</option>
+
+                                }
+                            </select>
+                        </div>
+
+
+                        <br>
+                        <br>
+                        <br>
+
+
+
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <select id="nombrecomida" type="text" class="input" required>
+
+                                <option value="">Selecciona una comida</option>
+
+                                @foreach (var item in ViewBag.comidavb)
+                                {
+
+                                    <option value="@item.Nombre">@item.Nombre</option>
+                                }
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <input asp-for="FechaEntrega" placeholder="Fecha de entrega" id="Alimentosfe" type="date" class="input" required />
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <br>
+                            <button class="buttonZ" id="btnordernar" type="submit">
+                                Ordenar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
+                                </div>
+                            </button>
+                        
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#btnordernar").click(function (event) {
+            event.preventDefault(); // // Evita el envío tradicional del formulario
+
+            var nombreAlum = $('#nombrealum').val(); // Suponiendo que tienes un input con este ID
+            var nombreComida = $('#nombrecomida').val(); // Suponiendo que tienes un input con este ID
+            // ... (Obtén los valores de los demás campos del formulario)
+
+            $.ajax({
+                url: '@Url.Action("RegistrarPedido", "Pedido")',
+                type: 'POST',
+                data: {
+                    nombrealum: nombreAlum,
+                    nombrecomida: nombreComida,
+                    // ... (Envía los valores de los demás campos)
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Token anti-falsificación
+                },
+            });
+        });
+    });
+</script>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

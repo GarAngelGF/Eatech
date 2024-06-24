@@ -14,6 +14,7 @@ using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Permissions;
 
 
 namespace Eatech.Controllers
@@ -39,6 +40,17 @@ namespace Eatech.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult Politicas()
+        {
+            return View();
+        }
+
+      
+        public IActionResult Enlace_Padres()
+        {
+            return View();
+        }
 
 
 
@@ -72,9 +84,9 @@ namespace Eatech.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
 
-            if (busqueda.Rol == "Usuario") return RedirectToAction("Dashboard");
+            if (busqueda.Rol == "Usuario") return RedirectToAction("ComidaDashboard", "Comida");
 
-            return RedirectToAction("AdminDashboard");
+            return RedirectToAction("AdminComidaDashboard", "Comida");
         }
 
         /*-Logout-*/
@@ -118,7 +130,7 @@ namespace Eatech.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["Message"] = "Registro exitoso";
-                return RedirectToAction(nameof(Login));
+                return RedirectToAction("Enlace_Padres","Aplicacion");
 
             }
             return View(bd_Usuario);
@@ -338,16 +350,15 @@ namespace Eatech.Controllers
         //Apartado para todo lo referente al dashboard de la aplicación desde la vista del usuario normal (Cliente)
         [Authorize(Roles = "Usuario")]
 
-        public IActionResult Dashboard(/*Guid? id*/)
+        public IActionResult Dashboard()
         {
-            //id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-            // var LContexto = _context.Intermedia_Usuario_Alumno.Include(h=> h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
+            var LContexto = _context.Intermedia_Usuario_Alumno.Include(h => h.alumno).Where(cerv => cerv.IdUsuario == id).ToList();
 
-            //ViewBag.Alumnos = LContexto;
+            ViewBag.Alumnos = LContexto;
             return View();
         }
-
 
         //**************************************************************************************************************************************************************************//
         //Apartado para el dashboard y vistas del administrador desde la vista del administrador
@@ -398,6 +409,14 @@ namespace Eatech.Controllers
             }
 
             return new string(clave);
+        }
+
+        [Authorize(Roles = "Admin")]
+
+        public IActionResult MiCodigo()
+        {
+            
+            return View();
         }
 
     }

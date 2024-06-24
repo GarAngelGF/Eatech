@@ -4,6 +4,7 @@ using Eatech.Models;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 
 namespace Eatech.Controllers
@@ -22,12 +23,17 @@ namespace Eatech.Controllers
         }
         //**************************************************************************************************************************************************************************//
         /*-Index con el menu de la comida disponible-*/
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+           // var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-           // var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
-            return View(/*await LContexto.ToListAsync()*/);
+           //// var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
+           // return View();
+
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
@@ -42,25 +48,20 @@ namespace Eatech.Controllers
         /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida, string NombreIngrediente)
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles,Visibilidad")] Bd_Comida bd_comida)
         {
+            bd_comida.Visibilidad = "visible";
+            bd_comida.PorcionesDisponibles = bd_comida.Porciones;
+           
+
             if (ModelState.IsValid)
             {
-                BdI_Com_Ingr bdI_Com_Ingr = new BdI_Com_Ingr();
+             
                 bd_comida.IDComida = Guid.NewGuid();
+                
                 _context.Add(bd_comida);
                 await _context.SaveChangesAsync();
-
-                var buscador = _context.Ingredientes.FirstOrDefault(lgc => lgc.Nombre == NombreIngrediente);
-                bdI_Com_Ingr.IdIngrediente = buscador.IdIngrediente;
-                bdI_Com_Ingr.IDComida = bd_comida.IDComida;
-
-
-
-               
-                _context.Add(bdI_Com_Ingr);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("RegistrarComida", "Comida");
 
             }
 
@@ -80,12 +81,20 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/
-        public IActionResult ComidaDashboard(Guid? id)
+
+        [Authorize(Roles = "Usuario")]
+        
+        public async Task< IActionResult> ComidaDashboard()
         {
-            if (id == null || _context.Alumnos == null) return NotFound();
-            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
+            //var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            //if (id == null || _context.Alumnos == null) return NotFound();
+            
+
+            //return View();
+
+
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
 
@@ -134,9 +143,8 @@ namespace Eatech.Controllers
         public async Task<IActionResult> EliminarComida(Guid? Id)
         {
             if (Id == null || _context.Comidas == null) return NotFound();
-            var lgc = _context.Intermedia_Comida_Ingre.Include(l => l.Comida).Include(g => g.Ingredientes).Where(c => c.IDComida == Id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
+          
+            return View();
         }
 
         /*-task para mandar con papa dio los valores de la comida :o -*/
@@ -148,11 +156,10 @@ namespace Eatech.Controllers
             if (id == null || _context.Alumnos == null) return Problem("Alumno no encontrado");
             var ltam = await _context.Comidas.FindAsync(id);
             var lgc = await _context.Intermedia_Comida_Pedi.FindAsync(id);
-            var cc = await _context.Intermedia_Comida_Ingre.FindAsync(id);
-
-            if (lgc != null && ltam != null && cc != null)
+            
+            if (lgc != null && ltam != null )
             {
-                _context.Intermedia_Comida_Ingre.Remove(cc);
+              
                 _context.Intermedia_Comida_Pedi.Remove(lgc);
                 _context.Comidas.Remove(ltam);
             }
@@ -167,8 +174,8 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminComidaDashboard()
         {
-            var Contexto = _context.Intermedia_Comida_Ingre.Include(lgc => lgc.Comida).Include(tam => tam.Ingredientes);
-            return View(Contexto);
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
         //**************************************************************************************************************************************************************************//
@@ -181,6 +188,16 @@ namespace Eatech.Controllers
             if (busqueda.Porciones > busqueda.PorcionesDisponibles) return Ok(true);
             return Ok(false);
         }
+
+
+
+
+        /**************************************************************************************************************************************************************************/
+        
+
+
+        /**************************************************************************************************************************************************************************/
+
 
     }
 }

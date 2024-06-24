@@ -212,7 +212,7 @@ input[type="checkbox"]:checked~.mid {
 
 
 body {
-    background-image: url(/Imagenes/CUBES.jpg);
+    background-image: url(../IMAGENES-ALL/CUBES.jpg);
 
 }
 
@@ -868,48 +868,6 @@ html {
     justify-content: center;
 }
 
-/* OCULTAR CONTENEDOR 2 */
-
-.contenedor-alimentos-agg {
-    display: none;
-}
-
-.contenedor-alimentos-agg.active {
-    display: block;
-}
-
-.contenedor-estudiantes {
-    display: none;
-}
-
-.contenedor-estudiantes.active {
-    display: block;
-}
-
-.contenedor-seguimiento {
-    display: none;
-}
-
-.contenedor-seguimiento.active {
-    display: block;
-}
-
-.contenedor-seguimiento6 {
-    display: none;
-}
-
-.contenedor-seguimiento6.active {
-    display: block;
-}
-
-.contenedor-alimentos-agg5 {
-    display: none;
-}
-
-.contenedor-alimentos-agg5.active {
-    display: block;
-}
-
 /* Mostrar contenedor 3 */
 
 .contenedor-alimentos-agg2  {
@@ -918,31 +876,10 @@ html {
     border-radius: 40px;
     padding: 25px 35px;
     box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     height: 360px;
-    overflow-y: auto;
 }
 
 
-.contenedor-alimentos-agg3 {
-    display: none;
-}
-
-.contenedor-alimentos-agg3.active {
-    display: block;
-}
-
-
-
-.contenedor-alimentos-agg4 {
-    display: none;
-}
-
-.contenedor-alimentos-agg4.active {
-    display: block;
-}
 
 .sopadepapa  {
     background: #F8F9FD;

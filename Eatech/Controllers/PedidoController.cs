@@ -8,7 +8,6 @@ using System.ComponentModel.Design;
 using NuGet.Protocol.Plugins;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
-using SixLabors.ImageSharp.PixelFormats;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using NuGet.Versioning;
 
@@ -36,41 +35,58 @@ namespace Eatech.Controllers
         /*-Apartado para crear el pedido + envio de correo por parte del cliente y admin-*/
         public IActionResult CrearPedido()
         {
+            ViewBag.comidavb = _context.Comidas.ToList();
+
+            ViewBag.alumno = _context.Alumnos.ToList();
             return View();
+
+
         }
         /*-Apartado para buscar alumnos antes del registro xd-*/
 
         /*-Task para crear pedido + enviar el correo de pedido creado-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarPedido(Guid IdAlum, Guid IdCom, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido)
+        public async Task<IActionResult> RegistrarPedido(string nombrealum, string nombrecomida, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido)
         {
             if (ModelState.IsValid)
             {
                 BdI_Alu_Ped bdI_Alu_Ped = new BdI_Alu_Ped();
                 bd_Pedido.pedido = Guid.NewGuid();
                 bd_Pedido.Estatus = "Generado";
+                bd_Pedido.FechaCPedido= DateTime.Now;
+                bd_Pedido.NotaPedido = ".";
                 _context.Add(bd_Pedido);
-              
+
                 await _context.SaveChangesAsync();
 
+                var buscarcomida = _context.Comidas.FirstOrDefault(lgc => lgc.Nombre == nombrecomida);
+
+
+                buscarcomida.PorcionesDisponibles = buscarcomida.PorcionesDisponibles - 1;
                 BdI_Com_Ped bdI_Com_Ped = new BdI_Com_Ped();
-                bdI_Com_Ped.IDComida = IdCom;
+                bdI_Com_Ped.IDComida = buscarcomida.IDComida;
                 bdI_Com_Ped.pedido = bd_Pedido.pedido;
+                _context.Update(buscarcomida);
                 _context.Add(bdI_Com_Ped);
                 await _context.SaveChangesAsync();
 
+                var idClaim = User.Claims.FirstOrDefault(lili => lili.Type == "Id");
+                Guid id;
+                if (!Guid.TryParse(idClaim.Value, out id)) return NotFound("Id de usuario no válido.");
 
+                var buscaralumno = _context.Alumnos.FirstOrDefault(a => _context.Intermedia_Usuario_Alumno.Any(ii => ii.IdUsuario == id && ii.IdAlumno == a.IdAlumno) && a.Nombre == nombrealum);
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
-                bdI_Alu_Ped.IdAlumno = IdAlum;
+                bdI_Alu_Ped.IdAlumno = buscaralumno.IdAlumno;
+
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
-                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                var ltam = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
-          
+
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("CrearPedido","Pedido");
 
             }
             return View(bd_Pedido);
@@ -99,7 +115,7 @@ namespace Eatech.Controllers
             {
                 _context.Update(bd_pedido);
                 await _context.SaveChangesAsync();
-                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                var ltam = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 Utilerias.Correo.PedidoCorreo(ltam, "Estatus del pedido", "El estatus de su pedido se ha actualizado." + " \nEl estado de su pedido es: " + bd_pedido.Estatus + " \n Eatech");
 
             }
@@ -148,14 +164,24 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para ver el pedido de manera individual-*/
-        public IActionResult PedidoDashboard(Guid? id)
+        [Authorize(Roles = "Usuario, Admin")]
+        public async Task<IActionResult> PedidoDashboard()
         {
+
+            ViewBag.comidavv = _context.Comidas.ToList();
+
+            ViewBag.alumno = _context.Alumnos.ToList();
+
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
             if (id == null || _context.Pedidos == null) return NotFound();
             var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
-            if (lgc == null) return NotFound();
-            return View(lgc);
-        }
 
+            if (lgc == null) return NotFound();
+            var comi = await _context.Pedidos./*Where(pedido => _context.Intermedia_Comida_Pedi.Any(inter => inter.IDcomida = id && inter.id = pedido.id)).*/ToListAsync();
+            return View(comi);
+        }
+        
+        //return View(alumnos);
         //**************************************************************************************************************************************************************************//
         /*-apartado vistas de admin [dashboard, etc]-*/
     }

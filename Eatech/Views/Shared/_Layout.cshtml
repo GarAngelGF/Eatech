@@ -1,259 +1,449 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title> Eatech - @ViewData["Title"]</title>
-	<link rel="icon" href="/Imagenes/LOGO.png"  type="image/x-icon"/>
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/Eatech.styles.css" asp-append-version="true" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Eatech - @ViewData["Title"]</title>
+    <link rel="icon" href="/Imagenes/LOGO.png" type="image/x-icon" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Eatech.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="/css/detalle.css">
 </head>
 <body>
-	<header>
-
-
-		@using Microsoft.AspNetCore.Mvc.Rendering
-		@{
-
-			string currentController = ViewContext.RouteData.Values["Controller"].ToString();
-			string currentAction = ViewContext.RouteData.Values["Action"].ToString();
-		}
+    <header>
 
 
+        @using Microsoft.AspNetCore.Mvc.Rendering
+        @{
 
+            string currentController = ViewContext.RouteData.Values["Controller"].ToString();
+            string currentAction = ViewContext.RouteData.Values["Action"].ToString();
+        }
 
-		@if ((currentController == "Aplicacion" && currentAction == "Login") ||
-				(currentController == "Aplicacion" && currentAction == "Registro"))
-			
-		{
 
 
-			<nav class="navbar navbar-expand-lg navbar-custom">
-				<div class="container-fluid">
-					<a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
-						<!-- --------------------------------------------------------------------------- -->
-						<img src="/Imagenes/LOGO.png" alt="Logo" class="logo">
-						<!-- --------------------------------------------------------------------------- -->
-					</a>
-					<label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
-						   data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-						   aria-expanded="false" aria-label="Toggle navigation">
-						<input id="check" type="checkbox">
-						<span class="top"></span>
-						<span class="mid"></span>
-						<span class="bot"></span>
-					</label>
 
-					<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        @if ((currentController == "Aplicacion" && currentAction == "Login") ||
+        (currentController == "Aplicacion" && currentAction == "Registro") ||
+        (currentController == "Aplicacion" && currentAction == "Politicas"))
 
-						<ul class="navbar-nav mb-2 mb-lg-0">
-							<li class="nav-item">
+        {
 
-								@if (currentController=="Aplicacion" && currentAction=="Login")
-								{
-									<!-- --------------------------------------------------------------------------- -->
-									<a asp-area="" asp-controller="Aplicacion" asp-action="Registro">
-										<!-- --------------------------------------------------------------------------- -->
-										<button class="botonsito_blanco iniciar_blanco">
-											<span class="circle_blanco" aria-hidden="true">
-												<span class="icon_blanco arrow_blanco"></span>
-											</span>
-											<span class="button-text_blanco">REGISTRARME</span>
-										</button>
 
-									</a>
+            <nav class="navbar navbar-expand-lg navbar-custom">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
+                        <!-- --------------------------------------------------------------------------- -->
+                        <img src="/IMAGENES-ALL/LOGO.png" alt="Logo" class="logo">
+                        <!-- --------------------------------------------------------------------------- -->
+                    </a>
+                    <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                           aria-expanded="false" aria-label="Toggle navigation">
+                        <input id="check" type="checkbox">
+                        <span class="top"></span>
+                        <span class="mid"></span>
+                        <span class="bot"></span>
+                    </label>
 
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <!--PARTE DONDE SE DIVIDEN LAS NAVBAR--->
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
 
+                                @if (currentController == "Aplicacion" && currentAction == "Login")
+                                {
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Registro">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">REGISTRARME</span>
+                                        </button>
 
-								}
-								@if ((currentController == "Aplicacion" && currentAction == "Registro"))
-								{
-									<!-- --------------------------------------------------------------------------- -->
-									<a asp-area="" asp-controller="Aplicacion" asp-action="Login">
-										<!-- --------------------------------------------------------------------------- -->
-										<button class="botonsito_blanco iniciar_blanco">
-											<span class="circle_blanco" aria-hidden="true">
-												<span class="icon_blanco arrow_blanco"></span>
-											</span>
-											<span class="button-text_blanco">INICIAR SESIÓN</span>
-										</button>
+                                    </a>
 
-									</a>
-								}
-							</li>
 
-							<li class="nav-item">
 
-								@if (currentController == "Aplicacion" && currentAction == "Login")
-								{
-									<!-- --------------------------------------------------------------------------- -->
-									<a asp-area="" asp-controller="Aplicacion" asp-action="Index">
-										<!-- --------------------------------------------------------------------------- -->
-										<button class="botonsito_blanco iniciar_blanco">
-											<span class="circle_blanco" aria-hidden="true">
-												<span class="icon_blanco arrow_blanco"></span>
-											</span>
-											<span class="button-text_blanco">VOLVER</span>
-										</button>
 
-									</a>
+                                }
+                                @if ((currentController == "Aplicacion" && currentAction == "Registro")
+                               )
+                                {
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Login">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">INICIAR SESIÓN</span>
+                                        </button>
 
+                                    </a>
 
-								}
 
-								@if (currentController == "Aplicacion" && currentAction == "Registro")
-								{
 
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Politicas">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">Politicas</span>
+                                        </button>
 
-									<!-- --------------------------------------------------------------------------- -->
-									<a asp-area="" asp-controller="Aplicacion" asp-action="Login">
-										<!-- --------------------------------------------------------------------------- -->
-										<button class="botonsito_blanco iniciar_blanco">
-											<span class="circle_blanco" aria-hidden="true">
-												<span class="icon_blanco arrow_blanco"></span>
-											</span>
-											<span class="button-text_blanco">VOLVER</span>
-										</button>
+                                    </a>
+                                </li>
 
-									</a>
+                                }
+                            </li>
 
+                            <li class="nav-item">
 
+                                @if (currentController == "Aplicacion" && currentAction == "Login")
 
 
+                                {
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Index">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">VOLVER</span>
+                                        </button>
 
-								}
-								
+                                    </a>
 
 
+                                }
 
 
-							</li>
-							
-								
-								
+                                @if ((currentController == "Aplicacion" && currentAction == "Politicas") ||
+                               (currentController == "Aplicacion" && currentAction == "Enlace_Padres"))
 
+                                {
 
-								
 
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Registro">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">VOLVER</span>
+                                        </button>
 
+                                    </a>
 
+                                }
 
-							
+                                @if (currentController == "Aplicacion" && currentAction == "Registro")
 
-							
-								
+                                {
 
 
-							
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-area="" asp-controller="Aplicacion" asp-action="Login">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="botonsito_blanco iniciar_blanco">
+                                            <span class="circle_blanco" aria-hidden="true">
+                                                <span class="icon_blanco arrow_blanco"></span>
+                                            </span>
+                                            <span class="button-text_blanco">VOLVER</span>
+                                        </button>
+
+                                    </a>
+
+                                }
+                            </li>
+
+
+
+
 
-						</ul>
-					</div>
-				</div>
-			</nav>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
+        }
 
+        @if (User.IsInRole("Usuario"))
+        {
 
-
-		}
-
-		@if ((currentController == "Home" && currentAction == "Index") ||
-				(currentController == "Home" && currentAction == "Privacy")						
-			
-		
-		
-		
-		
-		)
-		{
-
-			<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-				<div class="container-fluid">
-					<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eatech</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-							aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-						<ul class="navbar-nav flex-grow-1">
-							
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Login">login</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Registro">Registro</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="RecuperarContrasena">Recuperar Contraseña</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="NuevaContrasena">NuevaContraseña</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Dashboard">dashboard</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="AdminDashboard">AdminDashboard</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Aplicacion" asp-action="Logout">Salir (@User.Identity.Name)</a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</nav>
-
-
-
-
-
-		}
-
-
-
-
-
-	</header>
-
-	<div class="container1">
-		<main role="main" class="">
-			@RenderBody()
-		</main>
-	</div>
-
-
-
-	@if (currentController == "Home" && currentAction == "Index")
-	{
-		<footer class="border-top footer text-muted">
-			<div class="container">
-				&copy; 2024 - Eatech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-			</div>
-		</footer>
-	}
-
-
-
-
-
-
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="false"></script>
-	@await RenderSectionAsync("Scripts", required: false)
+
+
+            @if ((currentController == "Comida" && currentAction == "ComidaDashboard") ||
+           (currentController == "Pedido" && currentAction == "CrearPedido") ||
+           (currentController == "Alumno" && currentAction == "AlumnoDashboard") ||
+           (currentController == "Alumno" && currentAction == "AñadirAlumno") ||
+           (currentController == "Alumno" && currentAction == "AlumnoBuscar") ||
+           (currentController == "Pedido" && currentAction == "PedidoDashboard"))
+            {
+
+                <nav class="navbar navbar-expand-lg navbar-custom">
+                    <div class="container-fluid">
+
+                        <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                               aria-label="Toggle navigation">
+                            <input id="check" type="checkbox">
+                            <span class="top"></span>
+                            <span class="mid"></span>
+                            <span class="bot"></span>
+                        </label>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Comida" asp-action="ComidaDashboard">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            MENÚ
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Pedido" asp-action="CrearPedido">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            ORDENAR
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Alumno" asp-action="AlumnoDashboard">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            ALUMNOS
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Alumno" asp-action="AñadirAlumno">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            AGREGAR ALUMNOS
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Alumno" asp-action="AlumnoBuscar">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            BUSCAR
+                                        </button>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Pedido" asp-action="PedidoDashboard">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            SEGUIMIENTO
+                                        </button>
+                                    </a>
+                                </li>
+
+
+
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Logout">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="Btn-lo">
+                                            <div class="sign-lo">
+                                                <svg viewBox="0 0 512 512">
+                                                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="text-lo">SALIR (@User.Identity.Name)</div>
+                                        </button>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+            }
+        }
+
+        @if (User.IsInRole("Admin"))
+        {
+            @if ((currentController == "Comida" && currentAction == "AdminComidaDashboard") ||
+            (currentController == "Comida" && currentAction == "RegistrarComida") ||
+            (currentController == "Comida" && currentAction == "Index") ||
+            (currentController == "Alumno" && currentAction == "AdminDashboardAlumnos") ||
+            (currentController == "Alumno" && currentAction == "AdminAlumnoBuscar") ||
+            (currentController == "Pedido" && currentAction == "PedidoDashboard") ||
+            (currentController == "Aplicacion" && currentAction == "MiCodigo"))
+                {
+
+                <nav class="navbar navbar-expand-lg navbar-custom">
+                    <div class="container-fluid">
+
+                        <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                               aria-label="Toggle navigation">
+                            <input id="check" type="checkbox">
+                            <span class="top"></span>
+                            <span class="mid"></span>
+                            <span class="bot"></span>
+                        </label>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Comida" asp-action="AdminComidaDashboard">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            MENÚ
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Comida" asp-action="RegistrarComida">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            SUBIR ALIMENTO
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Comida" asp-action="Index">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            ALIMENTOS
+                                        </button>
+                                    </a>
+                                </li>
+
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Alumno" asp-action="AdminDashboardAlumnos">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            ALUMNOS
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Alumno" asp-action="AdminAlumnoBuscar">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            BUSCAR
+                                        </button>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Pedido" asp-action="PedidoDashboard">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            SEGUIMIENTO
+                                        </button>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="MiCodigo">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="button">
+                                            MI CÓDIGO
+                                        </button>
+                                    </a>
+                                </li>
+
+
+
+                                <li class="nav-item">
+                                    <!-- --------------------------------------------------------------------------- -->
+                                    <a asp-controller="Aplicacion" asp-action="Logout">
+                                        <!-- --------------------------------------------------------------------------- -->
+                                        <button class="Btn-lo">
+                                            <div class="sign-lo">
+                                                <svg viewBox="0 0 512 512">
+                                                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <div class="text-lo">SALIR (@User.Identity.Name)</div>
+                                        </button>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+    
+                }
+
+
+
+        }
+
+    </header>
+
+    <div class="container1">
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="false"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 
 
 </body>
 
 </html>
+
+
+
