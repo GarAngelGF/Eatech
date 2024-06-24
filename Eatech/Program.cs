@@ -18,12 +18,12 @@ builder.Services.AddDbContext<ContextoBD>(
     lili =>
     /*-Base de datos Desde Azure-*/
     //lili.UseSqlServer("Server=tcp:eatech.database.windows.net,1433;Initial Catalog=eatech;Persist Security Info=False;User ID=EatechCC;Password=Sopadepapa6IV8$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
-   
+
     /*-Conexión de base de datos a la computadora de yael-*/
-    //lili.UseSqlServer("Data Source=YAYO\\SQLEXPRESS;Initial Catalog=Eatech;Integrated Security=True;Encrypt=False;Trust Server Certificate=False")
+    lili.UseSqlServer("Data Source=YAYO\\SQLEXPRESS;Initial Catalog=Eatech;Integrated Security=True;Encrypt=False;Trust Server Certificate=False")
 
     /*-Conexion de base de datos desde "."-*/
-    lili.UseSqlServer("Data Source=.;Initial Catalog=eatech;Integrated Security=True")
+    //lili.UseSqlServer("Data Source=.;Initial Catalog=eatech;Integrated Security=True")
     );
 
 //cookies para el login 
