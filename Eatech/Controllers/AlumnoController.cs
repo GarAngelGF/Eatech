@@ -185,8 +185,17 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminDashboardAlumnos()
         {
-            var Contexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario);
-            return View(Contexto);
+            //var Contexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario);
+            //return View(Contexto);
+
+            var idClaim = User.Claims.FirstOrDefault(lili => lili.Type == "Id");
+            if (idClaim == null) return NotFound("Usuario no encontrado.");
+
+            Guid id;
+            if (!Guid.TryParse(idClaim.Value, out id)) return NotFound("Id de usuario no válido.");
+
+            var alumnos = await _context.Alumnos.Where(a => _context.Intermedia_Usuario_Alumno.Any(i => i.IdUsuario == id && i.IdAlumno == a.IdAlumno)).ToListAsync();
+            return View(AdminDashboardAlumnos);
         }
 
 
