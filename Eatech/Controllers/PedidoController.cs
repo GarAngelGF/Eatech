@@ -56,9 +56,11 @@ namespace Eatech.Controllers
                 var buscarcomida = _context.Comidas.FirstOrDefault(lgc => lgc.Nombre == nombrecomida);
 
 
+                buscarcomida.PorcionesDisponibles = buscarcomida.PorcionesDisponibles - 1;
                 BdI_Com_Ped bdI_Com_Ped = new BdI_Com_Ped();
                 bdI_Com_Ped.IDComida = buscarcomida.IDComida;
                 bdI_Com_Ped.pedido = bd_Pedido.pedido;
+                _context.Update(buscarcomida);
                 _context.Add(bdI_Com_Ped);
                 await _context.SaveChangesAsync();
 
