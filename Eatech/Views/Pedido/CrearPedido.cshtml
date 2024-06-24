@@ -66,48 +66,48 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-6">
-                            <select  id="Alumno" type="text" class="input" required >
+                            <select id="nombrealum" type="text" class="input" required>
 
-                            <option value="">Selecciona un alumno</option>
+                                <option value="">Selecciona un alumno</option>
 
-                            @foreach (var item in ViewBag.alumno)
-                            {
+                                @foreach (var item in ViewBag.alumno)
+                                {
 
-                                <option value="@item.Nombre">@item.Nombre</option>
-                            
-                            }
+                                    <option value="@item.Nombre">@item.Nombre</option>
+
+                                }
                             </select>
                         </div>
-                   
 
-                   <br>
-                   <br>
-                   <br>
-                       
+
+                        <br>
+                        <br>
+                        <br>
+
 
 
                         <div class="col-sm-12 col-md-12 col-lg-6">
-                            <select id="Alimentos" type="text" class="input" required >
+                            <select id="nombrecomida" type="text" class="input" required>
 
-                            <option value="">Selecciona una comida</option>
+                                <option value="">Selecciona una comida</option>
 
-                            @foreach (var item in ViewBag.comidavb)
-                            {
+                                @foreach (var item in ViewBag.comidavb)
+                                {
 
-                                <option value="@item.Nombre">@item.Nombre</option>
-                            }
+                                    <option value="@item.Nombre">@item.Nombre</option>
+                                }
                             </select>
 
                         </div>
-                   
-                       
+
+
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
-                            <input asp-for="FechaEntrega" placeholder="Fecha de entrega" id="Alimentos" type="date" class="input" required />
+                            <input asp-for="FechaEntrega" placeholder="Fecha de entrega" id="Alimentosfe" type="date" class="input" required />
                         </div>
 
                     </div>
-                    
+
 
 
                     <div class="row">
@@ -147,51 +147,22 @@
 
 <script>
     $(document).ready(function () {
-        $("#btnordernar").click(function () {
-            var nombrecomida = $("#Alimentos").val();
+        $("#btnordernar").click(function (event) {
+            event.preventDefault(); // // Evita el envío tradicional del formulario
+
+            var nombreAlum = $('#nombrealum').val(); // Suponiendo que tienes un input con este ID
+            var nombreComida = $('#nombrecomida').val(); // Suponiendo que tienes un input con este ID
+            // ... (Obtén los valores de los demás campos del formulario)
 
             $.ajax({
-                url: '@Url.Action("CrearPedido", "Pedido")',
+                url: '@Url.Action("RegistrarPedido", "Pedido")',
                 type: 'POST',
-                data: { nombrecomida: nombrecomida },
-                success: function (result) {
-                    // Manejar la respuesta del controlador
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#btnordernar").click(function () {
-            var nombrealum = $("#Alumno").val();
-
-            $.ajax({
-                url: '@Url.Action("CrearPedido", "Pedido")',
-                type: 'POST',
-                data: { nombrealum: nombrealum },
-                success: function (result) {
-                    // Manejar la respuesta del controlador
-                }
-            });
-        });
-    });
-</script>
-
-
-<script>
-    $(document).ready(function () {
-        $("#pepe").click(function () {
-            var nombrealum = $("#Alumno").val();
-
-            $.ajax({
-                url: '@Url.Action("CrearPedido", "Pedido")',
-                type: 'POST',
-                data: { nombrealum: nombrealum },
-                success: function (result) {
-                    // Manejar la respuesta del controlador
-                }
+                data: {
+                    nombrealum: nombreAlum,
+                    nombrecomida: nombreComida,
+                    // ... (Envía los valores de los demás campos)
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Token anti-falsificación
+                },
             });
         });
     });

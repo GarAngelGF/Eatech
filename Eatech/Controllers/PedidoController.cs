@@ -54,6 +54,8 @@ namespace Eatech.Controllers
                 BdI_Alu_Ped bdI_Alu_Ped = new BdI_Alu_Ped();
                 bd_Pedido.pedido = Guid.NewGuid();
                 bd_Pedido.Estatus = "Generado";
+                bd_Pedido.FechaCPedido= DateTime.Now;
+                bd_Pedido.NotaPedido = ".";
                 _context.Add(bd_Pedido);
 
                 await _context.SaveChangesAsync();
@@ -78,7 +80,7 @@ namespace Eatech.Controllers
                 bdI_Alu_Ped.IdAlumno = buscaralumno.IdAlumno;
 
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
-                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                var ltam = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
@@ -113,7 +115,7 @@ namespace Eatech.Controllers
             {
                 _context.Update(bd_pedido);
                 await _context.SaveChangesAsync();
-                var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
+                var ltam = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 Utilerias.Correo.PedidoCorreo(ltam, "Estatus del pedido", "El estatus de su pedido se ha actualizado." + " \nEl estado de su pedido es: " + bd_pedido.Estatus + " \n Eatech");
 
             }

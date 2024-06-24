@@ -28,10 +28,10 @@ namespace Eatech.Models
 
         //Cambio: Pasamos la variable "Nota" de la clase "comida" a la clase "Pedido"
         [DisplayName("Notas Pedido")]
-        public string NotaPedido { get; set; }
+        public string? NotaPedido { get; set; }
 
 
-        [Required,DisplayName("Estatus del pedido")]
-        public string Estatus { get; set; }  
+        [DisplayName("Estatus del pedido")]
+        public string? Estatus { get; set; }  
     }
 }
