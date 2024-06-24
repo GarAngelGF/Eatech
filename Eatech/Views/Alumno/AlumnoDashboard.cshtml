@@ -60,81 +60,92 @@
             <!-- Contenedor de Estudiantes -->
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
                 <h3>Alumnos agregados</h3>
-
-            @foreach (var alumno in Model)
+                <form class="form" action="">
+                @foreach (var alumno in Model)
                 {
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value=" @alumno.NoMatricula" type="text" class="input" disabled />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <input value=" @alumno.NoMatricula" type="text" class="input" disabled />
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <input value="@alumno.Nombre" type="text" class="input" disabled />
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <input value="@alumno.aPaterno" type="email" class="input" disabled />
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <input value="@alumno.aMaterno" type="tel" class="input" disabled />
+                        </div>
+
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input value="@alumno.Nombre" type="text" class="input" disabled />
-                    </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.aPaterno"  type="email" class="input" disabled />
-                    </div>
+                    <div class="row">
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                            <input value="@alumno.aMaterno"  type="tel" class="input" disabled />
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <div class="col-sm-12 col-md-12 col-lg-3">
                             <input value="@alumno.Alergias" type="text" class="input" disabled />
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-3">
                             <input value="@alumno.Enfermedades" type="text" class="input" disabled />
-                    </div>
+                        </div>
 
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <div class="col-sm-12 col-md-12 col-lg-3">
                             <input value="@alumno.GradoEscolar" type="text" class="input" disabled />
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            <textarea class="input" disabled>@alumno.Notas</textarea>
+                        </div>
+
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <textarea class="input" disabled>@alumno.Notas</textarea>
-                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
 
-                </div>
+                            <br>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-
-                        <br>
-
-                        <button class="buttonZ">
-                            Modificar
-                            <div class="hoverEffect">
-                                <div>
+                            <button class="buttonZ">
+                                Modificar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
+                            </button>
 
 
-                    </div>
+                        </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
 
-                        <br>
+                            <br>
 
-                        <button class="buttonZ">
-                            Eliminar
-                            <div class="hoverEffect">
-                                <div>
+                            <button class="buttonZ">
+                                Eliminar
+                                <div class="hoverEffect">
+                                    <div>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
+                            </button>
 
 
+                        </div>
                     </div>
-                </div>
 
 
                 }
+
+
+
+
+
+
+
+
+
+                </form>
+         
             </div>
         
     </div>

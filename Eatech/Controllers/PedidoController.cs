@@ -86,7 +86,7 @@ namespace Eatech.Controllers
                 _context.Add(bdI_Alu_Ped);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("CrearPedido","Pedido");
 
             }
             return View(bd_Pedido);
@@ -165,15 +165,23 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         /*-Apartado para ver el pedido de manera individual-*/
         [Authorize(Roles = "Usuario, Admin")]
-        public IActionResult PedidoDashboard()
+        public async Task<IActionResult> PedidoDashboard()
         {
+
+            ViewBag.comidavv = _context.Comidas.ToList();
+
+            ViewBag.alumno = _context.Alumnos.ToList();
+
             var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
             if (id == null || _context.Pedidos == null) return NotFound();
             var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
-            if (lgc == null) return NotFound();
-            return View();
-        }
 
+            if (lgc == null) return NotFound();
+            var comi = await _context.Pedidos.Where(pedido => _context.Intermedia_Comida_Pedi.Any(inter => inter.IDcomida = id && inter.id = pedido.id)).ToListAsync();
+            return View(comi);
+        }
+        
+        //return View(alumnos);
         //**************************************************************************************************************************************************************************//
         /*-apartado vistas de admin [dashboard, etc]-*/
     }

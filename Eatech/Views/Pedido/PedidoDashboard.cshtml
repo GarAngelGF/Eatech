@@ -1,6 +1,7 @@
-﻿@{
-    ViewData["Title"] = " Seguimiento Alimentacion Alumnos ";
-}
+﻿@model List<Eatech.Models.Bd_Pedido>
+@* @{
+    ViewData["Title"] = " SeguimientoAlumnos ";
+} *@
 
 <html lang="en">
 
@@ -57,26 +58,39 @@
             <!-- Contenedor de Estudiantes -->
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
                 <h3>Seguimiento de todos los estudiantes</h3>
+                @foreach (var comida in Model)
+                {
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            @foreach (var item in ViewBag.alumno)
+                            {
+                                <input value="@item.Nombre" type="text" class="input" disabled>
+                            }
+                            
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-3">
+                            @foreach (var itemm in ViewBag.comidavv)
+                            {
+                                <input value="@itemm.Nombre" type="text" class="input" required>
+                            }
+                            
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-2">
+                            <input value="@comida.FechaCPedido" type="text" class="input" disabled>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-2">
+                            <input value="@comida.FechaEntrega" type="text" class="input" disabled>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-2">
+                            <input value="@comida.Estatus" type="text" class="input" disabled>
+                        </div>
+                    </div>
+                }
+            </div>  
 
-                <br>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alumno" id="Alumnos" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
-                    </div>
-                </div>
-            </div>
+                
+               
 
 
 
