@@ -20,7 +20,7 @@ namespace Eatech.Models
         public string Nombre { get; set; }
 
         [DisplayName("Estado visibilidad")]
-        public string Visibilidad { get; set; }
+        public string? Visibilidad { get; set; }
 
         [Required, DisplayName("Porciones totales")]
         public int Porciones { get; set; }

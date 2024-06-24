@@ -45,7 +45,7 @@ namespace Eatech.Controllers
         /*-Tasl para registrar la comida en la base de datos conectada con azure sopadepapap-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles")] Bd_Comida bd_comida)
+        public async Task<IActionResult> RegistrarComida([Bind("IDComida,Nombre,Porciones,PorcionesDisponibles,Visibilidad")] Bd_Comida bd_comida)
         {
             bd_comida.Visibilidad = "visible";
             bd_comida.PorcionesDisponibles = bd_comida.Porciones;
