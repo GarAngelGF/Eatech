@@ -177,7 +177,7 @@ namespace Eatech.Controllers
             var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
 
             if (lgc == null) return NotFound();
-            var comi = await _context.Pedidos.Where(pedido => _context.Intermedia_Comida_Pedi.Any(inter => inter.IDcomida = id && inter.id = pedido.id)).ToListAsync();
+            var comi = await _context.Pedidos./*Where(pedido => _context.Intermedia_Comida_Pedi.Any(inter => inter.IDcomida = id && inter.id = pedido.id)).*/ToListAsync();
             return View(comi);
         }
         
