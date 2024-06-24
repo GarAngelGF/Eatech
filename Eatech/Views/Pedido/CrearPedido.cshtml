@@ -65,49 +65,55 @@
                     <div asp-validation-summary="ModelOnly"> </div>
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <select placeholder="Alumno que recibe" id="Alumno" type="text" class="input" required />
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <select  id="Alumno" type="text" class="input" required >
 
                             <option value="">Selecciona un alumno</option>
 
                             @foreach (var item in ViewBag.alumno)
                             {
 
-                                <option value="@item.Nombre"></option>
+                                <option value="@item.Nombre">@item.Nombre</option>
                             
                             }
+                            </select>
                         </div>
-                        <div class="col-sm-12 col-md-12 col-lg-4">
-                            <select placeholder="Elige el platillo" id="Alimentos" type="text" class="input" required />
+                   
+
+                   <br>
+                   <br>
+                   <br>
+                       
+
+
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <select id="Alimentos" type="text" class="input" required >
 
                             <option value="">Selecciona una comida</option>
 
                             @foreach (var item in ViewBag.comidavb)
                             {
 
-                                <option value="@item.Nombre"></option>
+                                <option value="@item.Nombre">@item.Nombre</option>
                             }
-
-
-
                             </select>
-                            @* <span asp-validation-for="GradoEscolar" class="text-danger"></span> *@
-
 
                         </div>
+                   
+                       
 
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <input asp-for="FechaEntrega" placeholder="Fecha de entrega" id="Alimentos" type="date" class="input" required />
                         </div>
 
-
                     </div>
+                    
 
 
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <br>
-                            <button class="buttonZ" id="pepe" type="submit">
+                            <button class="buttonZ" id="btnordernar" type="submit">
                                 Ordenar
                                 <div class="hoverEffect">
                                     <div>
@@ -141,7 +147,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#pepe").click(function () {
+        $("#btnordernar").click(function () {
             var nombrecomida = $("#Alimentos").val();
 
             $.ajax({
@@ -158,7 +164,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#pepe").click(function () {
+        $("#btnordernar").click(function () {
             var nombrealum = $("#Alumno").val();
 
             $.ajax({
