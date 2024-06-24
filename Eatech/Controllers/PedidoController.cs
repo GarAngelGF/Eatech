@@ -62,6 +62,7 @@ namespace Eatech.Controllers
 
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
                 bdI_Alu_Ped.IdAlumno = IdAlum;
+
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
                 var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");

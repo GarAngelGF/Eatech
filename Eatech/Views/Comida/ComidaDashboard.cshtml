@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List< Eatech.Models.Bd_Comida>
+@{
     ViewData["Title"] = "Menu Padres";
 }
 
@@ -48,28 +49,35 @@
 
     <div id="container2" class="content-container">
 
-        <form class="form" action="">
-            <br>
-            <br>
-            <br>
+
+        <br>
+        <br>
+        <br>
 
 
 
-            <div class="row">
+        <div class="row">
 
 
-                <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
-                    <h3>Menú disponible</h3>
+            <div id="menu-contenedor" class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg">
+                <h3>Menú disponible</h3>
+
+                @foreach (var comida in Model)
+                {
+
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <input placeholder="Alimentos agregados" id="Alimentos" type="text" class="input"
-                               required />
-
+                        <input value="@comida.Nombre" type="text" class="input"
+                               disabled  />
                     </div>
-                </div>
+
+
+                }
+              
             </div>
+        </div>
 
 
-        </form>
+
     </div>
 
 

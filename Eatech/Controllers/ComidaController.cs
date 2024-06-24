@@ -27,10 +27,13 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+           // var lid = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
 
-           // var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
-            return View();
+           //// var LContexto = _context.Intermedia_Usuario_Alumno.Include(li => li.alumno).Include(gzl => gzl.usuario).Where(cerv => cerv.IdUsuario == lid);
+           // return View();
+
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
         //Crud papayadecelayafifirisfraissopadepapasuperpaposaespiromastoreiclo
@@ -79,15 +82,19 @@ namespace Eatech.Controllers
         //**************************************************************************************************************************************************************************//
         /*-Apartado para detalles de la comida-*/
 
-        [Authorize(Roles = "Usuario,Admin")]
+        [Authorize(Roles = "Usuario")]
         
-        public IActionResult ComidaDashboard()
+        public async Task< IActionResult> ComidaDashboard()
         {
-            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
-            if (id == null || _context.Alumnos == null) return NotFound();
+            //var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            //if (id == null || _context.Alumnos == null) return NotFound();
             
 
-            return View();
+            //return View();
+
+
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
 
@@ -167,7 +174,8 @@ namespace Eatech.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminComidaDashboard()
         {
-            return View();
+            var comida = await _context.Comidas.ToListAsync();
+            return View(comida);
         }
 
         //**************************************************************************************************************************************************************************//
@@ -185,12 +193,7 @@ namespace Eatech.Controllers
 
 
         /**************************************************************************************************************************************************************************/
-        [Authorize(Roles = "Usuario")]
-        public IActionResult PedirComida()
-        {
-         
-            return View();
-        }
+        
 
 
         /**************************************************************************************************************************************************************************/

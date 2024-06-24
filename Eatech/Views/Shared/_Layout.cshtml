@@ -184,7 +184,7 @@
 
 
             @if ((currentController == "Comida" && currentAction == "ComidaDashboard") ||
-           (currentController == "Comida" && currentAction == "PedirComida") ||
+           (currentController == "Pedido" && currentAction == "CrearPedido") ||
            (currentController == "Alumno" && currentAction == "AlumnoDashboard") ||
            (currentController == "Alumno" && currentAction == "AñadirAlumno") ||
            (currentController == "Alumno" && currentAction == "AlumnoBuscar") ||
@@ -219,7 +219,7 @@
 
                                 <li class="nav-item">
                                     <!-- --------------------------------------------------------------------------- -->
-                                    <a asp-controller="Comida" asp-action="PedirComida">
+                                    <a asp-controller="Pedido" asp-action="CrearPedido">
                                         <!-- --------------------------------------------------------------------------- -->
                                         <button class="button">
                                             ORDENAR
@@ -339,7 +339,7 @@
                                     <a asp-controller="Comida" asp-action="RegistrarComida">
                                         <!-- --------------------------------------------------------------------------- -->
                                         <button class="button">
-                                            SUBIR MENÚ
+                                            SUBIR ALIMENTO
                                         </button>
                                     </a>
                                 </li>
@@ -426,63 +426,6 @@
 
 
         }
-
-
-
-
-        @*
-        intento de barra de navegacion para la pagina principal index
-        @if (currentController == "Aplicacion" && currentAction == "Index")
-        {
-
-
-
-        <nav class="navbar navbar-expand-lg navbar-custom1">
-        <div class="container-fluid">
-        <a class="navbar-brand" asp-controller="Aplicacion" asp-action="Index">
-        <!-- --------------------------------------------------------------------------- -->
-        <img src="/IMAGENES-ALL/LOGO.png" alt="Logo" class="logo">
-        <!-- --------------------------------------------------------------------------- -->
-        </a>
-        <label for="check" class="menuButton navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <input id="check" type="checkbox">
-        <span class="top"></span>
-        <span class="mid"></span>
-        <span class="bot"></span>
-        </label>
-
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-        <!--PARTE DONDE SE DIVIDEN LAS NAVBAR--->
-        <ul class="navbar-nav mb-2 mb-lg-0">
-
-        <li class="nav-item">
-
-
-        <!-- --------------------------------------------------------------------------- -->
-        <a asp-controller="Aplicacion" asp-action="Login">
-        <!-- --------------------------------------------------------------------------- -->
-        <button class="botonsito_blanco iniciar_blanco">
-        <span class="circle_blanco" aria-hidden="true">
-        <span class="icon_blanco arrow_blanco"></span>
-        </span>
-        <span class="button-text_blanco">INICIAR SESIÓN</span>
-        </button>
-
-        </a>
-
-        </li>
-
-        </ul>
-        </div>
-        </div>
-        </nav>
-
-
-
-
-        } *@
 
     </header>
 
