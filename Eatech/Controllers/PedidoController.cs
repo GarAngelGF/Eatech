@@ -42,7 +42,7 @@ namespace Eatech.Controllers
         /*-Task para crear pedido + enviar el correo de pedido creado-*/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrarPedido(Guid IdAlum, Guid IdCom, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido)
+        public async Task<IActionResult> RegistrarPedido(string nombrealum, string nombrecomida, [Bind("pedido,FechaCPedido,FechaEntrega,NotaPedido,Estatus")] Bd_Pedido bd_Pedido)
         {
             if (ModelState.IsValid)
             {
@@ -50,25 +50,32 @@ namespace Eatech.Controllers
                 bd_Pedido.pedido = Guid.NewGuid();
                 bd_Pedido.Estatus = "Generado";
                 _context.Add(bd_Pedido);
-              
+
                 await _context.SaveChangesAsync();
 
+                var buscarcomida = _context.Comidas.FirstOrDefault(lgc => lgc.Nombre == nombrecomida);
+
+
                 BdI_Com_Ped bdI_Com_Ped = new BdI_Com_Ped();
-                bdI_Com_Ped.IDComida = IdCom;
+                bdI_Com_Ped.IDComida = buscarcomida.IDComida;
                 bdI_Com_Ped.pedido = bd_Pedido.pedido;
                 _context.Add(bdI_Com_Ped);
                 await _context.SaveChangesAsync();
 
+                var idClaim = User.Claims.FirstOrDefault(lili => lili.Type == "Id");
+                Guid id;
+                if (!Guid.TryParse(idClaim.Value, out id)) return NotFound("Id de usuario no válido.");
 
+                var buscaralumno = _context.Alumnos.FirstOrDefault(a => _context.Intermedia_Usuario_Alumno.Any(ii => ii.IdUsuario == id && ii.IdAlumno == a.IdAlumno) && a.Nombre == nombrealum);
                 bdI_Alu_Ped.pedido = bd_Pedido.pedido;
-                bdI_Alu_Ped.IdAlumno = IdAlum;
+                bdI_Alu_Ped.IdAlumno =buscaralumno.IdAlumno;
 
                 /*-aqui va para poner el correo pa avisar del pedido creado-*/
                 var ltam = User.Claims.FirstOrDefault(cc => cc.Type == "Email").Value;
                 Utilerias.Correo.PedidoCorreo(ltam, "Pedido Creado", "Su pedido se ha generado exitosamente." + " \nEl estado de su pedido es: " + bd_Pedido.Estatus + " \n Eatech");
 
                 _context.Add(bdI_Alu_Ped);
-          
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
@@ -148,7 +155,7 @@ namespace Eatech.Controllers
 
         //**************************************************************************************************************************************************************************//
         /*-Apartado para ver el pedido de manera individual-*/
-        [Authorize(Roles="Usuario, Admin")]
+        [Authorize(Roles = "Usuario, Admin")]
         public IActionResult PedidoDashboard()
         {
             var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
