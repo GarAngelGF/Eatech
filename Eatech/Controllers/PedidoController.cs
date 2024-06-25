@@ -180,9 +180,27 @@ namespace Eatech.Controllers
             var comi = await _context.Pedidos./*Where(pedido => _context.Intermedia_Comida_Pedi.Any(inter => inter.IDcomida = id && inter.id = pedido.id)).*/ToListAsync();
             return View(comi);
         }
-        
+
         //return View(alumnos);
         //**************************************************************************************************************************************************************************//
         /*-apartado vistas de admin [dashboard, etc]-*/
+
+        [Authorize(Roles = "Usuario")]
+        public IActionResult Buscar(string AlumnoMatricula)
+        {
+
+            var usuID = User.Identity.Name;
+            var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
+            if (id == null || _context.Pedidos == null) return NotFound();
+
+            //var alumnos = _context.Alumnos.Where(lili => lili.IdAlumno == AlumnoMatricula).ToList();
+
+        
+      
+            var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
+
+   
+            return View(Buscar);
+        }
     }
 }
