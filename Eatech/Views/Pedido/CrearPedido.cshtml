@@ -43,6 +43,7 @@
 
     <!-- CAPTCHA DE GOOGLE -->
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>//alert(""); </script>
 </head>
 
 <body>
@@ -150,6 +151,7 @@
     $(document).ready(function () {
         $("#btnordernar").click(function (event) {
             event.preventDefault(); // // Evita el envío tradicional del formulario
+            $(this).attr('disabled', true);
 
             var nombreAlum = $('#nombrealum').val(); // Suponiendo que tienes un input con este ID
             var nombreComida = $('#nombrecomida').val(); // Suponiendo que tienes un input con este ID
@@ -164,6 +166,14 @@
                     // ... (Envía los valores de los demás campos)
                     __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Token anti-falsificación
                 },
+                success: function (evt) {
+                   
+                    alert("");
+                    window.location.reload();
+                },
+                error: function () {
+
+                }
             });
         });
     });
