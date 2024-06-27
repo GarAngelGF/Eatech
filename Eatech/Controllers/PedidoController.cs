@@ -187,7 +187,13 @@ namespace Eatech.Controllers
         /*-apartado vistas de admin [dashboard, etc]-*/
 
         [Authorize(Roles = "Usuario")]
-        public async Task <IActionResult> Buscar(string AlumnoMatricula)
+        public IActionResult Buscar()
+        {
+            return View();
+            
+        }
+
+        public async Task <IActionResult> Buscar2(string AlumnoMatricula)
         {
             var userId = User.Identity.Name;
             var padre = Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value);
@@ -210,14 +216,14 @@ namespace Eatech.Controllers
             var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno.IdAlumno).Select(pi => pi.pedido).ToList();
 
 
-            var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new 
-                         {
-                             AlumnoNombre = alumno.Nombre,
-                             AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido).Nombre,
-                             FechaPedido = p.FechaCPedido,
-                             FechaEntrega = p.FechaEntrega,
-                             EstatusPedido = p.Estatus
-                         })
+            var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new
+            {
+                AlumnoNombre = alumno.Nombre,
+                AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido).Nombre,
+                FechaPedido = p.FechaCPedido,
+                FechaEntrega = p.FechaEntrega,
+                EstatusPedido = p.Estatus
+            })
                          .ToList();
 
             ViewBag.Pedidos = pedidos;
