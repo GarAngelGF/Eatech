@@ -207,7 +207,7 @@ namespace Eatech.Controllers
                 return NotFound("Alumno no encontrado.");
             }
 
-            var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.Idalumno == alumno.IdAlumno).Select(pi => pi.PedidoId).ToList();
+            var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno.IdAlumno).Select(pi => pi.pedido).ToList();
 
 
             var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new ViewModels.PedidoViewModel
@@ -227,65 +227,3 @@ namespace Eatech.Controllers
 }
 
 
-//var usuID = User.Identity.Name;
-//var id = Guid.Parse(User.Claims.FirstOrDefault(lili => lili.Type == "Id").Value);
-//if (id == null || _context.Pedidos == null) return NotFound();
-
-//var alumnos = Guid.Parse(_context.Usuarios.Where(lili => lili.IdUsuario = AlumnoMatricula)).ToList();
-
-
-
-//var lgc = _context.Pedidos.Where(ltam => ltam.pedido == id);
-
-
-//return View(Buscar);
-
-
-
-
-
-
-
-
-
-//BdI_Alu_Ped bdI_Alu_Ped = new BdI_Alu_Ped();
-////Bd_Alumno bd_alu = new Bd_Alumno();
-//var claims = new List<Claim> {
-
-//    new Claim("Id", Idalumno.ToString()),
-//};
-
-//var userId = User.Identity.Name; 
-//var padre = Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value);
-
-//if (padre == null)
-//{
-//    return NotFound("Padre no encontrado.");
-//}
-
-//var alumnos = _context.Alumnos.Where(a => a.IdAlumno == Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value)); /*padre.GetType == "Id");.ToList();*/
-
-
-//var alumno = alumnos.FirstOrDefault(a => a.NoMatricula == AlumnoMatricula);
-
-//if (alumno == null)
-//{
-//    return NotFound("Alumno no encontrado.");
-//}
-
-
-
-//var pedidoIds = _context.Intermedia_Alum_Pedi.Where(ip => ip.Idalumno = alumnos.).Select(ip => ip.PedidoId).ToList();
-
-
-//var pedidos = _context.Intermedia_Alum_Pedi.Where(p => Guid.Parse(bdI_Alu_Ped.Pedido) == Guid.Parse(bd_alu.IdAlumno);/*bd_alu.IdAlumno == alumno.NoMatricula).Select(p => new PedidoViewModel*/
-//    {
-//        AlumnoNombre = alumno.Nombre,
-//        AlimentoNombre = _context.Comidas.FirstOrDefault(a => a.Id == p.AlimentoId).Nombre,
-//        FechaPedido = p.FechaPedido,
-//        FechaEntrega = p.FechaEntrega,
-//        EstatusPedido = p.Estatus
-//    })
-//    .ToList();
-
-//ViewBag.Pedidos = pedidos;
