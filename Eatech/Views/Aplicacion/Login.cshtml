@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Inicio de Sesión";
 }
-@* @if (ViewBag.error != null)
+ @if (ViewBag.error != null)
 {
 
      <div class="alert alert-danger" role="alert" style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
@@ -12,17 +12,7 @@
 	</div> 
 
 
-  
-        <script>
-          
-                alert("Usuario y/o contraseña incorrecta. Intentalo de Nuevo");
-        window.location.href = '@Url.Action("Login", "Aplicacion")';
-            
-        </script>
-    
-
-
-}  *@
+}  
 <html lang="en">
 
 <head>
@@ -137,31 +127,9 @@
         </div>
     </div>
 
-
-    <script>
-        $(document).ready(function () {
-            $('#btnLogin').on('submit', function (event) {
-                event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
-
-                var form = $(this);
-
-                $.ajax({
-                    type: form.attr('method'),
-                    url: form.attr('action'),
-                    data: form.serialize(),
-                    // success: function (response) {
-                    //     // Aquí podrías verificar la respuesta del servidor si es necesario
-                    //     alert("Alumno agregado correctamente");
-                    //     window.location.reload();
-                    // },
-                    error: function (response) {
-                        // Manejo de errores si la solicitud falla
-                        alert("Error al Ingresar. Por favor, intente de nuevo.");
-                    }
-                });
-            });
-        });
-    </script>
+   
+   
+    
 
 </body>
 
@@ -181,53 +149,33 @@
 
 
 
+@* <script>
 
+    alert("Usuario y/o contraseña incorrecta. Intentalo de Nuevo");
+    window.location.href = '@Url.Action("Login", "Aplicacion")';
 
+</script>
+<script>
+    $(document).ready(function () {
+        $('#frmLogin').on('submit', function (event) {
+            event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
+            var form = $(this);
 
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
 
+                error: function (response) {
+                    // Manejo de errores si la solicitud falla
+                    alert("Error al Ingresar. Por favor, intente de nuevo.");
+                    window.location.reload();
+                }
+            });
+        });
+    });
+</script> *@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-<form asp-action="VerificarUsu" method="post"
-      id="frmLogin">
-    <div class="form-group">
-        <label>Correo:</label>
-        <input type="email" class="form-control" required name="correo" placeholder="Correo electrónico" />
-    </div>
-    <div class="form-group">
-        <label>Contraseña:</label>
-        <input type="password" class="form-control" required name="contrasena" placeholder="Contraseña" />
-    </div>
-    <div class="form-group mt-2">
-        <input type="submit" value="Iniciar sesión"
-               class="btn btn-primary" id="btnLogin" />
-    </div>
-
-    <div class="form-group mt-2">
-        <a asp-action="Registro" class="btn btn-link">
-            Registrarme
-        </a>
-        <a asp-action="RecuperarPassword" class="btn btn-link">
-            ¿Olvidaste tu contraseña?
-        </a>
-    </div>
-
-</form>
- *@
 
 

@@ -63,7 +63,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 contenedor-alimentos-agg2">
 
             <h3>Agregar un nuevo alimento</h3>
-            <form asp-action="RegistrarComida" method="post" class="form">
+            <form asp-action="RegistrarComida" method="post" class="form" id="frmRegisCom">
                 <div asp-validation-summary="ModelOnly"> </div>
 
 
@@ -105,9 +105,40 @@
 
 
     </div>
-
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
     <script src="/js/CONTENEDORES-p.js"></script>
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#frmRegisCom').on('submit', function (event) {
+                event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+
+                    success: function (response) {
+                        // Aquí podrías verificar la respuesta del servidor si es necesario
+                        alert("Comida agregado correctamente");
+                        window.location.reload();
+                    },
+                    error: function (response) {
+                        // Manejo de errores si la solicitud falla
+                        alert("Error al Registrar Por favor, intente de nuevo.");
+                        window.location.reload();
+                    }
+                });
+            });
+        });
+    </script> 
 
 
 </body>
