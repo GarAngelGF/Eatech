@@ -388,7 +388,8 @@ namespace Eatech.Controllers
 
             _context.Add(bd_Ex_ClaveLicenciaVerifi);
             await _context.SaveChangesAsync();
-            Utilerias.Correo.LicenciasCorreo("angel.garcia2933@gmail.com", "Nueva Licencia Generada", "Se ha generado una nueva licencia: " + sopadepapa);
+            //Utilerias.Correo.LicenciasCorreo("angel.garcia2933@gmail.com", "Nueva Licencia Generada", "Se ha generado una nueva licencia: " + sopadepapa);
+            Utilerias.Correo.LicenciasCorreo("mauperez5842@gmail.com", "Nueva Licencia Generada", "Se ha generado una nueva licencia: " + sopadepapa);
             return View(bd_Ex_ClaveLicenciaVerifi);
         }
 

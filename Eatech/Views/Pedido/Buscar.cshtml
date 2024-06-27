@@ -60,27 +60,11 @@
 
                 <h3>Ingresa la matrícula del alumno</h3>
 
-                <input placeholder="Buscar" id="AlumnoMatricula" type="search" class="input" required>
+                <input value="alumnoMatricula" id="AlumnoMatricula" type="search" class="input" required>
                 <br><br>
                 <button type="submit" class="btn btn-primary">Buscar</button>
                 <br><br>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alimento" id="AlimentoNombre" type="text" class="input" readonly>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha pedido" id="FechaPedido" type="text" class="input" readonly>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Fecha entrega" id="FechaEntrega" type="text" class="input" readonly>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-2">
-                        <input placeholder="Estatus" id="EstatusPedido" type="text" class="input" readonly>
-                    </div>
-                </div>
+               
             </div>
 
         </form>
@@ -89,8 +73,82 @@
 
 
 
-    </div>
+    <script>
+        document.getElementById('buscarForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            var matricula = document.getElementById('AlumnoMatricula').value.trim();
+
+            // Validar que se haya ingresado la matrícula
+            if (!matricula) {
+                alert('Por favor ingrese la matrícula del alumno.');
+                return;
+            }
+
+            // Realizar la petición AJAX para buscar pedidos
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Pedidos/Buscar'); // Ajusta la ruta según tu configuración
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var pedidos = JSON.parse(xhr.responseText);
+                    mostrarResultados(pedidos);
+                } else {
+                    alert('Error al buscar pedidos.');
+                }
+            };
+
+            xhr.onerror = function () {
+                alert('Error de red al intentar buscar pedidos.');
+            };
+
+            // Enviar los datos del formulario como JSON
+            var formData = JSON.stringify({ AlumnoMatricula: matricula });
+            xhr.send(formData);
+        });
+
+        function mostrarResultados(pedidos) {
+            var resultadoDiv = document.getElementById('resultadoPedidos');
+            resultadoDiv.innerHTML = ''; // Limpiar contenido anterior
+
+            if (pedidos.length === 0) {
+                resultadoDiv.innerHTML = '<p>No se encontraron pedidos para esta matrícula de alumno.</p>';
+                return;
+            }
+
+            var html = '<h3>Resultados de Pedidos</h3><ul>';
+            pedidos.forEach(function (pedido) {
+                html += '<li>';
+                html += '<strong>Alimento:</strong> ' + pedido.AlimentoNombre + '<br>';
+                html += '<strong>Fecha de Pedido:</strong> ' + pedido.FechaPedido + '<br>';
+                html += '<strong>Fecha de Entrega:</strong> ' + pedido.FechaEntrega + '<br>';
+                html += '<strong>Estatus del Pedido:</strong> ' + pedido.EstatusPedido;
+                html += '</li>';
+            });
+            html += '</ul>';
+
+            resultadoDiv.innerHTML = html;
+        }
+    </script>
 
 </body>
 
 </html>
+@* <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-3">
+        <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-3">
+        <input placeholder="Alimento" id="AlimentoNombre" type="text" class="input" readonly>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-2">
+        <input placeholder="Fecha pedido" id="FechaPedido" type="text" class="input" readonly>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-2">
+        <input placeholder="Fecha entrega" id="FechaEntrega" type="text" class="input" readonly>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-2">
+        <input placeholder="Estatus" id="EstatusPedido" type="text" class="input" readonly>
+    </div>
+</div> *@
