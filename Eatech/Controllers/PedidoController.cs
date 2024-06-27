@@ -198,7 +198,7 @@ namespace Eatech.Controllers
                 return NotFound("Padre no encontrado.");
             }
 
-            var alumnos = _context.Intermedia_Usuario_Alumno.Where(a => a.IdAlumno == padre).Select(a => a.Idalumno).ToList(); /*Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value)); padre.GetType == "Id");.ToList();*/
+            var alumnos = _context.Intermedia_Usuario_Alumno.Where(a => a.IdUsuario == padre).Select(a => a.Idalumno).ToList(); /*Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value)); padre.GetType == "Id");.ToList();*/
 
             var alumno = alumnos.FirstOrDefault(a => a.NoMatricula == AlumnoMatricula);
 
@@ -210,10 +210,10 @@ namespace Eatech.Controllers
             var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno.IdAlumno).Select(pi => pi.pedido).ToList();
 
 
-            var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new ViewModels.PedidoViewModel
+            var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new 
                          {
                              AlumnoNombre = alumno.Nombre,
-                             AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido)?.Nombre,
+                             AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido).Nombre,
                              FechaPedido = p.FechaCPedido,
                              FechaEntrega = p.FechaEntrega,
                              EstatusPedido = p.Estatus

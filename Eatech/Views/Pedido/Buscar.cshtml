@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Eatech.Models.Bd_Pedido
+@{
     ViewData["Title"] = " Buscar Alumnos Padre";
 }
 
@@ -64,6 +65,23 @@
                 <br><br>
                 <button type="submit" class="btn btn-primary">Buscar</button>
                 <br><br>
+                <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Alimento" id="AlimentoNombre" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                <input placeholder="Fecha pedido" id="FechaPedido" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                <input placeholder="Fecha entrega" id="FechaEntrega" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                <input placeholder="Estatus" id="EstatusPedido" type="text" class="input" readonly>
+                </div>
+                </div>
                
             </div>
 
@@ -135,20 +153,3 @@
 </body>
 
 </html>
-@* <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-3">
-        <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-3">
-        <input placeholder="Alimento" id="AlimentoNombre" type="text" class="input" readonly>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-2">
-        <input placeholder="Fecha pedido" id="FechaPedido" type="text" class="input" readonly>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-2">
-        <input placeholder="Fecha entrega" id="FechaEntrega" type="text" class="input" readonly>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-2">
-        <input placeholder="Estatus" id="EstatusPedido" type="text" class="input" readonly>
-    </div>
-</div> *@
