@@ -58,7 +58,7 @@
         <!-- Contenedor de Agregar Estudiante -->
         <div id="agregar-estudiante-contenedor" class="contenedor-estudiantes">
             <h3>Ingresa los datos del nuevo alumno</h3>
-            <form asp-action="RegistrarAlumno" method="post" class="form">
+            <form asp-action="RegistrarAlumno" method="post" class="form" id="formAlum">
                 <div asp-validation-summary="ModelOnly"> </div>
 
 
@@ -163,6 +163,15 @@
                                 </div>
                             </div>
                         </button>
+
+
+                       @*  <script>
+
+                            alert("Alumno Agregado correctamente");
+                            window.location.reload();
+
+                        </script> *@
+
                     </div>
                 </div>
             </form>
@@ -172,6 +181,33 @@
 
 
     </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#formAlum').on('submit', function (event) {
+                event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (response) {
+                        // Aquí podrías verificar la respuesta del servidor si es necesario
+                        alert("Alumno agregado correctamente");
+                        window.location.reload();
+                    },
+                    error: function (response) {
+                        // Manejo de errores si la solicitud falla
+                        alert("Error al agregar el alumno. Por favor, intente de nuevo.");
+                    }
+                });
+            });
+        });
+    </script>
+
 
 
 </body>
