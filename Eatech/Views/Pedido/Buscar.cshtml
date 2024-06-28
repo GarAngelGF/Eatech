@@ -114,7 +114,7 @@
                                 var html = '<h2>Pedidos</h2><table><thead><tr><th>Nombre del Alumno</th><th>Fecha del Pedido</th><th>Fecha de Entrega</th><th>Estatus del Pedido</th></tr></thead><tbody>';
 
                                 $.each(pedidos, function (index, pedido) {
-                                    html += '<tr><td>' + pedido.AlumnoNombre + '</td><td>' + new Date(pedido.FechaPedido).toLocaleDateString() + '</td><td>' + new Date(pedido.FechaEntregaa).toLocaleDateString() + '</td><td>' + pedido.EstatusPedido + '</td></tr>';
+                                    html += '<tr><td>' + pedido.alumnoNombre + '</td><td>' + new Date(pedido.fechaPedido).toLocaleDateString() + '</td><td>' + new Date(pedido.fechaEntregaa).toLocaleDateString() + '</td><td>' + pedido.estatusPedido + '</td></tr>';
                                 });
 
                                 html += '</tbody></table>';

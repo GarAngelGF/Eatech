@@ -236,11 +236,11 @@ namespace Eatech.Controllers
 
             var pedidosf = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new 
             {
-                AlumnoNombre = alumno1.Nombre,
+                alumnoNombre = alumno1.Nombre,
 
-                FechaPedido = p.FechaCPedido,
-                FechaEntregaa = p.FechaEntrega,
-                EstatusPedido = p.Estatus
+                fechaPedido = p.FechaCPedido,
+                fechaEntregaa = p.FechaEntrega,
+                estatusPedido = p.Estatus
 
             }).ToList();
 
