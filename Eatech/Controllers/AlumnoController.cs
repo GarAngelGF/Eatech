@@ -203,7 +203,74 @@ namespace Eatech.Controllers
         public IActionResult AdminAlumnoBuscar()
         {
 
+
+
+
+
+
             return View();
+        }
+
+        public async Task<IActionResult> BuscarAlumnoCT(string AlumnoMatricula)
+        {
+            var userId = User.Identity.Name;
+           
+           
+
+            //aqui alumno1 ya agarra bien el valor el alumno buscado :D
+            var alumno1 = _context.Alumnos.FirstOrDefault(b => b.NoMatricula == AlumnoMatricula);
+
+            if (alumno1 == null)
+            {
+                //    return NotFound("Alumno no encontrado.");
+                return Json(new { success = false, message = "Alumno no encontrado." });
+            }
+
+
+            //hasta aqui todo jala bien
+
+            var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno1.IdAlumno).Select(pi => pi.pedido).ToList();
+
+
+
+            if (pedidoIds.Count == 0)
+            {
+                //return NotFound("Pedidos no encontrados para el alumno " + alumno1.Nombre);
+                return Json(new { success = false, message = $"Pedidos no encontrados para el alumno {alumno1.Nombre}." });
+
+            }
+
+
+            var pedidosf = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new
+            {
+                alumnoNombre = alumno1.Nombre,
+                alumnoapaterno = alumno1.aPaterno,
+                alumnoamaterno = alumno1.aMaterno,
+                fechaPedido = p.FechaCPedido,
+                fechaEntregaa = p.FechaEntrega,
+                estatusPedido = p.Estatus,
+                alumnogrado = alumno1.GradoEscolar,
+                alumnopadecimiento = alumno1.Enfermedades,
+                alumnoaler = alumno1.Alergias,
+                alumnonotas = alumno1.Notas,
+
+                //nombrecomida = _context.Comidas.Where(a => a.IDComida == .FirstOrDefault()).Select(a => a.Nombre).FirstOrDefault(),
+                
+
+
+            }).ToList();
+
+            if (pedidosf == null)
+            {
+                return NotFound("No se encontraron pedidos.");
+            }
+
+
+            //ViewBag.Pedidos = pedidosf;
+
+            //return View("Buscar", pedidosf);
+
+            return Json(new { success = true, pedidos = pedidosf });
         }
 
 

@@ -6,14 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INICIAR</title>
+
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- BOOTSTRAP SCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -22,14 +22,13 @@
     <!-- --------------------------------------------------------------------------- -->
     <link rel="stylesheet" href="/css/E-INICIO-P.css">
     <!-- --------------------------------------------------------------------------- -->
-
     <!--FONT AWESOME (ESTILOS DE BOTÓN)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- FUENTE DE EATECH -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@523&family=Varela+Round&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <!-- FUENTE DE TITULOS DE EATECH -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,9 +36,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- CAPTCHA DE GOOGLE -->
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -49,75 +47,108 @@
 
     <div id="container2" class="content-container">
 
-        <form class="form" action="">
+        <form id="buscarForm" class="form">
 
-            <br>
-            <br>
-            <br>
+            
 
-                            <!-- Contenedor de Estudiantes -->
+            <!-- Contenedor de Estudiantes -->
             <div id="estudiantes-contenedor" class="contenedor-estudiantes">
-              
 
                 <h3>Ingresa la matrícula del alumno</h3>
 
-                <input placeholder="Buscar" id="Alumno" type="search" class="input" required>
+                <input placeholder="matricula" name="AlumnoMatricula" id="AlumnoMatricula" type="search" class="input" required>
                 <br><br>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Nombre" id="Nombre" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Apellido paterno" id="App" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <input placeholder="Apellido materno" id="Apm" type="text" class="input" required>
-                    </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <br><br>
+
+                @*    <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                <input placeholder="Nombre" id="Nombre" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                <input placeholder="Apellido paterno" id="App" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                <input placeholder="Apellido materno" id="Apm" type="text" class="input" required>
+                </div>
                 </div>
 
                 <div class="row">
-                    
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
-                    </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Alimento" id="Alimento" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Fecha pedido" id="Pedido" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Fecha entrega" id="Pedido" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Estatus" id="Estatus" type="text" class="input" required>
+                </div>
                 </div>
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <input placeholder="Alergias" id="Alergias" type="text" class="input" required>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
-                    </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Grado escolar" id="GradoEscolar" type="text" class="input" required />
                 </div>
-                
+
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Enfermedades" id="Enfermedades" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <input placeholder="Alergias" id="Alergias" type="text" class="input" required>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                <textarea placeholder="Notas u observaciones" id="Notas" class="input" required></textarea>
+                </div>
+                </div> *@
+
             </div>
         </form>
-            </div>
 
-         
-
-
-       
+        <div id="resultados">
+        </div>
     </div>
 
 
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#buscarForm").on("submit", function (event) {
+                    event.preventDefault();
+                    var AlumnoMatricula = $("#AlumnoMatricula").val();
+
+                    $.ajax({
+                        url: '@Url.Action("BuscarAlumnoCT", "Alumno")',
+                        type: 'POST',
+                        data: { AlumnoMatricula: AlumnoMatricula },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.success) {
+                                var pedidos = response.pedidos;
+                                var html = '<h2>Pedidos</h2> <table><thead><tr><th>Nombre del Alumno</th><th>Apellido paterno</th><th>Apellido Materno</th></tr><tr><th>Fecha del Pedido</th><th>Fecha de Entrega</th><th>Estatus del Pedido</th></tr><tr><th>Grado del alumno</th><th>Enfermedad del alumno</th><th>Alergias</th></tr><tr><th>Notas</th></tr></thead><tbody>';/*  <th>comida < /th> */
+
+                                $.each(pedidos, function (index, pedido) {
+                                    html += '<tr><td>' + pedido.alumnoNombre + '</td><td>' + pedido.alumnoapaterno + '</td><td>' + pedido.alumnoamaterno + '</td></tr><tr><td>' + new Date(pedido.fechaPedido).toLocaleDateString() + '</td><td>' + new Date(pedido.fechaEntregaa).toLocaleDateString() + '</td><td>' + pedido.estatusPedido + '</td></tr><tr><td>' + pedido.alumnogrado + '</td><td>' + pedido.alumnopadecimiento + '</td><td>' + pedido.alumnoaler + '</td></tr><tr><td>' + pedido.alumnonotas + '</td></tr>'  /* + '</td><td>' + pedido.nombrecomida + '</td></tr>' */;
+                                });
+
+                                html += '</tbody></table>';
+                                $("#resultados").html(html);
+                            } else {
+                                $("#resultados").html('<p>' + response.message + '</p>');
+                            }
+                        },
+                        error: function () {
+                            $("#resultados").html('<p>Ocurrió un error al realizar la búsqueda.</p>');
+                        }
+                    });
+                });
+            });
+        </script>
+    }
 
 </body>
 
