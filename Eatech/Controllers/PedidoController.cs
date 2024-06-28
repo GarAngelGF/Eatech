@@ -239,6 +239,7 @@ namespace Eatech.Controllers
                 alumnoNombre = alumno1.Nombre,
 
                 fechaPedido = p.FechaCPedido,
+                //nombrecomida = _context.Comidas.Where(a => a.IDComida == .FirstOrDefault()).Select(a => a.Nombre).FirstOrDefault(),
                 fechaEntregaa = p.FechaEntrega,
                 estatusPedido = p.Estatus
 
