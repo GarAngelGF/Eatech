@@ -61,11 +61,16 @@
 
                 <h3>Ingresa la matrícula del alumno</h3>
 
-                <input value="alumnoMatricula" id="AlumnoMatricula" type="search" class="input" required>
+                <input placeholder="matricula" name="AlumnoMatricula" id="AlumnoMatricula" type="search" class="input"  required>
                 <br><br>
                 <button type="submit" class="btn btn-primary">Buscar</button>
                 <br><br>
-                <div class="row">
+        </form>
+
+                @foreach(var hola1 in ViewBag.hola)
+        {
+            
+               <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-3">
                 <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
                 </div>
@@ -83,9 +88,12 @@
                 </div>
                 </div>
                
-            </div>
+            
 
-        </form>
+
+        }
+     
+        
     </div>
 
 

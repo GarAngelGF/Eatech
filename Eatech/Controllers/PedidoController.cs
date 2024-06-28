@@ -190,7 +190,7 @@ namespace Eatech.Controllers
         public IActionResult Buscar()
         {
             return View();
-            
+      
         }
 
         public async Task <IActionResult> Buscar2(string AlumnoMatricula)
@@ -198,36 +198,48 @@ namespace Eatech.Controllers
             var userId = User.Identity.Name;
             var padre = Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value);
 
+           var alumnin = _context.Alumnos.ToList();
+
 
             if (padre == null)
             {
                 return NotFound("Padre no encontrado.");
             }
+            //hasta aqui todo bien, se vincula el padre con el alumno y cuando la busqueda llega a este punto la variable
+            //alumnos si marca los que estan relacionados con el padre
 
             var alumnos = _context.Intermedia_Usuario_Alumno.Where(a => a.IdUsuario == padre).Select(a => a.Idalumno).ToList(); /*Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value)); padre.GetType == "Id");.ToList();*/
 
-            var alumno = alumnos.FirstOrDefault(a => a.NoMatricula == AlumnoMatricula);
+            //aqui alumno1 ya agarra bien el valor el alumno buscado :D
+            var alumno1 = alumnos.FirstOrDefault(b => b.NoMatricula == AlumnoMatricula);
 
-            if (alumno == null)
+            if (alumno1 == null)
             {
                 return NotFound("Alumno no encontrado.");
             }
 
-            var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno.IdAlumno).Select(pi => pi.pedido).ToList();
+            //hasta aqui todo jala bien
+
+            var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno1.IdAlumno).Select(pi => pi.pedido).ToList();
+
+            if (pedidoIds.Count == 0)
+            {
+                return NotFound("Pedidos no encontrados para el alumno " + alumno1.Nombre);
+            }
 
 
             var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new
             {
-                AlumnoNombre = alumno.Nombre,
+                AlumnoNombre = alumno1.Nombre,
                 AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido).Nombre,
                 FechaPedido = p.FechaCPedido,
                 FechaEntrega = p.FechaEntrega,
                 EstatusPedido = p.Estatus
-            })
-                         .ToList();
 
-            ViewBag.Pedidos = pedidos;
-            return View();
+            }).ToList();
+
+            ViewBag.hola = pedidos;
+            return View(Buscar);
         }
     }
 }
