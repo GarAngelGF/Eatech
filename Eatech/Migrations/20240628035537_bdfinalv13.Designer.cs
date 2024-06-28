@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eatech.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20240623060759_bdfinalv13")]
+    [Migration("20240628035537_bdfinalv13")]
     partial class bdfinalv13
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,7 +104,6 @@ namespace Eatech.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Visibilidad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IDComida");
@@ -159,7 +158,6 @@ namespace Eatech.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Estatus")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCPedido")
@@ -169,7 +167,6 @@ namespace Eatech.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NotaPedido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("pedido");

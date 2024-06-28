@@ -198,12 +198,13 @@ namespace Eatech.Controllers
             var userId = User.Identity.Name;
             var padre = Guid.Parse(User.Claims.FirstOrDefault(p => p.Type == "Id").Value);
 
-           var alumnin = _context.Alumnos.ToList();
+           
 
 
             if (padre == null)
             {
-                return NotFound("Padre no encontrado.");
+                //return NotFound("Padre no encontrado.");
+                return Json(new { success = false, message = "Padre no encontrado." });
             }
             //hasta aqui todo bien, se vincula el padre con el alumno y cuando la busqueda llega a este punto la variable
             //alumnos si marca los que estan relacionados con el padre
@@ -215,31 +216,46 @@ namespace Eatech.Controllers
 
             if (alumno1 == null)
             {
-                return NotFound("Alumno no encontrado.");
+                //    return NotFound("Alumno no encontrado.");
+                return Json(new { success = false, message = "Alumno no encontrado." });
             }
 
             //hasta aqui todo jala bien
 
             var pedidoIds = _context.Intermedia_Alum_Pedi.Where(pi => pi.IdAlumno == alumno1.IdAlumno).Select(pi => pi.pedido).ToList();
 
+           
+
             if (pedidoIds.Count == 0)
             {
-                return NotFound("Pedidos no encontrados para el alumno " + alumno1.Nombre);
+                //return NotFound("Pedidos no encontrados para el alumno " + alumno1.Nombre);
+                return Json(new { success = false, message = $"Pedidos no encontrados para el alumno {alumno1.Nombre}." });
+
             }
 
 
-            var pedidos = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new
+            var pedidosf = _context.Pedidos.Where(p => pedidoIds.Contains(p.pedido)).Select(p => new 
             {
                 AlumnoNombre = alumno1.Nombre,
-                AlimentoNombre = _context.Comidas.FirstOrDefault(c => c.IDComida == p.pedido).Nombre,
+
                 FechaPedido = p.FechaCPedido,
-                FechaEntrega = p.FechaEntrega,
+                FechaEntregaa = p.FechaEntrega,
                 EstatusPedido = p.Estatus
 
             }).ToList();
 
-            ViewBag.hola = pedidos;
-            return View(Buscar);
+            if (pedidosf == null)
+            {
+                return NotFound("No se encontraron pedidos.");
+            }
+
+
+            //ViewBag.Pedidos = pedidosf;
+
+            //return View("Buscar", pedidosf);
+
+            return Json(new { success = true, pedidos = pedidosf });
+
         }
     }
 }

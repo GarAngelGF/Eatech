@@ -102,7 +102,6 @@ namespace Eatech.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Visibilidad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IDComida");
@@ -157,7 +156,6 @@ namespace Eatech.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Estatus")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCPedido")
@@ -167,7 +165,6 @@ namespace Eatech.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NotaPedido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("pedido");

@@ -1,6 +1,6 @@
-﻿@model Eatech.Models.Bd_Pedido
+﻿
 @{
-    ViewData["Title"] = " Buscar Alumnos Padre";
+    ViewData["Title"] = " BuscarAlumnos";
 }
 
 <html lang="en">
@@ -49,7 +49,7 @@
 
     <div id="container2" class="content-container">
 
-        <form asp-action="Buscar2" class="form" method="post">
+        <form id="buscarForm">
 
             <br>
             <br>
@@ -61,101 +61,136 @@
 
                 <h3>Ingresa la matrícula del alumno</h3>
 
-                <input placeholder="matricula" name="AlumnoMatricula" id="AlumnoMatricula" type="search" class="input"  required>
+                <input placeholder="matricula" name="AlumnoMatricula" id="AlumnoMatricula" type="search" class="input" required>
                 <br><br>
                 <button type="submit" class="btn btn-primary">Buscar</button>
                 <br><br>
+        
+ 
+         
+ 
+           @*  <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    <input value="@item.AlumnoNombre" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                    <input value="@item.FechaPedido" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                    <input value="@item.FechaEntrega" type="text" class="input" readonly>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                    <input value="@item.EstatusPedido" type="text" class="input" readonly>
+                </div>
+            </div>  *@
+
+
+             
+
         </form>
 
-                @foreach(var hola1 in ViewBag.hola)
-        {
+        <div id="resultados">
             
-               <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-3">
-                <input placeholder="Alumno" id="AlumnoNombre" type="text" class="input" readonly>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-3">
-                <input placeholder="Alimento" id="AlimentoNombre" type="text" class="input" readonly>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                <input placeholder="Fecha pedido" id="FechaPedido" type="text" class="input" readonly>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                <input placeholder="Fecha entrega" id="FechaEntrega" type="text" class="input" readonly>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                <input placeholder="Estatus" id="EstatusPedido" type="text" class="input" readonly>
-                </div>
-                </div>
-               
-            
+        </div>
 
 
-        }
-     
-        
     </div>
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#buscarForm").on("submit", function (event) {
+                    event.preventDefault();
+                    var AlumnoMatricula = $("#AlumnoMatricula").val();
 
+                    $.ajax({
+                        url: '@Url.Action("Buscar2", "Pedido")',
+                        type: 'POST',
+                        data: { AlumnoMatricula: AlumnoMatricula },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.success) {
+                                var pedidos = response.pedidos;
+                                var html = '<h2>Pedidos</h2><table><thead><tr><th>Nombre del Alumno</th><th>Fecha del Pedido</th><th>Fecha de Entrega</th><th>Estatus del Pedido</th></tr></thead><tbody>';
 
+                                $.each(pedidos, function (index, pedido) {
+                                    html += '<tr><td>' + pedido.AlumnoNombre + '</td><td>' + new Date(pedido.FechaPedido).toLocaleDateString() + '</td><td>' + new Date(pedido.FechaEntregaa).toLocaleDateString() + '</td><td>' + pedido.EstatusPedido + '</td></tr>';
+                                });
 
-
-   @*  <script>
-        document.getElementById('buscarForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Evitar el envío del formulario por defecto
-
-            var matricula = document.getElementById('AlumnoMatricula').value.trim();
-
-            // Validar que se haya ingresado la matrícula
-            if (!matricula) {
-                alert('Por favor ingrese la matrícula del alumno.');
-                return;
-            }
-
-            // Realizar la petición AJAX para buscar pedidos
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/Pedidos/Buscar'); // Ajusta la ruta según tu configuración
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var pedidos = JSON.parse(xhr.responseText);
-                    mostrarResultados(pedidos);
-                } else {
-                    alert('Error al buscar pedidos.');
-                }
-            };
-
-            xhr.onerror = function () {
-                alert('Error de red al intentar buscar pedidos.');
-            };
-
-            // Enviar los datos del formulario como JSON
-            var formData = JSON.stringify({ AlumnoMatricula: matricula });
-            xhr.send(formData);
-        });
-
-        function mostrarResultados(pedidos) {
-            var resultadoDiv = document.getElementById('resultadoPedidos');
-            resultadoDiv.innerHTML = ''; // Limpiar contenido anterior
-
-            if (pedidos.length === 0) {
-                resultadoDiv.innerHTML = '<p>No se encontraron pedidos para esta matrícula de alumno.</p>';
-                return;
-            }
-
-            var html = '<h3>Resultados de Pedidos</h3><ul>';
-            pedidos.forEach(function (pedido) {
-                html += '<li>';
-                html += '<strong>Alimento:</strong> ' + pedido.AlimentoNombre + '<br>';
-                html += '<strong>Fecha de Pedido:</strong> ' + pedido.FechaPedido + '<br>';
-                html += '<strong>Fecha de Entrega:</strong> ' + pedido.FechaEntrega + '<br>';
-                html += '<strong>Estatus del Pedido:</strong> ' + pedido.EstatusPedido;
-                html += '</li>';
+                                html += '</tbody></table>';
+                                $("#resultados").html(html);
+                            } else {
+                                $("#resultados").html('<p>' + response.message + '</p>');
+                            }
+                        },
+                        error: function () {
+                            $("#resultados").html('<p>Ocurrió un error al realizar la búsqueda.</p>');
+                        }
+                    });
+                });
             });
-            html += '</ul>';
+        </script>
+    }
 
-            resultadoDiv.innerHTML = html;
-        }
+
+
+    @*  <script>
+    document.getElementById('buscarForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
+
+    var matricula = document.getElementById('AlumnoMatricula').value.trim();
+
+    // Validar que se haya ingresado la matrícula
+    if (!matricula) {
+    alert('Por favor ingrese la matrícula del alumno.');
+    return;
+    }
+
+    // Realizar la petición AJAX para buscar pedidos
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/Pedidos/Buscar'); // Ajusta la ruta según tu configuración
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+    if (xhr.status === 200) {
+    var pedidos = JSON.parse(xhr.responseText);
+    mostrarResultados(pedidos);
+    } else {
+    alert('Error al buscar pedidos.');
+    }
+    };
+
+    xhr.onerror = function () {
+    alert('Error de red al intentar buscar pedidos.');
+    };
+
+    // Enviar los datos del formulario como JSON
+    var formData = JSON.stringify({ AlumnoMatricula: matricula });
+    xhr.send(formData);
+    });
+
+    function mostrarResultados(pedidos) {
+    var resultadoDiv = document.getElementById('resultadoPedidos');
+    resultadoDiv.innerHTML = ''; // Limpiar contenido anterior
+
+    if (pedidos.length === 0) {
+    resultadoDiv.innerHTML = '<p>No se encontraron pedidos para esta matrícula de alumno.</p>';
+    return;
+    }
+
+    var html = '<h3>Resultados de Pedidos</h3><ul>';
+    pedidos.forEach(function (pedido) {
+    html += '<li>';
+    html += '<strong>Alimento:</strong> ' + pedido.AlimentoNombre + '<br>';
+    html += '<strong>Fecha de Pedido:</strong> ' + pedido.FechaPedido + '<br>';
+    html += '<strong>Fecha de Entrega:</strong> ' + pedido.FechaEntrega + '<br>';
+    html += '<strong>Estatus del Pedido:</strong> ' + pedido.EstatusPedido;
+    html += '</li>';
+    });
+    html += '</ul>';
+
+    resultadoDiv.innerHTML = html;
+    }
     </script> *@
 
 </body>

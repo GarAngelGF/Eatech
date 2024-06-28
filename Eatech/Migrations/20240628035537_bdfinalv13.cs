@@ -47,7 +47,7 @@ namespace Eatech.Migrations
                 {
                     IDComida = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Visibilidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Visibilidad = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Porciones = table.Column<int>(type: "int", nullable: false),
                     PorcionesDisponibles = table.Column<int>(type: "int", nullable: false),
                     BdI_Com_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -102,8 +102,8 @@ namespace Eatech.Migrations
                     pedido = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FechaCPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FechaEntrega = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NotaPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Estatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NotaPedido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BdI_Alu_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     BdI_Com_PedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
